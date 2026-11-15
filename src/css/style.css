@@ -70,31 +70,14 @@ img {
 	color: #ffffff;
 	background-color: transparent;
 	border: none;
+	-moz-appearance: textfield; /* infelizmente tem css por browser, esse aq serve pra alterar no firefox só */
+	appearance: textfield;
 }
 
-.agi {
-	left: 52%;
-	top: 13%;
-}
-
-.for {
-	left: 21%;
-	top: 36%;
-}
-
-.int {
-	left: 84%;
-	top: 36%;
-}
-
-.pre {
-	left: 31%;
-	top: 76%;
-}
-
-.vig {
-	left: 73%;
-	top: 76%;
+.campo::-webkit-outer-spin-button,
+.campo::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 .card-custom {
