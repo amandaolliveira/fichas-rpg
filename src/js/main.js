@@ -1,3 +1,7 @@
+// VARIAVEIS
+let agenteSelecionado = undefined
+
+
 // essa funcao nao usa parametro, ela pega direto da URL a seção que vc clicou pra ir
 function trocarSection() {
 	const id = location.hash.slice(1) || 'inicio'; // pega a url que vc está tentando ir, ou coloca inicio como default
@@ -36,6 +40,9 @@ function trocarSection() {
 		nova.classList.remove('secao-entrando');
 	}, { once: true });
 }
+
+
+
 
 window.addEventListener('hashchange', trocarSection); // tive que cavar pra achar esse hashchange
 trocarSection(); // chama a função no rodar da página, pra tocar até na hora de carregar

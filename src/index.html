@@ -137,29 +137,128 @@
 			</dialog>
 		</section>
 
-		<section id="ficha" aria-labelledby="ficha-titulo" hidden>
+		<section id="ficha" aria-labelledby="ficha-titulo" style="padding: 0 10%;" hidden>
 			<h2 id="ficha-titulo">Ficha</h2>
+			<p>Crie ou edite os dados do agente.</p>
+			<hr>
 
-			<fieldset class="atributos">
-				<legend class="visually-hidden">Atributos</legend>
-				<img src="img/attributes.png" alt="Diagrama dos atributos">
+			<form id="form-ficha" class="form-ficha" data-bs-theme="dark">
+				<input type="hidden" name="agenteId">
 
-				<input type="number" class="campo" style="left: 50.4%; top: 17%;" name="agi" value="1" min="0" max="3"
-					aria-label="Agilidade">
-				<input type="number" class="campo" style="left: 19%; top: 38.5%;" name="for" value="1" min="0" max="3"
-					aria-label="Força">
-				<input type="number" class="campo" style="left: 82%; top: 38.5%;" name="int" value="1" min="0" max="3"
-					aria-label="Intelecto">
-				<input type="number" class="campo" style="left: 29.2%; top: 75.5%;" name="pre" value="1" min="0" max="3"
-					aria-label="Presença">
-				<input type="number" class="campo" style="left: 70.6%; top: 75.5%;" name="vig" value="1" min="0" max="3"
-					aria-label="Vigor">
-			</fieldset>
+				<div class="row g-5">
+					<div class="col-lg-4">
+						<fieldset class="atributos mx-auto">
+							<legend class="visually-hidden">Atributos</legend>
+							<img src="img/attributes.png" alt="Diagrama dos atributos">
+
+							<input type="number" class="campo" style="left: 50.4%; top: 17%;" name="AGI" value="1"
+								min="0" max="3" aria-label="Agilidade" required>
+							<input type="number" class="campo" style="left: 19%; top: 38.5%;" name="FOR" value="1"
+								min="0" max="3" aria-label="Força" required>
+							<input type="number" class="campo" style="left: 82%; top: 38.5%;" name="INT" value="1"
+								min="0" max="3" aria-label="Intelecto" required>
+							<input type="number" class="campo" style="left: 29.2%; top: 75.5%;" name="PRE" value="1"
+								min="0" max="3" aria-label="Presença" required>
+							<input type="number" class="campo" style="left: 70.6%; top: 75.5%;" name="VIG" value="1"
+								min="0" max="3" aria-label="Vigor" required>
+						</fieldset>
+					</div>
+
+					<div class="col-lg-8">
+						<fieldset class="mb-4">
+							<legend>Identificação</legend>
+
+							<div class="row g-3">
+								<div class="col-md-6">
+									<label for="ficha-nome-personagem" class="form-label">Nome do personagem</label>
+									<input type="text" id="ficha-nome-personagem" name="nomePersonagem"
+										class="form-control" required>
+								</div>
+								<div class="col-md-6">
+									<label for="ficha-nome-jogador" class="form-label">Nome do jogador</label>
+									<input type="text" id="ficha-nome-jogador" name="nomeJogador" class="form-control">
+								</div>
+								<div class="col-12">
+									<label for="ficha-descricao" class="form-label">Descrição</label>
+									<textarea id="ficha-descricao" name="descricao" class="form-control"
+										rows="3"></textarea>
+								</div>
+							</div>
+						</fieldset>
+
+						<fieldset>
+							<legend>Status</legend>
+
+							<div class="row g-3">
+								<div class="col-sm-6 col-xl-3">
+									<label class="form-label" id="ficha-vida">Vida</label>
+									<div class="input-group" role="group" aria-labelledby="ficha-vida">
+										<input type="number" name="vidaAtual" class="form-control" min="0" value="0"
+											aria-label="Vida atual">
+										<span class="input-group-text">/</span>
+										<input type="number" name="vidaMaximo" class="form-control" min="0" value="0"
+											aria-label="Vida máxima">
+									</div>
+								</div>
+								<div class="col-sm-6 col-xl-3">
+									<label class="form-label" id="ficha-sanidade">Sanidade</label>
+									<div class="input-group" role="group" aria-labelledby="ficha-sanidade">
+										<input type="number" name="sanidadeAtual" class="form-control" min="0" value="0"
+											aria-label="Sanidade atual">
+										<span class="input-group-text">/</span>
+										<input type="number" name="sanidadeMaximo" class="form-control" min="0"
+											value="0" aria-label="Sanidade máxima">
+									</div>
+								</div>
+								<div class="col-sm-6 col-xl-3">
+									<label class="form-label" id="ficha-esforco">Esforço</label>
+									<div class="input-group" role="group" aria-labelledby="ficha-esforco">
+										<input type="number" name="esforcoAtual" class="form-control" min="0" value="0"
+											aria-label="Esforço atual">
+										<span class="input-group-text">/</span>
+										<input type="number" name="esforcoMaximo" class="form-control" min="0" value="0"
+											aria-label="Esforço máximo">
+									</div>
+								</div>
+								<div class="col-sm-6 col-xl-3">
+									<label for="ficha-defesa" class="form-label">Defesa</label>
+									<input type="number" id="ficha-defesa" name="defesa" class="form-control" min="0"
+										value="10">
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+
+				<div class="d-flex justify-content-end gap-2 mt-5">
+					<a href="#agentes" class="btn btn-outline-secondary">Cancelar</a>
+					<button type="submit" class="btn btn-primary">Salvar ficha</button>
+				</div>
+			</form>
 		</section>
 
-		<section id="agentes" aria-labelledby="agentes-titulo" hidden>
+		<section id="agentes" aria-labelledby="agentes-titulo" style="padding: 0 10%;" hidden>
 			<h2 id="agentes-titulo">Agentes</h2>
 			<p>Fichas criadas.</p>
+			<hr>
+			<div class="lista-agentes">
+				<div class="card mb-3" style="max-width: 540px;">
+					<div class="row g-0">
+						<div class="col-md-4">
+							<img src="https://picsum.photos/id/237/300/300" class="img-fluid rounded-start"
+								alt="Foto do agente">
+						</div>
+						<div class="col-md-8">
+							<div class="card-body d-flex flex-column h-100">
+								<h5 class="card-title">Nome do Agente</h5>
+								<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+								<a href="#" class="btn btn-primary align-self-end mt-auto">Selecionar Ficha</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</section>
 
 		<section id="campanhas" aria-labelledby="campanhas-titulo" hidden>
@@ -187,6 +286,8 @@
 		integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu"
 		crossorigin="anonymous"></script>
 	<script src="js/agente.js"></script>
+	<script src="js/storage.js"></script>
+	<script src="js/ficha.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 	<script src="js/dados3d.js"></script>
 	<script src="js/dados.js"></script>
