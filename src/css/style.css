@@ -6,7 +6,6 @@ body {
 	color: #e8e8e8;
 }
 
-/* classe em vez de "nav": existe mais de um <nav> na página (menu e cards) */
 .cabecalho {
 	background-color: #14141c;
 	padding: 16px 24px;
@@ -137,4 +136,8 @@ img {
 .card-custom:hover>.conteudo-card>.titulo-card,
 .card-custom:focus-visible>.conteudo-card>.titulo-card {
 	opacity: 1;
+}
+
+h1 {
+	font-family: 'Special Elite', 'Courier New', Courier, monospace;
 }
