@@ -1,6 +1,3 @@
-//
-
-
 // essa funcao nao usa parametro, ela pega direto da URL a seção que vc clicou pra ir
 function trocarSection() {
 	const id = location.hash.slice(1) || 'inicio'; // pega a url que vc está tentando ir, ou coloca inicio como default

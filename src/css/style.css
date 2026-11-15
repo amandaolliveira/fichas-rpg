@@ -185,3 +185,109 @@ img {
 	margin: auto;
 	padding-left: 8px;
 }
+
+.categorias-pericias {
+	row-gap: 64px;
+}
+
+.categorias-pericias>.col {
+	width: 100%;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.categorias-pericias>.col>.dado+.dado {
+	margin-top: 8px;
+}
+
+.categorias-pericias>.col>.dado {
+	padding: 0;
+	cursor: default;
+	white-space: nowrap;
+	/* impede o texto de cair pra baixo do dado; a largura mínima da coluna passa a ser a perícia inteira, então a row quebra as colunas antes */
+}
+
+.categorias-pericias>.col>.dado>img {
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	cursor: pointer;
+}
+
+.resultado-rolagem {
+	border: none;
+	background: transparent;
+	color: white;
+	text-align: center;
+	font-family: 'Special Elite', 'Courier New', Courier, monospace;
+	cursor: default;
+}
+
+.resultado-rolagem::backdrop {
+	background-color: rgba(0, 0, 0, 0.75);
+}
+
+.resultado-rolagem[open],
+.resultado-rolagem[open]::backdrop {
+	animation: aparecer 0.1s ease-out;
+}
+
+.resultado-rolagem.fechando,
+.resultado-rolagem.fechando::backdrop {
+	animation: sumir 0.1s ease-in forwards;
+}
+
+@keyframes aparecer {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes sumir {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+.resultado-rolagem p {
+	margin: 0;
+	position: relative;
+	z-index: 1; /* texto na frente da mesa 3D */
+	transition: opacity 0.3s ease;
+	text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8); /* legível mesmo se o dado parar atrás */
+}
+
+/* enquanto o dado rola, o resultado fica escondido */
+.resultado-rolagem.rolando p {
+	opacity: 0;
+	transition: none; /* some na hora; o fade (0.3s) fica só na volta, quando o dado para */
+}
+
+/* mesa 3D: ocupa a tela inteira, atrás do resultado */
+.mesa-3d {
+	position: fixed;
+	inset: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+.resultado-pericia {
+	font-size: 32px;
+}
+
+.resultado-valor {
+	font-size: 128px;
+	line-height: 1;
+}
+
+.resultado-dica {
+	font-size: 14px;
+	opacity: 0.6;
+}

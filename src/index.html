@@ -96,6 +96,45 @@
 		<section id="dados" aria-labelledby="dados-titulo" style="padding: 0 10%;" hidden>
 			<h2 id="dados-titulo">Dados</h2>
 			<p>Rolagem de dados para testes.</p>
+			<hr>
+			<div class="categorias-pericias row column-gap-5 mt-5">
+				<div id="dados-AGI" class="col">
+					<h3>Agilidade</h3>
+					<hr>
+				</div>
+				<div id="dados-INT" class="col">
+					<h3>Intelecto</h3>
+					<hr>
+				</div>
+				<div id="dados-PRE" class="col">
+					<h3>Presença</h3>
+					<hr>
+				</div>
+				<div id="dados-FOR" class="col">
+					<h3>Força</h3>
+					<hr>
+				</div>
+				<div id="dados-VIG" class="col">
+					<h3>Vigor</h3>
+					<hr>
+				</div>
+			</div>
+
+			<!-- template pras perícias em lista, na seção de rolagem de dados -->
+			<template id="modelo-pericia">
+				<div class="dado" data-pericia="">
+					<img src="img/20lados.svg" alt="Dado de 20 Lados">
+					<span>nome da pericia</span>
+				</div>
+			</template>
+
+			<!-- resultado da rolagem -->
+			<dialog id="resultado-rolagem" class="resultado-rolagem">
+				<canvas class="mesa-3d" aria-hidden="true"></canvas>
+				<p class="resultado-pericia"></p>
+				<p class="resultado-valor"></p>
+				<p class="resultado-dica">clique para fechar</p>
+			</dialog>
 		</section>
 
 		<section id="ficha" aria-labelledby="ficha-titulo" hidden>
@@ -147,6 +186,10 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu"
 		crossorigin="anonymous"></script>
+	<script src="js/agente.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+	<script src="js/dados3d.js"></script>
+	<script src="js/dados.js"></script>
 	<script src="js/main.js"></script>
 </body>
 
