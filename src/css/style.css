@@ -6,7 +6,7 @@ body {
 	color: #e8e8e8;
 }
 
-.cabecalho {
+header {
 	background-color: #14141c;
 	padding: 16px 24px;
 	display: flex;
@@ -14,13 +14,7 @@ body {
 	align-items: center;
 }
 
-.cabecalho h1 {
-	color: #7000AC;
-	font-size: 24px;
-	margin: 0;
-}
-
-.cabecalho ul {
+header ul {
 	list-style: none;
 	display: flex;
 	gap: 20px;
@@ -28,18 +22,52 @@ body {
 	padding: 0;
 }
 
-.cabecalho a {
+header a {
 	color: #e8e8e8;
 	text-decoration: none;
 }
 
-.cabecalho a:hover,
-.cabecalho a[aria-current="page"] {
+header a:hover,
+header a[aria-current="page"] {
 	color: #7000AC;
 }
 
 main {
-	padding: 40px 24px;
+	padding: 32px 0;
+	overflow-x: clip;
+	/* isso aqui serve pra não aparecer a scrollbar, pra não bugar as animações */
+}
+
+.secao-saindo {
+	animation: sair-esquerda 0.10s ease-in forwards;
+}
+
+.secao-entrando {
+	animation: entrar-direita 0.10s ease-out;
+}
+
+@keyframes sair-esquerda {
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	to {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+}
+
+@keyframes entrar-direita {
+	from {
+		opacity: 0;
+		transform: translateX(30px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 img {
@@ -69,7 +97,8 @@ img {
 	color: #ffffff;
 	background-color: transparent;
 	border: none;
-	-moz-appearance: textfield; /* infelizmente tem css por browser, esse aq serve pra alterar no firefox só */
+	-moz-appearance: textfield;
+	/* infelizmente tem css por browser, esse aq serve pra alterar no firefox só */
 	appearance: textfield;
 }
 
@@ -138,6 +167,21 @@ img {
 	opacity: 1;
 }
 
-h1 {
-	font-family: 'Special Elite', 'Courier New', Courier, monospace;
+.logo {
+	display: flex;
+	font-size: 32px;
+	font-family: 'Special Elite', Arial, Helvetica, sans-serif;
+	color: magenta;
+	align-items: center;
+}
+
+.logo>img {
+	width: fit-content;
+	height: 1em;
+	transform: translateY(-15%);
+}
+
+.logo>p {
+	margin: auto;
+	padding-left: 8px;
 }

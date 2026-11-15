@@ -16,7 +16,10 @@
 <body>
 
 	<header class="cabecalho">
-		<h1>C.A.R.L.</h1>
+		<div class="logo">
+			<img src="img/logo_dado.png" alt="Logo dado de RPG">
+			<p>C.A.R.L</p>
+		</div>
 		<nav aria-label="Menu principal">
 			<ul>
 				<li><a href="#inicio">Início</a></li>
@@ -31,9 +34,9 @@
 	</header>
 
 	<main>
-		<section id="inicio" aria-labelledby="inicio-titulo">
-			<h2 id="inicio-titulo">Início</h2>
-			<p>Bem-vindo ao C.A.R.L. - Fichas Digitais para RPG</p>
+		<section id="inicio" aria-labelledby="inicio-titulo" style="padding: 0 10%">
+			<h2 id="inicio-titulo" class="text-center">Início</h2>
+			<p class="text-center small">Bem-vindo ao C.A.R.L. - Fichas Digitais para RPG</p>
 
 			<nav aria-label="Acesso rápido">
 				<ul id="cards-acesso-rapido"
@@ -102,11 +105,16 @@
 				<legend class="visually-hidden">Atributos</legend>
 				<img src="img/attributes.png" alt="Diagrama dos atributos">
 
-				<input type="number" class="campo" style="left: 50.4%; top: 17%;" name="agi" value="1" min="0" max="3" aria-label="Agilidade">
-				<input type="number" class="campo" style="left: 19%; top: 38.5%;" name="for" value="1" min="0" max="3" aria-label="Força">
-				<input type="number" class="campo" style="left: 82%; top: 38.5%;" name="int" value="1" min="0" max="3" aria-label="Intelecto">
-				<input type="number" class="campo" style="left: 29.2%; top: 75.5%;" name="pre" value="1" min="0" max="3" aria-label="Presença">
-				<input type="number" class="campo" style="left: 70.6%; top: 75.5%;" name="vig" value="1" min="0" max="3" aria-label="Vigor">
+				<input type="number" class="campo" style="left: 50.4%; top: 17%;" name="agi" value="1" min="0" max="3"
+					aria-label="Agilidade">
+				<input type="number" class="campo" style="left: 19%; top: 38.5%;" name="for" value="1" min="0" max="3"
+					aria-label="Força">
+				<input type="number" class="campo" style="left: 82%; top: 38.5%;" name="int" value="1" min="0" max="3"
+					aria-label="Intelecto">
+				<input type="number" class="campo" style="left: 29.2%; top: 75.5%;" name="pre" value="1" min="0" max="3"
+					aria-label="Presença">
+				<input type="number" class="campo" style="left: 70.6%; top: 75.5%;" name="vig" value="1" min="0" max="3"
+					aria-label="Vigor">
 			</fieldset>
 		</section>
 
