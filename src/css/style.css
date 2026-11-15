@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Special+Elite&display=swap');
+/* sim, roubei essa fonte do outro projeto */
+
 body {
 	background-color: #0b0b10;
 	color: #e8e8e8;
 }
 
-nav {
+/* classe em vez de "nav": existe mais de um <nav> na página (menu e cards) */
+.cabecalho {
 	background-color: #14141c;
 	padding: 16px 24px;
 	display: flex;
@@ -11,13 +15,13 @@ nav {
 	align-items: center;
 }
 
-nav h1 {
+.cabecalho h1 {
 	color: #7000AC;
 	font-size: 24px;
 	margin: 0;
 }
 
-nav ul {
+.cabecalho ul {
 	list-style: none;
 	display: flex;
 	gap: 20px;
@@ -25,12 +29,13 @@ nav ul {
 	padding: 0;
 }
 
-nav a {
+.cabecalho a {
 	color: #e8e8e8;
 	text-decoration: none;
 }
 
-nav a:hover {
+.cabecalho a:hover,
+.cabecalho a[aria-current="page"] {
 	color: #7000AC;
 }
 
@@ -92,6 +97,61 @@ img {
 	top: 76%;
 }
 
-#cards-acesso-rapido {
-	
+.card-custom {
+	display: block;
+	text-decoration: none;
+	width: 380px;
+	height: 220px;
+	background-color: white;
+	position: relative;
+	cursor: pointer;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.card-custom>img {
+	aspect-ratio: 1/1;
+	height: 60%;
+	position: absolute;
+	/* o absolute que faz a imagem ficar por cima/baixo de outros elementos, sem afetar o layout */
+	left: 50%;
+	top: 50%;
+	translate: -50% -50%;
+	/* gambiarra que faz a posição ficar certinha com o top/left, quando quiser centralizar */
+	z-index: 1;
+	rotate: 15deg;
+}
+
+.card-custom>.conteudo-card {
+	display: block;
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	transition: background-color 0.3s ease;
+}
+
+.conteudo-card>.titulo-card {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	font-family: 'Special Elite', 'Courier New', Courier, monospace;
+	font-size: 48px;
+	width: 100%;
+	height: 100%;
+	color: white;
+}
+
+/* :focus-visible precisa pra funcionar com tab */
+.card-custom:hover>.conteudo-card,
+.card-custom:focus-visible>.conteudo-card {
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.card-custom:hover>.conteudo-card>.titulo-card,
+.card-custom:focus-visible>.conteudo-card>.titulo-card {
+	opacity: 1;
 }

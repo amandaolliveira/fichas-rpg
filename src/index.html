@@ -15,14 +15,15 @@
 
 <body>
 
-	<header>
-		<nav>
-			<h1>C.A.R.L.</h1>
+	<header class="cabecalho">
+		<h1>C.A.R.L.</h1>
+		<nav aria-label="Menu principal">
 			<ul>
 				<li><a href="#inicio">Início</a></li>
 				<li><a href="#dados">Dados</a></li>
 				<li><a href="#ficha">Ficha</a></li>
 				<li><a href="#agentes">Agentes</a></li>
+				<li><a href="#campanhas">Campanhas</a></li>
 				<li><a href="#guia">Guia</a></li>
 				<li><a href="#perfil">Perfil</a></li>
 			</ul>
@@ -30,50 +31,97 @@
 	</header>
 
 	<main>
-		<section id="inicio">
-			<h2>Início</h2>
+		<section id="inicio" aria-labelledby="inicio-titulo">
+			<h2 id="inicio-titulo">Início</h2>
 			<p>Bem-vindo ao C.A.R.L. - Fichas Digitais para RPG</p>
 
-			<nav id="cards-acesso-rapido">
-
+			<nav aria-label="Acesso rápido">
+				<ul id="cards-acesso-rapido"
+					class="d-flex justify-content-evenly flex-row flex-wrap gap-5 list-unstyled p-0">
+					<li>
+						<a href="#dados" class="card-custom bg-success bg-gradient">
+							<img src="img/dado.svg" alt="" aria-hidden="true">
+							<span class="conteudo-card">
+								<span class="titulo-card">Dados</span>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="#ficha" class="card-custom bg-warning bg-gradient">
+							<img src="img/ficha.svg" alt="" aria-hidden="true">
+							<span class="conteudo-card">
+								<span class="titulo-card">Ficha</span>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="#agentes" class="card-custom bg-primary bg-gradient">
+							<img src="img/agentes.svg" alt="" aria-hidden="true">
+							<span class="conteudo-card">
+								<span class="titulo-card">Agentes</span>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="#campanhas" class="card-custom bg-danger bg-gradient">
+							<img src="img/campanhas.svg" alt="" aria-hidden="true">
+							<span class="conteudo-card">
+								<span class="titulo-card">Campanhas</span>
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="#guia" class="card-custom bg-info bg-gradient">
+							<img src="img/guia.svg" alt="" aria-hidden="true">
+							<span class="conteudo-card">
+								<span class="titulo-card">Guia</span>
+							</span>
+						</a>
+					</li>
+				</ul>
 			</nav>
 		</section>
 
-		<section id="dados" hidden>
-			<h2>Dados</h2>
+		<section id="dados" aria-labelledby="dados-titulo" hidden>
+			<h2 id="dados-titulo">Dados</h2>
 			<p>Rolagem de dados para testes.</p>
 		</section>
 
-		<section id="ficha" hidden>
-			<h2>Ficha</h2>
+		<section id="ficha" aria-labelledby="ficha-titulo" hidden>
+			<h2 id="ficha-titulo">Ficha</h2>
 
-			<div class="atributos">
+			<fieldset class="atributos">
+				<legend class="visually-hidden">Atributos</legend>
 				<img src="img/attributes.png" alt="Diagrama dos atributos">
 
-				<input type="number" class="campo agi" name="agi" value="1" min="0" max="3">
-				<input type="number" class="campo for" name="for" value="1" min="0" max="3">
-				<input type="number" class="campo int" name="int" value="1" min="0" max="3">
-				<input type="number" class="campo pre" name="pre" value="1" min="0" max="3">
-				<input type="number" class="campo vig" name="vig" value="1" min="0" max="3">
-			</div>
+				<input type="number" class="campo agi" name="agi" value="1" min="0" max="3" aria-label="Agilidade">
+				<input type="number" class="campo for" name="for" value="1" min="0" max="3" aria-label="Força">
+				<input type="number" class="campo int" name="int" value="1" min="0" max="3" aria-label="Intelecto">
+				<input type="number" class="campo pre" name="pre" value="1" min="0" max="3" aria-label="Presença">
+				<input type="number" class="campo vig" name="vig" value="1" min="0" max="3" aria-label="Vigor">
+			</fieldset>
 		</section>
 
-		<section id="agentes" hidden>
-			<h2>Agentes</h2>
+		<section id="agentes" aria-labelledby="agentes-titulo" hidden>
+			<h2 id="agentes-titulo">Agentes</h2>
 			<p>Fichas criadas.</p>
 		</section>
 
-		<section id="guia" hidden>
-			<h2>Tudo que você precisa saber</h2>
+		<section id="campanhas" aria-labelledby="campanhas-titulo" hidden>
+			<h2 id="campanhas-titulo">Campanhas</h2>
+			<p>Campanhas e mesas em andamento.</p>
+		</section>
+
+		<section id="guia" aria-labelledby="guia-titulo" hidden>
+			<h2 id="guia-titulo">Tudo que você precisa saber</h2>
 			<p>Aqui ficam as orientações sobre perícias, atributos e origem.</p>
 			<img src="img/attributes.png" alt="Diagrama dos atributos: Agilidade, Força, Intelecto, Presença e Vigor">
 		</section>
 
-		<section id="perfil" hidden>
-			<h2>Perfil</h2>
+		<section id="perfil" aria-labelledby="perfil-titulo" hidden>
+			<h2 id="perfil-titulo">Perfil</h2>
 			<p>Aqui você vê os personagens que criou.</p>
 		</section>
-
 	</main>
 
 	<footer>
@@ -83,6 +131,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu"
 		crossorigin="anonymous"></script>
+	<script src="js/main.js"></script>
 </body>
 
 </html>
