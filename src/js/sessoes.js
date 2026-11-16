@@ -191,10 +191,10 @@ formSessao.addEventListener("submit", function (evento) {
 		sessaoEmEdicao.campanhaId = dados.campanhaId;
 		sessaoEmEdicao.data = dados.data;
 		sessaoEmEdicao.anotacoes = dados.anotacoes;
-		mostrarAviso("Sessão " + dados.titulo + " salva.");
+		mostrarAviso('"' + dados.titulo + '" foi salva.');
 	} else {
 		sessoes.push(new Sessao(dados));
-		mostrarAviso("Sessão " + dados.titulo + " agendada.");
+		mostrarAviso('"' + dados.titulo + '" foi agendada.');
 	}
 
 	salvarSessoes();
