@@ -58,6 +58,43 @@ function campanhaMaisRecente() {
 	return recente;
 }
 
+// quantas sessões tem com esse status
+function contarSessoesPorStatus(status) {
+	let total = 0;
+	for (const sessao of sessoes) {
+		if (sessao.status === status) {
+			total++;
+		}
+	}
+	return total;
+}
+
+// a sessão agendada mais perto de hoje (as que já passaram não contam)
+function proximaSessao() {
+	const hoje = hojeTexto();
+	let proxima = undefined;
+	for (const sessao of sessoes) {
+		if (sessao.status !== "agendada" || sessao.data < hoje) {
+			continue;
+		}
+		if (!proxima || sessao.data < proxima.data) {
+			proxima = sessao;
+		}
+	}
+	return proxima;
+}
+
+// rolagem que deu 20 natural
+function contarCriticos() {
+	let total = 0;
+	for (const rolagem of historicoRolagens) {
+		if (rolagem.resultado === 20) {
+			total++;
+		}
+	}
+	return total;
+}
+
 function renderizarEstatisticas() {
 	document.getElementById("estat-agentes").textContent = agentes.length;
 	document.getElementById("estat-campanhas").textContent = campanhas.length;
@@ -71,5 +108,16 @@ function renderizarEstatisticas() {
 		document.getElementById("estat-recente").textContent = recente.nome + " (" + data + ")";
 	} else {
 		document.getElementById("estat-recente").textContent = "-";
+	}
+
+	document.getElementById("estat-sessoes-agendadas").textContent = contarSessoesPorStatus("agendada");
+	document.getElementById("estat-sessoes-concluidas").textContent = contarSessoesPorStatus("concluida");
+	document.getElementById("estat-rolagens").textContent = historicoRolagens.length + " / " + contarCriticos();
+
+	const proxima = proximaSessao();
+	if (proxima) {
+		document.getElementById("estat-proxima-sessao").textContent = proxima.titulo + " (" + formatarDataSessao(proxima.data) + ")";
+	} else {
+		document.getElementById("estat-proxima-sessao").textContent = "-";
 	}
 }

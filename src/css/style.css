@@ -1211,6 +1211,7 @@ main > section .card-sessao .card-title {
 }
 
 /* o nome da campanha é texto, não número, então fica menor pra caber */
-#estat-recente {
+#estat-recente,
+#estat-proxima-sessao {
 	font-size: 1.1rem;
 }
