@@ -484,11 +484,22 @@ img {
 	text-decoration: none;
 	width: 380px;
 	height: 220px;
-	background-color: white;
+	border-radius: var(--radius);
+	box-shadow: var(--sombra);
 	position: relative;
 	cursor: pointer;
-	border-radius: 8px;
 	overflow: hidden;
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+.card-custom:hover,
+.card-custom:focus-visible {
+	transform: translateY(-2px);
+	box-shadow:
+		0 12px 32px rgba(0, 0, 0, 0.35),
+		0 0 0 2px var(--roxo-100);
 }
 
 .card-custom > img {
@@ -520,17 +531,18 @@ img {
 	justify-content: center;
 	opacity: 0;
 	transition: opacity 0.3s ease;
-	font-family: "Special Elite", "Courier New", Courier, monospace;
-	font-size: 48px;
+	font-family: var(--fonte-titulo);
+	font-size: 44px;
+	text-transform: uppercase;
 	width: 100%;
 	height: 100%;
-	color: white;
+	color: var(--white-100);
 }
 
 /* :focus-visible precisa pra funcionar com tab */
 .card-custom:hover > .conteudo-card,
 .card-custom:focus-visible > .conteudo-card {
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(16, 16, 17, 0.8);
 }
 
 .card-custom:hover > .conteudo-card > .titulo-card,
