@@ -2,14 +2,27 @@
 // lista de campanhas e a tela de detalhes
 
 
-// no Date o mês começa do 0, então 8 = setembro. não fui eu que inventei isso
-const campanhas = [
-	new Campanha({
-		nome: "One-shot de Teste",
-		descricao: "Campanha sem imagem e sem agentes, pra testar os valores padrão.",
-		mestre: "Jogador 1",
-	})
-];
+const campanhas = [];
+
+// mesmo esquema dos agentes: se tem salvo usa, senão começa com a de teste
+const campanhasSalvas = carregarDoStorage(CHAVE_CAMPANHAS);
+if (campanhasSalvas) {
+	for (const dados of campanhasSalvas) {
+		campanhas.push(Campanha.storageParaJSON(dados));
+	}
+} else {
+	campanhas.push(
+		new Campanha({
+			nome: "One-shot de Teste",
+			descricao: "Campanha sem imagem e sem agentes, pra testar os valores padrão.",
+			mestre: "Jogador 1",
+		}),
+	);
+}
+
+function salvarCampanhas() {
+	salvarNoStorage(CHAVE_CAMPANHAS, campanhas);
+}
 
 // procura o agente pelo id, se não achar devolve undefined
 function buscarAgente(id) {

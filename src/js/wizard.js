@@ -244,6 +244,7 @@ formCampanha.addEventListener("submit", function (evento) {
 		campanhaEmEdicao.descricao = dados.descricao;
 		campanhaEmEdicao.imagem = dados.imagem || IMAGEM_PADRAO_CAMPANHA; // imagem vazia vira placeholder, igual no construtor
 		campanhaEmEdicao.agentes = dados.agentes;
+		salvarCampanhas();
 
 		renderizarCampanhas();
 		renderizarDetalheCampanha(campanhaEmEdicao);
@@ -253,6 +254,7 @@ formCampanha.addEventListener("submit", function (evento) {
 	}
 
 	campanhas.push(new Campanha(dados));
+	salvarCampanhas();
 	renderizarCampanhas();
 	resetarWizard();
 	location.hash = "#campanhas";
@@ -275,6 +277,7 @@ modalExcluirCampanha.querySelector(".btn-confirmar-exclusao").addEventListener("
 	if (indice !== -1) {
 		campanhas.splice(indice, 1);
 	}
+	salvarCampanhas();
 
 	bootstrap.Modal.getInstance(modalExcluirCampanha).hide();
 	campanhaSelecionada = undefined;

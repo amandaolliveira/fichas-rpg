@@ -151,6 +151,7 @@ function excluirAgente(agente) {
 		}
 		campanha.agentes = idsQueSobraram;
 	}
+	salvarCampanhas();
 
 	if (agenteSelecionado === agente) {
 		agenteSelecionado = agentes[0];
