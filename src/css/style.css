@@ -446,6 +446,30 @@ img {
 	max-width: 100%;
 }
 
+/* CAMPANHAS */
+.card-campanha {
+	transition:
+		transform 0.2s ease,
+		border-color 0.2s ease,
+		background 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+.card-campanha:hover,
+.card-campanha:focus-visible {
+	border-color: var(--roxo-100);
+	background: #1c1920;
+}
+
+.campanha-descricao {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+	overflow: hidden;
+	color: #c2bdc5;
+}
+
 /* FICHA */
 .atributos {
 	position: relative;

@@ -271,8 +271,53 @@
 			</section>
 
 			<section id="campanhas" aria-labelledby="campanhas-titulo" hidden>
-				<h2 id="campanhas-titulo">Campanhas</h2>
-				<p>Campanhas e mesas em andamento.</p>
+				<div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+					<div>
+						<h2 id="campanhas-titulo">Campanhas</h2>
+						<p class="mb-0">Campanhas e mesas em andamento.</p>
+					</div>
+					<a href="#wizard-campanha" class="btn btn-primary btn-nova-campanha">+ Nova campanha</a>
+				</div>
+				<hr />
+				<div class="lista-campanhas row row-cols-2 row-gap-4">
+					<!-- quando chamar renderizarCampanhas(), vai preencher aqui com o template -->
+				</div>
+
+				<!-- template pros cards de campanha -->
+				<template id="modelo-campanha">
+					<div class="card-wrapper px-3">
+						<a href="#campanha" class="card card-campanha h-100 text-decoration-none" data-id="">
+							<img src="" class="card-img-top border-bottom object-fit-cover" alt="" style="aspect-ratio: 8/3" />
+							<div class="card-body">
+								<h5 class="card-title fw-semibold campanha-nome"></h5>
+								<p class="card-text campanha-descricao"></p>
+								<p class="card-text small text-primary font-monospace campanha-info"></p>
+								<p class="card-text"><small class="text-body-secondary font-monospace campanha-criado"></small></p>
+							</div>
+						</a>
+					</div>
+				</template>
+			</section>
+
+			<section id="campanha" aria-labelledby="campanha-titulo" hidden>
+				<div class="d-flex justify-content-between flex-wrap gap-2 mb-3">
+					<a href="#campanhas" class="btn btn-outline-secondary">Voltar</a>
+					<div class="d-flex gap-2">
+						<a href="#wizard-campanha" class="btn btn-outline-light btn-editar-campanha">Editar</a>
+						<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-excluir-campanha">Excluir</button>
+					</div>
+				</div>
+				<img src="" class="detalhe-campanha-imagem w-100 rounded border object-fit-cover mb-3" alt="" style="aspect-ratio: 8/3" />
+				<h2 id="campanha-titulo" class="detalhe-campanha-nome"></h2>
+				<p class="text-body-secondary">
+					Mestre: <span class="detalhe-campanha-mestre"></span> ·
+					<span class="font-monospace small detalhe-campanha-criado"></span>
+				</p>
+				<hr />
+				<p class="detalhe-campanha-descricao" style="white-space: pre-line"></p>
+
+				<h3 class="mt-4">Agentes</h3>
+				<ul class="detalhe-campanha-agentes list-group" data-bs-theme="dark"></ul>
 			</section>
 
 			<section id="guia" aria-labelledby="guia-titulo" hidden>
@@ -325,6 +370,27 @@
 				<p>Aqui você vê os personagens que criou.</p>
 			</section>
 		</main>
+
+		<!-- confirmação de exclusão de campanha (fica fora das sections porque elas ficam hidden) -->
+		<div class="modal fade" id="modal-excluir-campanha" tabindex="-1" aria-labelledby="modal-excluir-campanha-titulo" aria-hidden="true" data-bs-theme="dark">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title text-uppercase fw-normal" id="modal-excluir-campanha-titulo">Excluir campanha</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+					</div>
+					<div class="modal-body">
+						Tem certeza que quer excluir <strong class="excluir-campanha-nome"></strong>? Isso não pode ser desfeito.
+						<br />
+						<small class="text-body-secondary">Os agentes da campanha não são apagados.</small>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-danger btn-confirmar-exclusao">Excluir</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<footer>
 			<!-- nada ainda -->
