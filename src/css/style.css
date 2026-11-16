@@ -470,6 +470,44 @@ img {
 	color: #c2bdc5;
 }
 
+.sombra-roxa {
+	box-shadow: 0 8px 32px rgba(180, 107, 255, 0.16);
+}
+
+.passos-wizard {
+	counter-reset: passo;
+}
+
+.passos-wizard > li {
+	flex: 1;
+	padding-top: 8px;
+	border-top: 4px solid var(--outline);
+	color: #89838e;
+	font-family: var(--fonte-mono);
+	font-size: 0.75rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	counter-increment: passo;
+	transition:
+		border-color 0.2s,
+		color 0.2s;
+}
+
+.passos-wizard > li::before {
+	content: counter(passo) ". ";
+	color: var(--roxo-100);
+}
+
+.passos-wizard > li.concluido {
+	border-color: rgba(180, 107, 255, 0.45);
+	color: var(--white-200);
+}
+
+.passos-wizard > li[aria-current="step"] {
+	border-color: var(--roxo-100);
+	color: var(--white-100);
+}
+
 /* FICHA */
 .atributos {
 	position: relative;

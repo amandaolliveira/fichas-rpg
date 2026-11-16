@@ -307,7 +307,7 @@
 						<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-excluir-campanha">Excluir</button>
 					</div>
 				</div>
-				<img src="" class="detalhe-campanha-imagem w-100 rounded border object-fit-cover mb-3" alt="" style="aspect-ratio: 8/3" />
+				<img src="" class="detalhe-campanha-imagem w-100 rounded border object-fit-cover sombra-roxa mb-3" alt="" style="aspect-ratio: 8/3" />
 				<h2 id="campanha-titulo" class="detalhe-campanha-nome"></h2>
 				<p class="text-body-secondary">
 					Mestre: <span class="detalhe-campanha-mestre"></span> ·
@@ -318,6 +318,84 @@
 
 				<h3 class="mt-4">Agentes</h3>
 				<ul class="detalhe-campanha-agentes list-group" data-bs-theme="dark"></ul>
+			</section>
+
+			<!-- form em formato de wizard, pq não? -->
+			<section id="wizard-campanha" aria-labelledby="wizard-campanha-titulo" hidden>
+				<h2 id="wizard-campanha-titulo" class="wizard-titulo">Nova campanha</h2>
+				<p class="wizard-subtitulo">Preencha os passos para criar a campanha.</p>
+				<hr />
+
+				<!-- indicador de progresso no wizard -->
+				<ol class="passos-wizard d-flex gap-2 list-unstyled mb-4" aria-label="Passos">
+					<li data-passo="1">Informações</li>
+					<li data-passo="2">Imagem</li>
+					<li data-passo="3">Agentes</li>
+					<li data-passo="4">Revisão</li>
+				</ol>
+
+				<form id="form-campanha" class="form-campanha" data-bs-theme="dark" novalidate>
+					<fieldset class="passo-wizard p-3 p-md-4" data-passo="1">
+						<legend>Informações</legend>
+						<div class="row g-3">
+							<div class="col-md-6">
+								<label for="campanha-nome" class="form-label">Nome da campanha</label>
+								<input type="text" id="campanha-nome" name="nome" class="form-control" maxlength="80" required />
+								<div class="invalid-feedback">Dê um nome pra campanha.</div>
+							</div>
+							<div class="col-md-6">
+								<label for="campanha-mestre" class="form-label">Mestre</label>
+								<input type="text" id="campanha-mestre" name="mestre" class="form-control" required />
+								<div class="invalid-feedback">Quem vai mestrar?</div>
+							</div>
+							<div class="col-12">
+								<label for="campanha-descricao" class="form-label">Descrição</label>
+								<textarea id="campanha-descricao" name="descricao" class="form-control" rows="4"></textarea>
+							</div>
+						</div>
+					</fieldset>
+
+					<fieldset class="passo-wizard p-3 p-md-4" data-passo="2" hidden>
+						<legend>Imagem</legend>
+						<label for="campanha-imagem" class="form-label">URL da imagem (opcional)</label>
+						<input type="url" id="campanha-imagem" name="imagem" class="form-control" placeholder="https://..." />
+						<div class="invalid-feedback">Essa URL não parece válida.</div>
+						<div class="form-text">Se deixar vazio, a campanha usa uma imagem padrão.</div>
+						<img src="" class="wizard-preview-imagem w-100 rounded border object-fit-cover sombra-roxa mt-3" alt="Prévia da imagem da campanha" style="aspect-ratio: 8/3" />
+					</fieldset>
+
+					<fieldset class="passo-wizard p-3 p-md-4" data-passo="3" hidden>
+						<legend>Agentes</legend>
+						<p class="text-body-secondary">Escolha os agentes que participam da campanha (opcional).</p>
+						<div class="wizard-lista-agentes list-group">
+							<!-- preenchido pelo JS com os agentes existentes -->
+						</div>
+					</fieldset>
+
+					<fieldset class="passo-wizard p-3 p-md-4" data-passo="4" hidden>
+						<legend>Revisão</legend>
+						<img src="" class="wizard-revisao-imagem w-100 rounded border object-fit-cover sombra-roxa mb-3" alt="" style="aspect-ratio: 8/3" />
+						<dl class="row wizard-revisao">
+							<dt class="col-sm-3 pt-1 small text-primary text-uppercase font-monospace fw-medium">Nome</dt>
+							<dd class="col-sm-9 revisao-nome"></dd>
+							<dt class="col-sm-3 pt-1 small text-primary text-uppercase font-monospace fw-medium">Mestre</dt>
+							<dd class="col-sm-9 revisao-mestre"></dd>
+							<dt class="col-sm-3 pt-1 small text-primary text-uppercase font-monospace fw-medium">Descrição</dt>
+							<dd class="col-sm-9 revisao-descricao" style="white-space: pre-line"></dd>
+							<dt class="col-sm-3 pt-1 small text-primary text-uppercase font-monospace fw-medium">Agentes</dt>
+							<dd class="col-sm-9 revisao-agentes"></dd>
+						</dl>
+					</fieldset>
+
+					<div class="d-flex justify-content-between gap-2 mt-5">
+						<a href="#campanhas" class="btn btn-outline-secondary wizard-cancelar">Cancelar</a>
+						<div class="d-flex gap-2">
+							<button type="button" class="btn btn-outline-light wizard-voltar">Voltar</button>
+							<button type="button" class="btn btn-primary wizard-proximo">Próximo</button>
+							<button type="submit" class="btn btn-success wizard-criar">Criar campanha</button>
+						</div>
+					</div>
+				</form>
 			</section>
 
 			<section id="guia" aria-labelledby="guia-titulo" hidden>
