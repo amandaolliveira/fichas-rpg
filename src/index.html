@@ -239,26 +239,54 @@
 
 		<section id="agentes" aria-labelledby="agentes-titulo" style="padding: 0 10%;" hidden>
 			<h2 id="agentes-titulo">Agentes</h2>
-			<p>Fichas criadas.</p>
+			<p>Suas fichas criadas.</p>
 			<hr>
-			<div class="lista-agentes">
-				<div class="card mb-3" style="max-width: 540px;">
-					<div class="row g-0">
-						<div class="col-md-4">
-							<img src="https://picsum.photos/id/237/300/300" class="img-fluid rounded-start"
-								alt="Foto do agente">
-						</div>
-						<div class="col-md-8">
-							<div class="card-body d-flex flex-column h-100">
-								<h5 class="card-title">Nome do Agente</h5>
-								<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-								<a href="#" class="btn btn-primary align-self-end mt-auto">Selecionar Ficha</a>
+
+			<div class="lista-agentes row g-3">
+				<div class="col-6 col-md-4 col-xl-3">
+					<article class="card card-agente h-100" data-bs-theme="dark">
+						<img src="https://picsum.photos/id/237/400/300" class="card-img-top w-100"
+							alt="Foto do persoagem">
+
+						<div class="card-body p-2">
+							<h3 class="card-title h6">Nome do personagem</h3>
+
+							<div class="mb-2">
+								<span class="badge atributo">AGI 1</span>
+								<span class="badge atributo">FOR 1</span>
+								<span class="badge atributo">INT 1</span>
+								<span class="badge atributo">PRE 1</span>
+								<span class="badge atributo">VIG 1</span>
+							</div>
+
+							<div class="status-item">
+								<p class="status-titulo">Vida</p>
+								<div class="barra barra-vida">17 / 17</div>
+							</div>
+
+							<div class="status-item">
+								<p class="status-titulo">Sanidade</p>
+								<div class="barra barra-sanidade">16 / 16</div>
+							</div>
+
+							<div class="status-item">
+								<p class="status-titulo">Esforço</p>
+								<div class="barra barra-esforco">4 / 4</div>
+							</div>
+
+							<div class="defesa">
+								<span>Defesa</span>
+								<span>10</span>
 							</div>
 						</div>
-					</div>
+
+						<div class="card-footer d-flex justify-content-end gap-2">
+							<a href="#ficha" class="btn btn-sm btn-primary">Editar</a>
+							<button class="btn btn-sm btn-outline-secondary">Excluir</button>
+						</div>
+					</article>
 				</div>
 			</div>
-
 		</section>
 
 		<section id="campanhas" aria-labelledby="campanhas-titulo" hidden>
@@ -266,10 +294,64 @@
 			<p>Campanhas e mesas em andamento.</p>
 		</section>
 
-		<section id="guia" aria-labelledby="guia-titulo" hidden>
+		<section id="guia" aria-labelledby="guia-titulo" style="padding: 0 10%;" hidden>
 			<h2 id="guia-titulo">Tudo que você precisa saber</h2>
-			<p>Aqui ficam as orientações sobre perícias, atributos e origem.</p>
-			<img src="img/attributes.png" alt="Diagrama dos atributos: Agilidade, Força, Intelecto, Presença e Vigor">
+			<p>Aqui você aprende o que é cada parte da ficha e para que ela serve.</p>
+			<hr>
+
+			<div class="guia-texto">
+				<h3>Como distribuir os atributos</h3>
+				<p>
+					Todo personagem começa com todos os atributos em 1. Você recebe 4 pontos para distribuir entre eles
+					como quiser.
+					Também é possível reduzir um atributo para 0 e, em troca, ganhar 1 ponto extra.
+					No começo, nenhum atributo pode passar de 3.
+				</p>
+				<img src="img/attributes.png"
+					alt="Diagrama dos atributos: Agilidade, Força, Intelecto, Presença e Vigor" class="d-block my-4">
+
+				<h3>Os 5 atributos</h3>
+				<p>Os atributos mostram o que o seu personagem faz de melhor. Quanto maior o valor, melhor ele se sai
+					nos testes ligados àquele atributo.</p>
+
+				<h4>Agilidade (AGI)</h4>
+				<p>É a rapidez, os reflexos e a coordenação do personagem. Quem tem muita Agilidade se move bem, desvia
+					de ataques e age primeiro.</p>
+
+				<h4>Força (FOR)</h4>
+				<p>É o poder muscular. Serve para quem precisa levantar peso, empurrar, escalar ou lutar corpo a corpo.
+				</p>
+
+				<h4>Intelecto (INT)</h4>
+				<p>É o raciocínio e o conhecimento. Serve para investigar, entender mistérios, usar tecnologia e
+					resolver problemas.</p>
+
+				<h4>Presença (PRE)</h4>
+				<p>É a personalidade e a força de vontade. Serve para convencer, impor respeito e resistir ao medo.</p>
+
+				<h4>Vigor (VIG)</h4>
+				<p>É a saúde e a resistência do corpo. Serve para aguentar pancadas, cansaço, veneno e dor.</p>
+
+				<h3>Vida, Sanidade e Esforço</h3>
+				<p>São os três recursos do personagem. Eles mudam durante o jogo, por isso a ficha mostra o valor atual
+					e o máximo (por exemplo, 17/17).</p>
+
+				<h4>Vida</h4>
+				<p>É quanto dano o personagem aguenta. Quando leva golpes, a Vida diminui. Se chegar a zero, ele cai e
+					corre risco de morrer.</p>
+
+				<h4>Sanidade</h4>
+				<p>É a estabilidade mental. Ela diminui quando o personagem enfrenta coisas aterrorizantes. Se chegar a
+					zero, ele perde o controle da própria mente.</p>
+
+				<h4>Esforço</h4>
+				<p>É a energia que o personagem gasta para usar habilidades especiais. Quando acaba, ele precisa
+					descansar para recuperar.</p>
+
+				<h3>Defesa</h3>
+				<p>É a dificuldade que os inimigos têm para acertar você. Quanto maior a Defesa, mais difícil de ser
+					atingido. Ela começa em 10 e pode aumentar com a sua Agilidade e com equipamentos.</p>
+			</div>
 		</section>
 
 		<section id="perfil" aria-labelledby="perfil-titulo" hidden>
