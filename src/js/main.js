@@ -403,16 +403,19 @@ for (let n = 1; n <= 4; n++) {
 }
 agenteSelecionado = agentes[0];
 
+// quanto da barra fica pintado. se o máximo for 0 a conta ia dividir por zero, então já volta 0 direto
 function calcularPorcentagem(recurso) {
 	if (recurso.maximo === 0) {
 		return 0;
 	}
 	const porcentagem = Math.round((recurso.atual / recurso.maximo) * 100);
+	// curou acima do máximo? a barra não passa de 100%, senão vaza do card
 	return Math.min(porcentagem, 100);
 }
 
 function preencherBarra(barra, recurso) {
 	barra.textContent = recurso.atual + " / " + recurso.maximo;
+	// o css lê esse --preenchimento pra saber até onde pintar a barra
 	barra.style.setProperty("--preenchimento", calcularPorcentagem(recurso) + "%");
 }
 
@@ -439,6 +442,7 @@ function criarCardAgente(agente) {
 		card.classList.add("selecionado");
 	}
 
+	// cada card ganha os próprios cliques, e a função lembra de qual agente ela é (closure, se quiser pesquisar o nome chique)
 	card.querySelector(".btn-editar-agente").addEventListener("click", function () {
 		selecionarAgente(agente);
 	});
@@ -461,6 +465,7 @@ function renderizarAgentes() {
 		container.append(coluna);
 	}
 
+	// o "nenhum agente" só aparece se a lista estiver vazia
 	document.querySelector(".lista-agentes-vazia").hidden = agentes.length > 0;
 }
 
@@ -477,6 +482,7 @@ function renderizarCardDados() {
 	vazio.hidden = true;
 	const card = criarCardAgente(agenteSelecionado);
 	card.classList.remove("selecionado");
+	// na seção de dados não faz sentido excluir, então tira o botão. e como só tem ele ali, não precisa da borda de selecionado
 	card.querySelector(".btn-excluir-agente").remove();
 	container.append(card);
 }
@@ -488,6 +494,7 @@ function selecionarAgente(agente) {
 }
 
 function excluirAgente(agente) {
+	// confirm é aquela caixinha feia do navegador, mas funciona e devolve true/false
 	if (!confirm("Excluir " + agente.nomePersonagem + "? Isso não pode ser desfeito.")) {
 		return;
 	}
@@ -497,6 +504,7 @@ function excluirAgente(agente) {
 		agentes.splice(indice, 1);
 	}
 
+	// tira o agente das campanhas também, senão elas ficam contando gente que não existe mais
 	for (const campanha of campanhas) {
 		const idsQueSobraram = [];
 		for (const id of campanha.agentes) {
@@ -516,6 +524,7 @@ function excluirAgente(agente) {
 	renderizarCampanhas();
 }
 
+// sem agente selecionado a ficha abre vazia, pronta pra criar um novo
 document.querySelector(".btn-novo-agente").addEventListener("click", function () {
 	selecionarAgente(undefined);
 });
@@ -527,6 +536,7 @@ renderizarCardDados();
 
 const formFicha = document.getElementById("form-ficha");
 
+// o formFicha.elements pega os campos pelo name que tá no html, ex.: campos.AGI é o input name="AGI"
 function preencherFicha() {
 	const campos = formFicha.elements;
 	const subtitulo = document.querySelector(".ficha-subtitulo");
@@ -562,6 +572,7 @@ function preencherFicha() {
 	campos.defesa.value = agente.defesa;
 }
 
+// o value dos inputs sempre vem como texto, então o Number transforma em número de verdade
 function lerFicha() {
 	const campos = formFicha.elements;
 
@@ -584,6 +595,7 @@ function lerFicha() {
 }
 
 formFicha.addEventListener("submit", function (evento) {
+	// mesma coisa do wizard: sem isso a página recarrega e vc perde tudo
 	evento.preventDefault();
 
 	const dados = lerFicha();
@@ -604,6 +616,7 @@ formFicha.addEventListener("submit", function (evento) {
 		selecionarAgente(novo);
 	}
 
+	// o nome pode ter mudado, então redesenha as campanhas também
 	renderizarCampanhas();
 	location.hash = "#agentes";
 });
@@ -1050,6 +1063,7 @@ function trocarSection() {
 		return;
 	}
 
+	// toda vez que abre a ficha, ela puxa o agente selecionado de novo
 	if (id === "ficha") {
 		preencherFicha();
 	}

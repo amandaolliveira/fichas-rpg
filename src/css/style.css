@@ -644,17 +644,20 @@ img {
 	padding-left: 8px;
 }
 
+/* sticky de novo: o card acompanha vc enquanto desce pelas perícias. o top é a altura do cabeçalho + um respiro */
 .agente-dados {
 	position: sticky;
 	top: 104px;
 }
 
 .categorias-pericias {
+	/* zera o espaço que o bootstrap põe entre as colunas, aqui quem manda é o column-gap */
 	--bs-gutter-x: 0;
 	row-gap: 48px;
 }
 
 .categorias-pericias > .col {
+	/* o bootstrap força width 100% e flex 1 0 0 nas colunas, aí elas nunca quebram linha e vazam do painel. com auto cada uma tem o tamanho do conteúdo e pula pra baixo quando não cabe */
 	width: auto;
 	flex: 1 0 auto;
 	padding: 0;
@@ -786,6 +789,7 @@ img {
 	background: #1c1920;
 }
 
+/* o agente selecionado ganha a borda roxa, pra vc saber qual tá aberto na ficha */
 .card.card-agente.selecionado {
 	border-color: var(--roxo-100);
 	box-shadow: 0 0 0 1px var(--roxo-100);
