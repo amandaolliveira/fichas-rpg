@@ -1,9 +1,72 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Special+Elite&display=swap");
-/* sim, roubei essa fonte do outro projeto */
+/* sim, roubei essa fonte do outro projeto da amanda (github.com/amandaolliveira/salve-uma-musica) */
+
+/* ===== CORES E VARIÁVEIS ===== */
+
+:root {
+	color-scheme: dark;
+
+	--bg-100: #101011;
+	--bg-200: #19191c;
+	--bg-300: #202024;
+	--bg-200-card: #151417;
+	--white-100: #e8e2d8;
+	--muted: #a5a0a7;
+	--white-200: #f4f0eb;
+	--roxo-100: #b46bff;
+	--roxo-200: #7d35c7;
+	--outline: rgba(232, 226, 216, 0.16);
+	--danger: #e27683;
+	--success: #9bd4ad;
+	--sombra: 0 16px 56px rgba(0, 0, 0, 0.38);
+	--radius: 0;
+
+	--fonte-texto: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+	--fonte-titulo: "Special Elite", "Courier New", Courier, monospace;
+	--fonte-mono: "DM Mono", ui-monospace, Consolas, "Courier New", monospace;
+}
+
+:root,
+[data-bs-theme="dark"] {
+	--bs-body-bg: var(--bg-100);
+	--bs-body-bg-rgb: 16, 16, 17;
+	--bs-body-color: var(--white-200);
+	--bs-body-color-rgb: 244, 240, 235;
+	--bs-body-font-family: var(--fonte-texto);
+	--bs-font-monospace: var(--fonte-mono);
+	--bs-body-line-height: 1.55;
+	--bs-emphasis-color: #fff;
+	--bs-secondary-color: var(--muted);
+	--bs-secondary-bg: var(--bg-300);
+	--bs-tertiary-bg: var(--bg-200);
+	--bs-border-color: var(--outline);
+	--bs-border-radius: var(--radius);
+	--bs-primary: var(--roxo-100);
+	--bs-primary-rgb: 180, 107, 255;
+	--bs-danger: var(--danger);
+	--bs-danger-rgb: 226, 118, 131;
+	--bs-success: var(--success);
+	--bs-success-rgb: 155, 212, 173;
+	--bs-link-color: var(--roxo-100);
+	--bs-link-color-rgb: 180, 107, 255;
+	--bs-link-hover-color: #d8b4ff;
+	--bs-link-hover-color-rgb: 216, 180, 255;
+	--bs-focus-ring-color: rgba(180, 107, 255, 0.25);
+	--bs-form-invalid-color: var(--danger);
+	--bs-form-invalid-border-color: var(--danger);
+}
 
 body {
-	background-color: #0b0b10;
-	color: #e8e8e8;
+	min-height: 100vh;
+	color: var(--white-200);
+	background-attachment: fixed;
+	font-family: var(--fonte-texto);
+	line-height: 1.55;
+}
+
+hr {
+	color: var(--outline);
+	opacity: 1;
 }
 
 header {
