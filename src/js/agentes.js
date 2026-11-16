@@ -87,11 +87,61 @@ function criarCardAgente(agente) {
 	return card;
 }
 
+// PESQUISA, FILTRO E ORDENAÇÃO (mesma ideia das sessões)
+
+// o agente tá em alguma campanha?
+function agenteEmCampanha(agente) {
+	for (const campanha of campanhas) {
+		if (campanha.agentes.includes(agente.id)) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function filtrarAgentes() {
+	const busca = document.querySelector(".filtro-busca-agente").value.trim().toLowerCase();
+	const filtroCampanha = document.querySelector(".filtro-campanha-agente").value;
+
+	const lista = [];
+	for (const agente of agentes) {
+		const texto = (agente.nomePersonagem + " " + agente.nomeJogador).toLowerCase();
+
+		if (busca !== "" && !texto.includes(busca)) {
+			continue;
+		}
+		if (filtroCampanha === "com" && !agenteEmCampanha(agente)) {
+			continue;
+		}
+		if (filtroCampanha === "sem" && agenteEmCampanha(agente)) {
+			continue;
+		}
+
+		lista.push(agente);
+	}
+
+	// a lista é uma cópia, então o sort não bagunça a ordem da lista original
+	const ordem = document.querySelector(".ordem-agente").value;
+	if (ordem === "nome") {
+		lista.sort(function (a, b) {
+			return a.nomePersonagem.localeCompare(b.nomePersonagem, "pt-BR");
+		});
+	} else if (ordem === "vida") {
+		lista.sort(function (a, b) {
+			return calcularPorcentagem(a.vida) - calcularPorcentagem(b.vida);
+		});
+	}
+
+	return lista;
+}
+
 function renderizarAgentes() {
 	const container = document.querySelector(".lista-agentes");
 	container.innerHTML = "";
 
-	for (const agente of agentes) {
+	const lista = filtrarAgentes();
+
+	for (const agente of lista) {
 		const card = criarCardAgente(agente);
 
 		// clicar em qualquer lugar do card troca o agente atual
@@ -111,7 +161,13 @@ function renderizarAgentes() {
 
 	// o "nenhum agente" só aparece se a lista estiver vazia
 	document.querySelector(".lista-agentes-vazia").hidden = agentes.length > 0;
+	// e esse aqui quando tem agente, mas o filtro escondeu todos
+	document.querySelector(".lista-agentes-filtro-vazio").hidden = agentes.length === 0 || lista.length > 0;
 }
+
+document.querySelector(".filtro-busca-agente").addEventListener("input", renderizarAgentes);
+document.querySelector(".filtro-campanha-agente").addEventListener("change", renderizarAgentes);
+document.querySelector(".ordem-agente").addEventListener("change", renderizarAgentes);
 
 function renderizarCardDados() {
 	const container = document.querySelector(".agente-dados");
