@@ -867,3 +867,83 @@ main > section .card-agente .card-title {
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
 }
+
+/* ===== CELULAR ===== */
+
+@media (max-width: 760px) {
+	html {
+		scroll-padding-top: 16px;
+	}
+
+	.cabecalho {
+		position: relative;
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 12px;
+		padding: 16px 24px;
+	}
+
+	.cabecalho ul {
+		justify-content: flex-start;
+		gap: 8px 24px;
+	}
+
+	.cabecalho nav a {
+		font-size: 0.75rem;
+	}
+
+	main {
+		width: min(100% - 32px, 648px);
+		padding-top: 20px;
+	}
+
+	main > section {
+		padding: 24px 16px;
+	}
+
+	.lista-campanhas {
+		--bs-gutter-x: 0;
+	}
+
+	.lista-campanhas > .card-wrapper {
+		width: 100%;
+		padding: 0 !important;
+	}
+
+	.passos-wizard > li {
+		font-size: 0.625rem;
+	}
+}
+
+@media (max-width: 520px) {
+	main {
+		width: calc(100% - 16px);
+	}
+
+	main > section {
+		margin-bottom: 16px;
+		padding: 24px 12px;
+	}
+
+	main > section h2 {
+		font-size: 1.625rem;
+	}
+
+	.card-custom {
+		width: min(380px, 80vw);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition: none !important;
+	}
+
+	.btn:hover,
+	.card-custom:hover,
+	.card-campanha:hover {
+		transform: none;
+	}
+}
