@@ -489,7 +489,11 @@
 							<p class="card-text small text-primary font-monospace sessao-info"></p>
 							<p class="card-text sessao-anotacoes"></p>
 						</div>
+						<!-- os botões de status aparecem dependendo de como a sessão está (o js esconde os que não servem) -->
 						<div class="card-footer d-flex flex-wrap justify-content-end gap-2">
+							<button type="button" class="btn btn-sm btn-success btn-comecar-sessao">Começar</button>
+							<button type="button" class="btn btn-sm btn-primary btn-concluir-sessao">Concluir</button>
+							<button type="button" class="btn btn-sm btn-outline-secondary btn-cancelar-sessao">Cancelar</button>
 							<button type="button" class="btn btn-sm btn-outline-light btn-editar-sessao">Editar</button>
 							<button type="button" class="btn btn-sm btn-outline-danger btn-excluir-sessao">Excluir</button>
 						</div>

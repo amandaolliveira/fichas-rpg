@@ -68,6 +68,26 @@ function criarCardSessao(sessao) {
 	card.querySelector(".sessao-info").textContent = nomeCampanha + " - " + formatarDataSessao(sessao.data);
 	card.querySelector(".sessao-anotacoes").textContent = sessao.anotacoes;
 
+	// cada status mostra só os botões que fazem sentido pra ele
+	const agendada = sessao.status === "agendada";
+	const emAndamento = sessao.status === "andamento";
+	card.querySelector(".btn-comecar-sessao").hidden = !agendada;
+	card.querySelector(".btn-cancelar-sessao").hidden = !agendada;
+	card.querySelector(".btn-concluir-sessao").hidden = !emAndamento;
+	card.querySelector(".btn-editar-sessao").hidden = !agendada && !emAndamento; // concluída e cancelada não editam mais
+
+	card.querySelector(".btn-comecar-sessao").addEventListener("click", function () {
+		mudarStatusSessao(sessao, "andamento");
+	});
+
+	card.querySelector(".btn-concluir-sessao").addEventListener("click", function () {
+		mudarStatusSessao(sessao, "concluida");
+	});
+
+	card.querySelector(".btn-cancelar-sessao").addEventListener("click", function () {
+		mudarStatusSessao(sessao, "cancelada");
+	});
+
 	card.querySelector(".btn-editar-sessao").addEventListener("click", function () {
 		abrirModalSessao(sessao);
 	});
@@ -135,6 +155,11 @@ function abrirModalSessao(sessao) {
 	} else {
 		modalSessao.querySelector(".modal-title").textContent = "Nova sessão";
 	}
+
+	// sessão que já começou não pode trocar de campanha nem de data
+	const jaComecou = sessao !== undefined && sessao.status === "andamento";
+	campos.campanhaId.disabled = jaComecou;
+	campos.data.disabled = jaComecou;
 
 	bootstrap.Modal.getOrCreateInstance(modalSessao).show();
 }
@@ -254,4 +279,58 @@ function excluirSessoesDaCampanha(campanhaId) {
 		sessoes.push(sessao);
 	}
 	salvarSessoes();
+}
+
+// STATUS DA SESSÃO
+// o caminho é: agendada -> em andamento -> concluída. ou então agendada -> cancelada
+
+// a sessão que está rolando agora nessa campanha (se tiver)
+function sessaoEmAndamento(campanhaId) {
+	for (const sessao of sessoes) {
+		if (sessao.campanhaId === campanhaId && sessao.status === "andamento") {
+			return sessao;
+		}
+	}
+	return undefined;
+}
+
+function mudarStatusSessao(sessao, novoStatus) {
+	// não deixa pular etapa: começar e cancelar só se tiver agendada, concluir só se tiver em andamento
+	if ((novoStatus === "andamento" || novoStatus === "cancelada") && sessao.status !== "agendada") {
+		return;
+	}
+	if (novoStatus === "concluida" && sessao.status !== "andamento") {
+		return;
+	}
+
+	if (novoStatus === "andamento") {
+		// regra 1: sem agente na campanha não tem quem jogar
+		const campanha = buscarCampanha(sessao.campanhaId);
+		if (!campanha || campanha.agentes.length === 0) {
+			mostrarAviso("A campanha precisa ter pelo menos um agente pra sessão começar.", "warning");
+			return;
+		}
+
+		// regra 2: só uma sessão em andamento por campanha
+		const outra = sessaoEmAndamento(sessao.campanhaId);
+		if (outra) {
+			mostrarAviso('"' + outra.titulo + '" ainda está em andamento nessa campanha, conclua ela primeiro.', "warning");
+			return;
+		}
+
+		// se começou antes do dia marcado, a data passa a ser hoje
+		sessao.data = hojeTexto();
+	}
+
+	sessao.status = novoStatus;
+	salvarSessoes();
+	renderizarSessoes();
+
+	if (novoStatus === "andamento") {
+		mostrarAviso('"' + sessao.titulo + '" começou. Bom jogo!');
+	} else if (novoStatus === "concluida") {
+		mostrarAviso('"' + sessao.titulo + '" foi concluída.');
+	} else {
+		mostrarAviso('"' + sessao.titulo + '" foi cancelada.', "info");
+	}
 }
