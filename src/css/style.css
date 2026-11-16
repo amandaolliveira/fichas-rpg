@@ -581,6 +581,18 @@ img {
 	appearance: textfield;
 }
 
+/* atributo com erro fica vermelho */
+.campo.is-invalid {
+	color: var(--danger);
+}
+
+/* mensagem de erro embaixo do campo, igual o invalid-feedback do bootstrap */
+.erro-ficha {
+	margin: 4px 0 0;
+	color: var(--danger);
+	font-size: 0.875rem;
+}
+
 .campo::-webkit-outer-spin-button,
 .campo::-webkit-inner-spin-button {
 	-webkit-appearance: none;

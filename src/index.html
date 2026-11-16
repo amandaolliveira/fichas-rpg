@@ -185,7 +185,7 @@
 				<p class="ficha-subtitulo">Crie ou edite os dados do agente.</p>
 				<hr />
 
-				<form id="form-ficha" class="form-ficha" data-bs-theme="dark">
+				<form id="form-ficha" class="form-ficha" data-bs-theme="dark" novalidate>
 					<input type="hidden" name="agenteId" />
 
 					<div class="row g-5">
@@ -200,6 +200,8 @@
 								<input type="number" class="campo" style="left: 29.2%; top: 75.5%" name="PRE" value="1" min="0" max="3" aria-label="Presença" required />
 								<input type="number" class="campo" style="left: 70.6%; top: 75.5%" name="VIG" value="1" min="0" max="3" aria-label="Vigor" required />
 							</fieldset>
+							<!-- as mensagens de erro da ficha ficam nesses .erro-ficha, o js mostra quando precisa -->
+							<p class="erro-ficha text-center" data-erro="atributos" hidden></p>
 						</div>
 
 						<div class="col-lg-8">
@@ -209,11 +211,12 @@
 								<div class="row g-3">
 									<div class="col-md-6">
 										<label for="ficha-nome-personagem" class="form-label">Nome do personagem</label>
-										<input type="text" id="ficha-nome-personagem" name="nomePersonagem" class="form-control" required />
+										<input type="text" id="ficha-nome-personagem" name="nomePersonagem" class="form-control" maxlength="60" required />
+										<div class="erro-ficha" data-erro="nome" hidden></div>
 									</div>
 									<div class="col-md-6">
 										<label for="ficha-nome-jogador" class="form-label">Nome do jogador</label>
-										<input type="text" id="ficha-nome-jogador" name="nomeJogador" class="form-control" />
+										<input type="text" id="ficha-nome-jogador" name="nomeJogador" class="form-control" maxlength="60" />
 									</div>
 									<div class="col-12">
 										<label for="ficha-descricao" class="form-label">Descrição</label>
@@ -233,6 +236,7 @@
 											<span class="input-group-text">/</span>
 											<input type="number" name="vidaMaximo" class="form-control" min="0" value="0" aria-label="Vida máxima" />
 										</div>
+										<div class="erro-ficha" data-erro="vida" hidden></div>
 									</div>
 									<div class="col-sm-6 col-xl-3">
 										<label class="form-label" id="ficha-sanidade">Sanidade</label>
@@ -241,6 +245,7 @@
 											<span class="input-group-text">/</span>
 											<input type="number" name="sanidadeMaximo" class="form-control" min="0" value="0" aria-label="Sanidade máxima" />
 										</div>
+										<div class="erro-ficha" data-erro="sanidade" hidden></div>
 									</div>
 									<div class="col-sm-6 col-xl-3">
 										<label class="form-label" id="ficha-esforco">Esforço</label>
@@ -249,10 +254,12 @@
 											<span class="input-group-text">/</span>
 											<input type="number" name="esforcoMaximo" class="form-control" min="0" value="0" aria-label="Esforço máximo" />
 										</div>
+										<div class="erro-ficha" data-erro="esforco" hidden></div>
 									</div>
 									<div class="col-sm-6 col-xl-3">
 										<label for="ficha-defesa" class="form-label">Defesa</label>
 										<input type="number" id="ficha-defesa" name="defesa" class="form-control" min="0" value="10" />
+										<div class="erro-ficha" data-erro="defesa" hidden></div>
 									</div>
 								</div>
 							</fieldset>

@@ -6,6 +6,10 @@ let campanhaSelecionada = undefined; // a campanha que vc clicou na lista
 let campanhaEmEdicao = undefined; // undefined = criando uma nova; senão é a campanha sendo editada
 let passoAtual = 1; // em qual passo do wizard vc está
 
+// todo atributo começa em 1 (5 pontos) e o jogador ganha mais 4 pra distribuir, então a soma não pode passar de 9
+const PONTOS_ATRIBUTOS = 9;
+const MAXIMO_ATRIBUTO = 3; // no começo nenhum atributo passa de 3
+
 // cada perícia aponta pro atributo que afeta ela
 const PERICIAS = {
 	Acrobacia: "AGI",
