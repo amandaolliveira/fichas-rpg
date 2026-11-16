@@ -86,7 +86,9 @@ document.querySelector(".categorias-pericias").addEventListener("click", functio
 	}
 
 	const dado = evento.target.closest(".dado");
-	mostrarResultado(dado.dataset.pericia, montarRolagem(dado.dataset.pericia));
+	const rolagem = montarRolagem(dado.dataset.pericia);
+	mostrarResultado(dado.dataset.pericia, rolagem);
+	registrarRolagem(dado.dataset.pericia, rolagem); // fica no historico.js
 });
 
 document.getElementById("resultado-rolagem").addEventListener("click", function () {

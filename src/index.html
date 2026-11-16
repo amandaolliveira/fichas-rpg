@@ -158,6 +158,14 @@
 								<hr />
 							</div>
 						</div>
+
+						<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-5 mb-3">
+							<h3 class="m-0">Histórico de rolagens</h3>
+							<button type="button" class="btn btn-sm btn-outline-danger btn-limpar-historico" hidden>Limpar histórico</button>
+						</div>
+						<!-- o renderizarHistorico() coloca as rolagens aqui, a mais nova em cima -->
+						<ul class="historico-rolagens list-group" data-bs-theme="dark"></ul>
+						<p class="historico-vazio text-body-secondary small">Nenhuma rolagem ainda. Clica num dado aí em cima!</p>
 					</div>
 				</div>
 
@@ -726,6 +734,7 @@
 		<script src="js/campanhas.js"></script>
 		<script src="js/wizard.js"></script>
 		<script src="js/sessoes.js"></script>
+		<script src="js/historico.js"></script>
 		<script src="js/estatisticas.js"></script>
 		<script src="js/main.js"></script>
 	</body>

@@ -65,7 +65,16 @@ function criarCardSessao(sessao) {
 	if (campanha) {
 		nomeCampanha = campanha.nome;
 	}
-	card.querySelector(".sessao-info").textContent = nomeCampanha + " - " + formatarDataSessao(sessao.data);
+	let info = nomeCampanha + " - " + formatarDataSessao(sessao.data);
+
+	// quantas rolagens teve nessa sessão (só aparece se teve alguma)
+	const totalRolagens = contarRolagensDaSessao(sessao.id);
+	if (totalRolagens === 1) {
+		info += " - 1 rolagem";
+	} else if (totalRolagens > 1) {
+		info += " - " + totalRolagens + " rolagens";
+	}
+	card.querySelector(".sessao-info").textContent = info;
 	card.querySelector(".sessao-anotacoes").textContent = sessao.anotacoes;
 
 	// cada status mostra só os botões que fazem sentido pra ele

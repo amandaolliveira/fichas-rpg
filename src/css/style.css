@@ -883,6 +883,33 @@ img {
 	opacity: 0.6;
 }
 
+/* HISTÓRICO DE ROLAGENS */
+/* não deixa a lista crescer pra sempre, rola dentro dela */
+.historico-rolagens {
+	max-height: 360px;
+	overflow-y: auto;
+}
+
+.historico-resultado {
+	min-width: 48px;
+	padding: 4px 8px;
+	border: 1px solid var(--outline);
+	text-align: center;
+	color: var(--roxo-100);
+	font-family: var(--fonte-mono);
+	font-size: 20px;
+}
+
+.historico-resultado.critico {
+	border-color: var(--success);
+	color: var(--success);
+}
+
+.historico-resultado.desastre {
+	border-color: var(--danger);
+	color: var(--danger);
+}
+
 /* CARD DE AGENTE */
 .card.card-agente {
 	transition:

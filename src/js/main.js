@@ -85,6 +85,7 @@ renderizarCardDados();
 renderizarCampanhas();
 resetarWizard();
 renderizarSessoes();
+renderizarHistorico();
 renderizarEstatisticas();
 
 window.addEventListener("hashchange", trocarSection); // tive que cavar pra achar esse hashchange
