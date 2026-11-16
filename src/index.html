@@ -87,6 +87,38 @@
 						</li>
 					</ul>
 				</nav>
+
+				<hr class="my-5" />
+
+				<h2 id="estatisticas-titulo" class="text-center">Estatísticas</h2>
+				<p class="text-center small">Estatísticas dos agentes e campanhas.</p>
+				<!-- o renderizarEstatisticas() preenche os <dd> com os números -->
+				<dl class="wrapper-estatisticas" aria-labelledby="estatisticas-titulo">
+					<div class="estatistica">
+						<dt>Agentes</dt>
+						<dd id="estat-agentes">0</dd>
+					</div>
+					<div class="estatistica">
+						<dt>Campanhas</dt>
+						<dd id="estat-campanhas">0</dd>
+					</div>
+					<div class="estatistica">
+						<dt>Agentes sem campanha</dt>
+						<dd id="estat-sem-campanha">0</dd>
+					</div>
+					<div class="estatistica">
+						<dt>Média de agentes por campanha</dt>
+						<dd id="estat-media-agentes">0</dd>
+					</div>
+					<div class="estatistica">
+						<dt>Vida média dos agentes</dt>
+						<dd id="estat-vida-media">0%</dd>
+					</div>
+					<div class="estatistica">
+						<dt>Campanha mais recente</dt>
+						<dd id="estat-recente">-</dd>
+					</div>
+				</dl>
 			</section>
 
 			<section id="dados" aria-labelledby="dados-titulo" hidden>
