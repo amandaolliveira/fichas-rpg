@@ -145,11 +145,22 @@ function selecionarAgente(agente) {
 	renderizarCardDados();
 }
 
+// EXCLUIR AGENTE
+// o botão Excluir do card só abre o modal, quem exclui de verdade é o botão de confirmar dele
+
+const modalExcluirAgente = document.getElementById("modal-excluir-agente");
+let agenteParaExcluir = undefined; // guarda quem vai ser excluído enquanto o modal tá aberto
+
 function excluirAgente(agente) {
-	// confirm é aquela caixinha feia do navegador, mas funciona e devolve true/false
-	if (!confirm("Excluir " + agente.nomePersonagem + "? Isso não pode ser desfeito.")) {
-		return;
-	}
+	agenteParaExcluir = agente;
+	modalExcluirAgente.querySelector(".excluir-agente-nome").textContent = agente.nomePersonagem;
+	bootstrap.Modal.getOrCreateInstance(modalExcluirAgente).show();
+}
+
+modalExcluirAgente.querySelector(".btn-confirmar-exclusao-agente").addEventListener("click", function () {
+	const agente = agenteParaExcluir;
+	bootstrap.Modal.getInstance(modalExcluirAgente).hide();
+	agenteParaExcluir = undefined;
 
 	const indice = agentes.indexOf(agente);
 	if (indice !== -1) {
@@ -176,7 +187,7 @@ function excluirAgente(agente) {
 	renderizarAgentes();
 	renderizarCardDados();
 	renderizarCampanhas();
-}
+});
 
 // sem agente selecionado a ficha abre vazia, pronta pra criar um novo
 document.querySelector(".btn-novo-agente").addEventListener("click", function () {
