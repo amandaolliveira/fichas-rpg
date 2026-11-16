@@ -482,10 +482,6 @@ img {
 	color: #c2bdc5;
 }
 
-.sombra-roxa {
-	box-shadow: 0 8px 32px rgba(180, 107, 255, 0.16);
-}
-
 /* contador do próprio css: numera os passos sozinho, ninguém precisa escrever "1." no html */
 .passos-wizard {
 	counter-reset: passo;

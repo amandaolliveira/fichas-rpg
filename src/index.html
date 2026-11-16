@@ -307,10 +307,10 @@
 						<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-excluir-campanha">Excluir</button>
 					</div>
 				</div>
-				<img src="" class="detalhe-campanha-imagem w-100 rounded border object-fit-cover sombra-roxa mb-3" alt="" style="aspect-ratio: 8/3" />
+				<img src="" class="detalhe-campanha-imagem w-100 rounded border object-fit-cover mb-3" alt="" style="aspect-ratio: 8/3" />
 				<h2 id="campanha-titulo" class="detalhe-campanha-nome"></h2>
 				<p class="text-body-secondary">
-					Mestre: <span class="detalhe-campanha-mestre"></span> ·
+					Mestre: <span class="detalhe-campanha-mestre"></span> -
 					<span class="font-monospace small detalhe-campanha-criado"></span>
 				</p>
 				<hr />
@@ -361,7 +361,7 @@
 						<input type="url" id="campanha-imagem" name="imagem" class="form-control" placeholder="https://..." />
 						<div class="invalid-feedback">Essa URL não parece válida.</div>
 						<div class="form-text">Se deixar vazio, a campanha usa uma imagem padrão.</div>
-						<img src="" class="wizard-preview-imagem w-100 rounded border object-fit-cover sombra-roxa mt-3" alt="Prévia da imagem da campanha" style="aspect-ratio: 8/3" />
+						<img src="" class="wizard-preview-imagem w-100 rounded border object-fit-cover mt-3" alt="Prévia da imagem da campanha" style="aspect-ratio: 8/3" />
 					</fieldset>
 
 					<fieldset class="passo-wizard p-3 p-md-4" data-passo="3" hidden>
@@ -374,7 +374,7 @@
 
 					<fieldset class="passo-wizard p-3 p-md-4" data-passo="4" hidden>
 						<legend>Revisão</legend>
-						<img src="" class="wizard-revisao-imagem w-100 rounded border object-fit-cover sombra-roxa mb-3" alt="" style="aspect-ratio: 8/3" />
+						<img src="" class="wizard-revisao-imagem w-100 rounded border object-fit-cover mb-3" alt="" style="aspect-ratio: 8/3" />
 						<dl class="row wizard-revisao">
 							<dt class="col-sm-3 pt-1 small text-primary text-uppercase font-monospace fw-medium">Nome</dt>
 							<dd class="col-sm-9 revisao-nome"></dd>
@@ -405,7 +405,10 @@
 
 				<div class="guia-texto">
 					<h3>Como distribuir os atributos</h3>
-					<p>Todo personagem começa com todos os atributos em 1. Você recebe 4 pontos para distribuir entre eles como quiser. Também é possível reduzir um atributo para 0 e, em troca, ganhar 1 ponto extra. No começo, nenhum atributo pode passar de 3.</p>
+					<p>
+						Todo personagem começa com todos os atributos em 1. Você recebe 4 pontos para distribuir entre eles como quiser. Também é possível reduzir um atributo para 0 e, em troca, ganhar 1 ponto extra. No começo, nenhum
+						atributo pode passar de 3.
+					</p>
 					<img src="img/attributes.png" alt="Diagrama dos atributos: Agilidade, Força, Intelecto, Presença e Vigor" class="d-block my-4" />
 
 					<h3>Os 5 atributos</h3>

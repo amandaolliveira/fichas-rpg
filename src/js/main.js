@@ -464,7 +464,7 @@ function renderizarCampanhas() {
 
 		card.querySelector(".campanha-nome").textContent = campanha.nome;
 		card.querySelector(".campanha-descricao").textContent = campanha.descricao;
-		card.querySelector(".campanha-info").textContent = "Mestre: " + campanha.mestre + " · " + formatarQuantidadeAgentes(campanha.agentes.length);
+		card.querySelector(".campanha-info").textContent = "Mestre: " + campanha.mestre + " - " + formatarQuantidadeAgentes(campanha.agentes.length);
 		card.querySelector(".campanha-criado").textContent = formatarCriadoEm(campanha.criadoEm);
 
 		container.append(card);
