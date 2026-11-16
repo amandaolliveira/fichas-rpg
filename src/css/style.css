@@ -598,6 +598,13 @@ img {
 	height: 32px;
 	padding: 0;
 	cursor: pointer;
+	transition:
+		transform 0.2s ease,
+		filter 0.2s ease;
+}
+
+.categorias-pericias > .col > .dado > img:hover {
+	transform: scale(1.1);
 }
 
 .resultado-rolagem {
@@ -605,7 +612,7 @@ img {
 	background: transparent;
 	color: white;
 	text-align: center;
-	font-family: "Special Elite", "Courier New", Courier, monospace;
+	font-family: var(--fonte-titulo);
 	cursor: default;
 }
 
@@ -665,17 +672,27 @@ img {
 
 .resultado-pericia {
 	font-size: 32px;
+	text-transform: uppercase;
+	color: var(--white-100);
 }
 
 .resultado-valor {
 	font-size: 128px;
 	line-height: 1;
+	color: var(--roxo-100);
+	text-shadow:
+		4px 4px 0 rgba(180, 107, 255, 0.2),
+		0 2px 12px rgba(0, 0, 0, 0.8) !important;
 }
 
 .resultado-dica {
-	font-size: 14px;
+	font-family: var(--fonte-mono);
+	font-size: 12px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
 	opacity: 0.6;
 }
+
 /* CARD DE AGENTE */
 .card.card-agente {
 	background-color: #14141c;
