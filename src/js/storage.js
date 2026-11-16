@@ -4,6 +4,7 @@
 // as chaves onde cada coisa fica guardada no navegador
 const CHAVE_AGENTES = "carl-agentes";
 const CHAVE_CAMPANHAS = "carl-campanhas";
+const CHAVE_SELECIONADO = "carl-agente-selecionado"; // só o id, não o agente inteiro
 
 // o localStorage só guarda texto, então o JSON.stringify transforma a lista em texto
 function salvarNoStorage(chave, lista) {

@@ -23,6 +23,14 @@ if (agentesSalvos) {
 }
 agenteSelecionado = agentes[0];
 
+// se tinha um agente selecionado da última vez, abre nele de novo
+const idSelecionadoSalvo = localStorage.getItem(CHAVE_SELECIONADO);
+for (const agente of agentes) {
+	if (agente.id === idSelecionadoSalvo) {
+		agenteSelecionado = agente;
+	}
+}
+
 // chama isso toda vez que a lista de agentes mudar
 function salvarAgentes() {
 	salvarNoStorage(CHAVE_AGENTES, agentes);
@@ -125,6 +133,14 @@ function renderizarCardDados() {
 
 function selecionarAgente(agente) {
 	agenteSelecionado = agente;
+
+	// guarda o id pra lembrar quando recarregar. sem agente (criando um novo) apaga o que tinha
+	if (agente) {
+		localStorage.setItem(CHAVE_SELECIONADO, agente.id);
+	} else {
+		localStorage.removeItem(CHAVE_SELECIONADO);
+	}
+
 	renderizarAgentes();
 	renderizarCardDados();
 }
