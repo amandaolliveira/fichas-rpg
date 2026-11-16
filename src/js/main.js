@@ -464,9 +464,27 @@ function renderizarAgentes() {
 	document.querySelector(".lista-agentes-vazia").hidden = agentes.length > 0;
 }
 
+function renderizarCardDados() {
+	const container = document.querySelector(".agente-dados");
+	const vazio = document.querySelector(".agente-dados-vazio");
+	container.innerHTML = "";
+
+	if (!agenteSelecionado) {
+		vazio.hidden = false;
+		return;
+	}
+
+	vazio.hidden = true;
+	const card = criarCardAgente(agenteSelecionado);
+	card.classList.remove("selecionado");
+	card.querySelector(".btn-excluir-agente").remove();
+	container.append(card);
+}
+
 function selecionarAgente(agente) {
 	agenteSelecionado = agente;
 	renderizarAgentes();
+	renderizarCardDados();
 }
 
 function excluirAgente(agente) {
@@ -494,6 +512,7 @@ function excluirAgente(agente) {
 	}
 
 	renderizarAgentes();
+	renderizarCardDados();
 	renderizarCampanhas();
 }
 
@@ -502,6 +521,7 @@ document.querySelector(".btn-novo-agente").addEventListener("click", function ()
 });
 
 renderizarAgentes();
+renderizarCardDados();
 
 // FICHA
 

@@ -93,26 +93,37 @@
 				<h2 id="dados-titulo">Dados</h2>
 				<p>Rolagem de dados para testes.</p>
 				<hr />
-				<div class="categorias-pericias row column-gap-5 mt-5">
-					<div id="dados-AGI" class="col">
-						<h3 class="mt-0">Agilidade</h3>
-						<hr />
-					</div>
-					<div id="dados-INT" class="col">
-						<h3 class="mt-0">Intelecto</h3>
-						<hr />
-					</div>
-					<div id="dados-PRE" class="col">
-						<h3 class="mt-0">Presença</h3>
-						<hr />
-					</div>
-					<div id="dados-FOR" class="col">
-						<h3 class="mt-0">Força</h3>
-						<hr />
-					</div>
-					<div id="dados-VIG" class="col">
-						<h3 class="mt-0">Vigor</h3>
-						<hr />
+				<div class="row g-5">
+					<aside class="col-lg-4 col-xl-3" aria-label="Agente selecionado">
+						<div class="agente-dados">
+							<!-- o renderizarCardDados() coloca o card do agente selecionado aqui -->
+						</div>
+						<p class="agente-dados-vazio text-body-secondary small" hidden>Nenhum agente selecionado. <a href="#agentes">Escolha um</a> pra ver o card aqui.</p>
+					</aside>
+
+					<div class="col-lg-8 col-xl-9">
+						<div class="categorias-pericias row column-gap-5">
+							<div id="dados-AGI" class="col">
+								<h3 class="mt-0">Agilidade</h3>
+								<hr />
+							</div>
+							<div id="dados-INT" class="col">
+								<h3 class="mt-0">Intelecto</h3>
+								<hr />
+							</div>
+							<div id="dados-PRE" class="col">
+								<h3 class="mt-0">Presença</h3>
+								<hr />
+							</div>
+							<div id="dados-FOR" class="col">
+								<h3 class="mt-0">Força</h3>
+								<hr />
+							</div>
+							<div id="dados-VIG" class="col">
+								<h3 class="mt-0">Vigor</h3>
+								<hr />
+							</div>
+						</div>
 					</div>
 				</div>
 

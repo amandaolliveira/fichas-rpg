@@ -644,12 +644,19 @@ img {
 	padding-left: 8px;
 }
 
+.agente-dados {
+	position: sticky;
+	top: 104px;
+}
+
 .categorias-pericias {
-	row-gap: 64px;
+	--bs-gutter-x: 0;
+	row-gap: 48px;
 }
 
 .categorias-pericias > .col {
-	width: 100%;
+	width: auto;
+	flex: 1 0 auto;
 	padding: 0;
 	display: flex;
 	flex-direction: column;
