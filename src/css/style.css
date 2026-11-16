@@ -784,6 +784,10 @@ img {
 		background 0.2s ease;
 }
 
+.lista-agentes .card-agente {
+	cursor: pointer;
+}
+
 .card.card-agente:hover {
 	border-color: var(--roxo-100);
 	background: #1c1920;

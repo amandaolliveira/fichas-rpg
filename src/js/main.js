@@ -459,9 +459,20 @@ function renderizarAgentes() {
 	container.innerHTML = "";
 
 	for (const agente of agentes) {
+		const card = criarCardAgente(agente);
+
+		// clicar em qualquer lugar do card troca o agente atual
+		card.addEventListener("click", function (evento) {
+			// se o clique foi no Editar ou no Excluir, eles já cuidam do resto (sem isso, excluir ia selecionar o agente que acabou de sumir)
+			if (evento.target.closest("a, button")) {
+				return;
+			}
+			selecionarAgente(agente);
+		});
+
 		const coluna = document.createElement("div");
 		coluna.className = "col-6 col-md-4 col-xl-3";
-		coluna.append(criarCardAgente(agente));
+		coluna.append(card);
 		container.append(coluna);
 	}
 
