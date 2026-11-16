@@ -83,6 +83,9 @@ formFicha.addEventListener("submit", function (evento) {
 		selecionarAgente(novo);
 	}
 
+	// criou ou editou, tanto faz: salva a lista inteira de novo
+	salvarAgentes();
+
 	// o nome pode ter mudado, então redesenha as campanhas também
 	renderizarCampanhas();
 	location.hash = "#agentes";

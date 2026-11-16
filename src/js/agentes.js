@@ -1,18 +1,32 @@
 // AGENTES
 // lista de agentes, os cards e quem tá selecionado
 
-// 
 const agentes = [];
-agentes.push(
-	new Agente({
-		nomePersonagem: "Placeholder da silva",
-		nomeJogador: "Jogador da silva",
-		vida: { atual: 14, maximo: 17 },
-		sanidade: { atual: 10, maximo: 16 },
-		esforco: { atual: 2, maximo: 4 },
-	}),
-);
+
+// se já tem agente salvo, usa eles. o JSON volta como objeto comum, então passa pela classe de novo
+const agentesSalvos = carregarDoStorage(CHAVE_AGENTES);
+if (agentesSalvos) {
+	for (const dados of agentesSalvos) {
+		agentes.push(Agente.storageParaJSON(dados));
+	}
+} else {
+	// primeira vez abrindo o site: começa com o placeholder
+	agentes.push(
+		new Agente({
+			nomePersonagem: "Placeholder da silva",
+			nomeJogador: "Jogador da silva",
+			vida: { atual: 14, maximo: 17 },
+			sanidade: { atual: 10, maximo: 16 },
+			esforco: { atual: 2, maximo: 4 },
+		}),
+	);
+}
 agenteSelecionado = agentes[0];
+
+// chama isso toda vez que a lista de agentes mudar
+function salvarAgentes() {
+	salvarNoStorage(CHAVE_AGENTES, agentes);
+}
 
 // quanto da barra fica pintado. se o máximo for 0 a conta ia dividir por zero, então já volta 0 direto
 function calcularPorcentagem(recurso) {
@@ -125,6 +139,7 @@ function excluirAgente(agente) {
 	if (indice !== -1) {
 		agentes.splice(indice, 1);
 	}
+	salvarAgentes();
 
 	// tira o agente das campanhas também, senão elas ficam contando gente que não existe mais
 	for (const campanha of campanhas) {
