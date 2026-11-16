@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Special+Elite&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Special+Elite&display=swap");
 /* sim, roubei essa fonte do outro projeto */
 
 body {
@@ -39,11 +39,11 @@ main {
 }
 
 .secao-saindo {
-	animation: sair-esquerda 0.10s ease-in forwards;
+	animation: sair-esquerda 0.1s ease-in forwards;
 }
 
 .secao-entrando {
-	animation: entrar-direita 0.10s ease-out;
+	animation: entrar-direita 0.1s ease-out;
 }
 
 @keyframes sair-esquerda {
@@ -120,7 +120,7 @@ img {
 	overflow: hidden;
 }
 
-.card-custom>img {
+.card-custom > img {
 	aspect-ratio: 1/1;
 	height: 60%;
 	position: absolute;
@@ -133,7 +133,7 @@ img {
 	rotate: 15deg;
 }
 
-.card-custom>.conteudo-card {
+.card-custom > .conteudo-card {
 	display: block;
 	position: relative;
 	z-index: 2;
@@ -143,13 +143,13 @@ img {
 	transition: background-color 0.3s ease;
 }
 
-.conteudo-card>.titulo-card {
+.conteudo-card > .titulo-card {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	opacity: 0;
 	transition: opacity 0.3s ease;
-	font-family: 'Special Elite', 'Courier New', Courier, monospace;
+	font-family: "Special Elite", "Courier New", Courier, monospace;
 	font-size: 48px;
 	width: 100%;
 	height: 100%;
@@ -157,31 +157,31 @@ img {
 }
 
 /* :focus-visible precisa pra funcionar com tab */
-.card-custom:hover>.conteudo-card,
-.card-custom:focus-visible>.conteudo-card {
+.card-custom:hover > .conteudo-card,
+.card-custom:focus-visible > .conteudo-card {
 	background-color: rgba(0, 0, 0, 0.6);
 }
 
-.card-custom:hover>.conteudo-card>.titulo-card,
-.card-custom:focus-visible>.conteudo-card>.titulo-card {
+.card-custom:hover > .conteudo-card > .titulo-card,
+.card-custom:focus-visible > .conteudo-card > .titulo-card {
 	opacity: 1;
 }
 
 .logo {
 	display: flex;
 	font-size: 32px;
-	font-family: 'Special Elite', Arial, Helvetica, sans-serif;
+	font-family: "Special Elite", Arial, Helvetica, sans-serif;
 	color: magenta;
 	align-items: center;
 }
 
-.logo>img {
+.logo > img {
 	width: fit-content;
 	height: 1em;
 	transform: translateY(-15%);
 }
 
-.logo>p {
+.logo > p {
 	margin: auto;
 	padding-left: 8px;
 }
@@ -190,25 +190,25 @@ img {
 	row-gap: 64px;
 }
 
-.categorias-pericias>.col {
+.categorias-pericias > .col {
 	width: 100%;
 	padding: 0;
 	display: flex;
 	flex-direction: column;
 }
 
-.categorias-pericias>.col>.dado+.dado {
+.categorias-pericias > .col > .dado + .dado {
 	margin-top: 8px;
 }
 
-.categorias-pericias>.col>.dado {
+.categorias-pericias > .col > .dado {
 	padding: 0;
 	cursor: default;
 	white-space: nowrap;
 	/* impede o texto de cair pra baixo do dado; a largura mínima da coluna passa a ser a perícia inteira, então a row quebra as colunas antes */
 }
 
-.categorias-pericias>.col>.dado>img {
+.categorias-pericias > .col > .dado > img {
 	width: 32px;
 	height: 32px;
 	padding: 0;
@@ -220,7 +220,7 @@ img {
 	background: transparent;
 	color: white;
 	text-align: center;
-	font-family: 'Special Elite', 'Courier New', Courier, monospace;
+	font-family: "Special Elite", "Courier New", Courier, monospace;
 	cursor: default;
 }
 
@@ -291,7 +291,7 @@ img {
 	font-size: 14px;
 	opacity: 0.6;
 }
-------------------------------------- card ficha
+/* CARD DE AGENTE */
 .card.card-agente {
 	background-color: #14141c;
 	border: 1px solid #2a2a38;
@@ -307,7 +307,7 @@ img {
 
 .card-agente .card-title {
 	margin-bottom: 8px;
-	font-family: 'Special Elite', 'Courier New', Courier, monospace;
+	font-family: "Special Elite", "Courier New", Courier, monospace;
 	font-size: 16px;
 	color: #e8e8e8;
 }
@@ -379,7 +379,7 @@ img {
 	font-size: 13px;
 }
 
-------------------------------- guia
+/* GUIA */
 .guia-texto {
 	max-width: 720px;
 	line-height: 1.7;
@@ -387,7 +387,7 @@ img {
 
 .guia-texto h3 {
 	margin-top: 40px;
-	font-family: 'Special Elite', 'Courier New', Courier, monospace;
+	font-family: "Special Elite", "Courier New", Courier, monospace;
 	color: #b366ff;
 }
 

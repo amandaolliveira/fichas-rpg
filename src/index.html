@@ -1,379 +1,342 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>C.A.R.L. - Fichas de RPG</title>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>C.A.R.L. - Fichas de RPG</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
 
-	<link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-
-	<header class="cabecalho">
-		<div class="logo">
-			<img src="img/logo_dado.png" alt="Logo dado de RPG">
-			<p>C.A.R.L</p>
-		</div>
-		<nav aria-label="Menu principal">
-			<ul>
-				<li><a href="#inicio">Início</a></li>
-				<li><a href="#dados">Dados</a></li>
-				<li><a href="#ficha">Ficha</a></li>
-				<li><a href="#agentes">Agentes</a></li>
-				<li><a href="#campanhas">Campanhas</a></li>
-				<li><a href="#guia">Guia</a></li>
-				<li><a href="#perfil">Perfil</a></li>
-			</ul>
-		</nav>
-	</header>
-
-	<main>
-		<section id="inicio" aria-labelledby="inicio-titulo" style="padding: 0 10%">
-			<h2 id="inicio-titulo" class="text-center">Início</h2>
-			<p class="text-center small">Bem-vindo ao C.A.R.L. - Fichas Digitais para RPG</p>
-
-			<nav aria-label="Acesso rápido">
-				<ul id="cards-acesso-rapido"
-					class="d-flex justify-content-evenly flex-row flex-wrap gap-5 list-unstyled p-0">
-					<li>
-						<a href="#dados" class="card-custom bg-success bg-gradient">
-							<img src="img/dado.svg" alt="" aria-hidden="true">
-							<span class="conteudo-card">
-								<span class="titulo-card">Dados</span>
-							</span>
-						</a>
-					</li>
-					<li>
-						<a href="#ficha" class="card-custom bg-warning bg-gradient">
-							<img src="img/ficha.svg" alt="" aria-hidden="true">
-							<span class="conteudo-card">
-								<span class="titulo-card">Ficha</span>
-							</span>
-						</a>
-					</li>
-					<li>
-						<a href="#agentes" class="card-custom bg-primary bg-gradient">
-							<img src="img/agentes.svg" alt="" aria-hidden="true">
-							<span class="conteudo-card">
-								<span class="titulo-card">Agentes</span>
-							</span>
-						</a>
-					</li>
-					<li>
-						<a href="#campanhas" class="card-custom bg-danger bg-gradient">
-							<img src="img/campanhas.svg" alt="" aria-hidden="true">
-							<span class="conteudo-card">
-								<span class="titulo-card">Campanhas</span>
-							</span>
-						</a>
-					</li>
-					<li>
-						<a href="#guia" class="card-custom bg-info bg-gradient">
-							<img src="img/guia.svg" alt="" aria-hidden="true">
-							<span class="conteudo-card">
-								<span class="titulo-card">Guia</span>
-							</span>
-						</a>
-					</li>
-					<li>
-						<a href="#perfil" class="card-custom bg-secondary bg-gradient">
-							<img src="img/perfil.svg" alt="" aria-hidden="true">
-							<span class="conteudo-card">
-								<span class="titulo-card">Perfil</span>
-							</span>
-						</a>
-					</li>
+	<body>
+		<header class="cabecalho">
+			<div class="logo">
+				<img src="img/logo_dado.png" alt="Logo dado de RPG" />
+				<p>C.A.R.L</p>
+			</div>
+			<nav aria-label="Menu principal">
+				<ul>
+					<li><a href="#inicio">Início</a></li>
+					<li><a href="#dados">Dados</a></li>
+					<li><a href="#ficha">Ficha</a></li>
+					<li><a href="#agentes">Agentes</a></li>
+					<li><a href="#campanhas">Campanhas</a></li>
+					<li><a href="#guia">Guia</a></li>
+					<li><a href="#perfil">Perfil</a></li>
 				</ul>
 			</nav>
-		</section>
+		</header>
 
-		<section id="dados" aria-labelledby="dados-titulo" style="padding: 0 10%;" hidden>
-			<h2 id="dados-titulo">Dados</h2>
-			<p>Rolagem de dados para testes.</p>
-			<hr>
-			<div class="categorias-pericias row column-gap-5 mt-5">
-				<div id="dados-AGI" class="col">
-					<h3>Agilidade</h3>
-					<hr>
-				</div>
-				<div id="dados-INT" class="col">
-					<h3>Intelecto</h3>
-					<hr>
-				</div>
-				<div id="dados-PRE" class="col">
-					<h3>Presença</h3>
-					<hr>
-				</div>
-				<div id="dados-FOR" class="col">
-					<h3>Força</h3>
-					<hr>
-				</div>
-				<div id="dados-VIG" class="col">
-					<h3>Vigor</h3>
-					<hr>
-				</div>
-			</div>
+		<main>
+			<section id="inicio" aria-labelledby="inicio-titulo" style="padding: 0 10%">
+				<h2 id="inicio-titulo" class="text-center">Início</h2>
+				<p class="text-center small">Bem-vindo ao C.A.R.L. - Fichas Digitais para RPG</p>
 
-			<!-- template pras perícias em lista, na seção de rolagem de dados -->
-			<template id="modelo-pericia">
-				<div class="dado" data-pericia="">
-					<img src="img/20lados.svg" alt="Dado de 20 Lados">
-					<span>nome da pericia</span>
-				</div>
-			</template>
+				<nav aria-label="Acesso rápido">
+					<ul id="cards-acesso-rapido" class="d-flex justify-content-evenly flex-row flex-wrap gap-5 list-unstyled p-0">
+						<li>
+							<a href="#dados" class="card-custom bg-success bg-gradient">
+								<img src="img/dado.svg" alt="" aria-hidden="true" />
+								<span class="conteudo-card">
+									<span class="titulo-card">Dados</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a href="#ficha" class="card-custom bg-warning bg-gradient">
+								<img src="img/ficha.svg" alt="" aria-hidden="true" />
+								<span class="conteudo-card">
+									<span class="titulo-card">Ficha</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a href="#agentes" class="card-custom bg-primary bg-gradient">
+								<img src="img/agentes.svg" alt="" aria-hidden="true" />
+								<span class="conteudo-card">
+									<span class="titulo-card">Agentes</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a href="#campanhas" class="card-custom bg-danger bg-gradient">
+								<img src="img/campanhas.svg" alt="" aria-hidden="true" />
+								<span class="conteudo-card">
+									<span class="titulo-card">Campanhas</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a href="#guia" class="card-custom bg-info bg-gradient">
+								<img src="img/guia.svg" alt="" aria-hidden="true" />
+								<span class="conteudo-card">
+									<span class="titulo-card">Guia</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a href="#perfil" class="card-custom bg-secondary bg-gradient">
+								<img src="img/perfil.svg" alt="" aria-hidden="true" />
+								<span class="conteudo-card">
+									<span class="titulo-card">Perfil</span>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</section>
 
-			<!-- resultado da rolagem -->
-			<dialog id="resultado-rolagem" class="resultado-rolagem">
-				<canvas class="mesa-3d" aria-hidden="true"></canvas>
-				<p class="resultado-pericia"></p>
-				<p class="resultado-valor"></p>
-				<p class="resultado-dica">clique para fechar</p>
-			</dialog>
-		</section>
-
-		<section id="ficha" aria-labelledby="ficha-titulo" style="padding: 0 10%;" hidden>
-			<h2 id="ficha-titulo">Ficha</h2>
-			<p>Crie ou edite os dados do agente.</p>
-			<hr>
-
-			<form id="form-ficha" class="form-ficha" data-bs-theme="dark">
-				<input type="hidden" name="agenteId">
-
-				<div class="row g-5">
-					<div class="col-lg-4">
-						<fieldset class="atributos mx-auto">
-							<legend class="visually-hidden">Atributos</legend>
-							<img src="img/attributes.png" alt="Diagrama dos atributos">
-
-							<input type="number" class="campo" style="left: 50.4%; top: 17%;" name="AGI" value="1"
-								min="0" max="3" aria-label="Agilidade" required>
-							<input type="number" class="campo" style="left: 19%; top: 38.5%;" name="FOR" value="1"
-								min="0" max="3" aria-label="Força" required>
-							<input type="number" class="campo" style="left: 82%; top: 38.5%;" name="INT" value="1"
-								min="0" max="3" aria-label="Intelecto" required>
-							<input type="number" class="campo" style="left: 29.2%; top: 75.5%;" name="PRE" value="1"
-								min="0" max="3" aria-label="Presença" required>
-							<input type="number" class="campo" style="left: 70.6%; top: 75.5%;" name="VIG" value="1"
-								min="0" max="3" aria-label="Vigor" required>
-						</fieldset>
+			<section id="dados" aria-labelledby="dados-titulo" style="padding: 0 10%" hidden>
+				<h2 id="dados-titulo">Dados</h2>
+				<p>Rolagem de dados para testes.</p>
+				<hr />
+				<div class="categorias-pericias row column-gap-5 mt-5">
+					<div id="dados-AGI" class="col">
+						<h3>Agilidade</h3>
+						<hr />
 					</div>
-
-					<div class="col-lg-8">
-						<fieldset class="mb-4">
-							<legend>Identificação</legend>
-
-							<div class="row g-3">
-								<div class="col-md-6">
-									<label for="ficha-nome-personagem" class="form-label">Nome do personagem</label>
-									<input type="text" id="ficha-nome-personagem" name="nomePersonagem"
-										class="form-control" required>
-								</div>
-								<div class="col-md-6">
-									<label for="ficha-nome-jogador" class="form-label">Nome do jogador</label>
-									<input type="text" id="ficha-nome-jogador" name="nomeJogador" class="form-control">
-								</div>
-								<div class="col-12">
-									<label for="ficha-descricao" class="form-label">Descrição</label>
-									<textarea id="ficha-descricao" name="descricao" class="form-control"
-										rows="3"></textarea>
-								</div>
-							</div>
-						</fieldset>
-
-						<fieldset>
-							<legend>Status</legend>
-
-							<div class="row g-3">
-								<div class="col-sm-6 col-xl-3">
-									<label class="form-label" id="ficha-vida">Vida</label>
-									<div class="input-group" role="group" aria-labelledby="ficha-vida">
-										<input type="number" name="vidaAtual" class="form-control" min="0" value="0"
-											aria-label="Vida atual">
-										<span class="input-group-text">/</span>
-										<input type="number" name="vidaMaximo" class="form-control" min="0" value="0"
-											aria-label="Vida máxima">
-									</div>
-								</div>
-								<div class="col-sm-6 col-xl-3">
-									<label class="form-label" id="ficha-sanidade">Sanidade</label>
-									<div class="input-group" role="group" aria-labelledby="ficha-sanidade">
-										<input type="number" name="sanidadeAtual" class="form-control" min="0" value="0"
-											aria-label="Sanidade atual">
-										<span class="input-group-text">/</span>
-										<input type="number" name="sanidadeMaximo" class="form-control" min="0"
-											value="0" aria-label="Sanidade máxima">
-									</div>
-								</div>
-								<div class="col-sm-6 col-xl-3">
-									<label class="form-label" id="ficha-esforco">Esforço</label>
-									<div class="input-group" role="group" aria-labelledby="ficha-esforco">
-										<input type="number" name="esforcoAtual" class="form-control" min="0" value="0"
-											aria-label="Esforço atual">
-										<span class="input-group-text">/</span>
-										<input type="number" name="esforcoMaximo" class="form-control" min="0" value="0"
-											aria-label="Esforço máximo">
-									</div>
-								</div>
-								<div class="col-sm-6 col-xl-3">
-									<label for="ficha-defesa" class="form-label">Defesa</label>
-									<input type="number" id="ficha-defesa" name="defesa" class="form-control" min="0"
-										value="10">
-								</div>
-							</div>
-						</fieldset>
+					<div id="dados-INT" class="col">
+						<h3>Intelecto</h3>
+						<hr />
+					</div>
+					<div id="dados-PRE" class="col">
+						<h3>Presença</h3>
+						<hr />
+					</div>
+					<div id="dados-FOR" class="col">
+						<h3>Força</h3>
+						<hr />
+					</div>
+					<div id="dados-VIG" class="col">
+						<h3>Vigor</h3>
+						<hr />
 					</div>
 				</div>
 
-				<div class="d-flex justify-content-end gap-2 mt-5">
-					<a href="#agentes" class="btn btn-outline-secondary">Cancelar</a>
-					<button type="submit" class="btn btn-primary">Salvar ficha</button>
-				</div>
-			</form>
-		</section>
+				<!-- template pras perícias em lista, na seção de rolagem de dados -->
+				<template id="modelo-pericia">
+					<div class="dado" data-pericia="">
+						<img src="img/20lados.svg" alt="Dado de 20 Lados" />
+						<span>nome da pericia</span>
+					</div>
+				</template>
 
-		<section id="agentes" aria-labelledby="agentes-titulo" style="padding: 0 10%;" hidden>
-			<h2 id="agentes-titulo">Agentes</h2>
-			<p>Suas fichas criadas.</p>
-			<hr>
+				<!-- resultado da rolagem -->
+				<dialog id="resultado-rolagem" class="resultado-rolagem">
+					<canvas class="mesa-3d" aria-hidden="true"></canvas>
+					<p class="resultado-pericia"></p>
+					<p class="resultado-valor"></p>
+					<p class="resultado-dica">clique para fechar</p>
+				</dialog>
+			</section>
 
-			<div class="lista-agentes row g-3">
-				<div class="col-6 col-md-4 col-xl-3">
-					<article class="card card-agente h-100" data-bs-theme="dark">
-						<img src="https://picsum.photos/id/237/400/300" class="card-img-top w-100"
-							alt="Foto do persoagem">
+			<section id="ficha" aria-labelledby="ficha-titulo" style="padding: 0 10%" hidden>
+				<h2 id="ficha-titulo">Ficha</h2>
+				<p>Crie ou edite os dados do agente.</p>
+				<hr />
 
-						<div class="card-body p-2">
-							<h3 class="card-title h6">Nome do personagem</h3>
+				<form id="form-ficha" class="form-ficha" data-bs-theme="dark">
+					<input type="hidden" name="agenteId" />
 
-							<div class="mb-2">
-								<span class="badge atributo">AGI 1</span>
-								<span class="badge atributo">FOR 1</span>
-								<span class="badge atributo">INT 1</span>
-								<span class="badge atributo">PRE 1</span>
-								<span class="badge atributo">VIG 1</span>
-							</div>
+					<div class="row g-5">
+						<div class="col-lg-4">
+							<fieldset class="atributos mx-auto">
+								<legend class="visually-hidden">Atributos</legend>
+								<img src="img/attributes.png" alt="Diagrama dos atributos" />
 
-							<div class="status-item">
-								<p class="status-titulo">Vida</p>
-								<div class="barra barra-vida">17 / 17</div>
-							</div>
-
-							<div class="status-item">
-								<p class="status-titulo">Sanidade</p>
-								<div class="barra barra-sanidade">16 / 16</div>
-							</div>
-
-							<div class="status-item">
-								<p class="status-titulo">Esforço</p>
-								<div class="barra barra-esforco">4 / 4</div>
-							</div>
-
-							<div class="defesa">
-								<span>Defesa</span>
-								<span>10</span>
-							</div>
+								<input type="number" class="campo" style="left: 50.4%; top: 17%" name="AGI" value="1" min="0" max="3" aria-label="Agilidade" required />
+								<input type="number" class="campo" style="left: 19%; top: 38.5%" name="FOR" value="1" min="0" max="3" aria-label="Força" required />
+								<input type="number" class="campo" style="left: 82%; top: 38.5%" name="INT" value="1" min="0" max="3" aria-label="Intelecto" required />
+								<input type="number" class="campo" style="left: 29.2%; top: 75.5%" name="PRE" value="1" min="0" max="3" aria-label="Presença" required />
+								<input type="number" class="campo" style="left: 70.6%; top: 75.5%" name="VIG" value="1" min="0" max="3" aria-label="Vigor" required />
+							</fieldset>
 						</div>
 
-						<div class="card-footer d-flex justify-content-end gap-2">
-							<a href="#ficha" class="btn btn-sm btn-primary">Editar</a>
-							<button class="btn btn-sm btn-outline-secondary">Excluir</button>
+						<div class="col-lg-8">
+							<fieldset class="mb-4">
+								<legend>Identificação</legend>
+
+								<div class="row g-3">
+									<div class="col-md-6">
+										<label for="ficha-nome-personagem" class="form-label">Nome do personagem</label>
+										<input type="text" id="ficha-nome-personagem" name="nomePersonagem" class="form-control" required />
+									</div>
+									<div class="col-md-6">
+										<label for="ficha-nome-jogador" class="form-label">Nome do jogador</label>
+										<input type="text" id="ficha-nome-jogador" name="nomeJogador" class="form-control" />
+									</div>
+									<div class="col-12">
+										<label for="ficha-descricao" class="form-label">Descrição</label>
+										<textarea id="ficha-descricao" name="descricao" class="form-control" rows="3"></textarea>
+									</div>
+								</div>
+							</fieldset>
+
+							<fieldset>
+								<legend>Status</legend>
+
+								<div class="row g-3">
+									<div class="col-sm-6 col-xl-3">
+										<label class="form-label" id="ficha-vida">Vida</label>
+										<div class="input-group" role="group" aria-labelledby="ficha-vida">
+											<input type="number" name="vidaAtual" class="form-control" min="0" value="0" aria-label="Vida atual" />
+											<span class="input-group-text">/</span>
+											<input type="number" name="vidaMaximo" class="form-control" min="0" value="0" aria-label="Vida máxima" />
+										</div>
+									</div>
+									<div class="col-sm-6 col-xl-3">
+										<label class="form-label" id="ficha-sanidade">Sanidade</label>
+										<div class="input-group" role="group" aria-labelledby="ficha-sanidade">
+											<input type="number" name="sanidadeAtual" class="form-control" min="0" value="0" aria-label="Sanidade atual" />
+											<span class="input-group-text">/</span>
+											<input type="number" name="sanidadeMaximo" class="form-control" min="0" value="0" aria-label="Sanidade máxima" />
+										</div>
+									</div>
+									<div class="col-sm-6 col-xl-3">
+										<label class="form-label" id="ficha-esforco">Esforço</label>
+										<div class="input-group" role="group" aria-labelledby="ficha-esforco">
+											<input type="number" name="esforcoAtual" class="form-control" min="0" value="0" aria-label="Esforço atual" />
+											<span class="input-group-text">/</span>
+											<input type="number" name="esforcoMaximo" class="form-control" min="0" value="0" aria-label="Esforço máximo" />
+										</div>
+									</div>
+									<div class="col-sm-6 col-xl-3">
+										<label for="ficha-defesa" class="form-label">Defesa</label>
+										<input type="number" id="ficha-defesa" name="defesa" class="form-control" min="0" value="10" />
+									</div>
+								</div>
+							</fieldset>
 						</div>
-					</article>
+					</div>
+
+					<div class="d-flex justify-content-end gap-2 mt-5">
+						<a href="#agentes" class="btn btn-outline-secondary">Cancelar</a>
+						<button type="submit" class="btn btn-primary">Salvar ficha</button>
+					</div>
+				</form>
+			</section>
+
+			<section id="agentes" aria-labelledby="agentes-titulo" style="padding: 0 10%" hidden>
+				<h2 id="agentes-titulo">Agentes</h2>
+				<p>Suas fichas criadas.</p>
+				<hr />
+
+				<div class="lista-agentes row g-3">
+					<div class="col-6 col-md-4 col-xl-3">
+						<article class="card card-agente h-100" data-bs-theme="dark">
+							<img src="https://picsum.photos/id/237/400/300" class="card-img-top w-100" alt="Foto do persoagem" />
+
+							<div class="card-body p-2">
+								<h3 class="card-title h6">Nome do personagem</h3>
+
+								<div class="mb-2">
+									<span class="badge atributo">AGI 1</span>
+									<span class="badge atributo">FOR 1</span>
+									<span class="badge atributo">INT 1</span>
+									<span class="badge atributo">PRE 1</span>
+									<span class="badge atributo">VIG 1</span>
+								</div>
+
+								<div class="status-item">
+									<p class="status-titulo">Vida</p>
+									<div class="barra barra-vida">17 / 17</div>
+								</div>
+
+								<div class="status-item">
+									<p class="status-titulo">Sanidade</p>
+									<div class="barra barra-sanidade">16 / 16</div>
+								</div>
+
+								<div class="status-item">
+									<p class="status-titulo">Esforço</p>
+									<div class="barra barra-esforco">4 / 4</div>
+								</div>
+
+								<div class="defesa">
+									<span>Defesa</span>
+									<span>10</span>
+								</div>
+							</div>
+
+							<div class="card-footer d-flex justify-content-end gap-2">
+								<a href="#ficha" class="btn btn-sm btn-primary">Editar</a>
+								<button class="btn btn-sm btn-outline-secondary">Excluir</button>
+							</div>
+						</article>
+					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
-		<section id="campanhas" aria-labelledby="campanhas-titulo" hidden>
-			<h2 id="campanhas-titulo">Campanhas</h2>
-			<p>Campanhas e mesas em andamento.</p>
-		</section>
+			<section id="campanhas" aria-labelledby="campanhas-titulo" hidden>
+				<h2 id="campanhas-titulo">Campanhas</h2>
+				<p>Campanhas e mesas em andamento.</p>
+			</section>
 
-		<section id="guia" aria-labelledby="guia-titulo" style="padding: 0 10%;" hidden>
-			<h2 id="guia-titulo">Tudo que você precisa saber</h2>
-			<p>Aqui você aprende o que é cada parte da ficha e para que ela serve.</p>
-			<hr>
+			<section id="guia" aria-labelledby="guia-titulo" style="padding: 0 10%" hidden>
+				<h2 id="guia-titulo">Tudo que você precisa saber</h2>
+				<p>Aqui você aprende o que é cada parte da ficha e para que ela serve.</p>
+				<hr />
 
-			<div class="guia-texto">
-				<h3>Como distribuir os atributos</h3>
-				<p>
-					Todo personagem começa com todos os atributos em 1. Você recebe 4 pontos para distribuir entre eles
-					como quiser.
-					Também é possível reduzir um atributo para 0 e, em troca, ganhar 1 ponto extra.
-					No começo, nenhum atributo pode passar de 3.
-				</p>
-				<img src="img/attributes.png"
-					alt="Diagrama dos atributos: Agilidade, Força, Intelecto, Presença e Vigor" class="d-block my-4">
+				<div class="guia-texto">
+					<h3>Como distribuir os atributos</h3>
+					<p>Todo personagem começa com todos os atributos em 1. Você recebe 4 pontos para distribuir entre eles como quiser. Também é possível reduzir um atributo para 0 e, em troca, ganhar 1 ponto extra. No começo, nenhum atributo pode passar de 3.</p>
+					<img src="img/attributes.png" alt="Diagrama dos atributos: Agilidade, Força, Intelecto, Presença e Vigor" class="d-block my-4" />
 
-				<h3>Os 5 atributos</h3>
-				<p>Os atributos mostram o que o seu personagem faz de melhor. Quanto maior o valor, melhor ele se sai
-					nos testes ligados àquele atributo.</p>
+					<h3>Os 5 atributos</h3>
+					<p>Os atributos mostram o que o seu personagem faz de melhor. Quanto maior o valor, melhor ele se sai nos testes ligados àquele atributo.</p>
 
-				<h4>Agilidade (AGI)</h4>
-				<p>É a rapidez, os reflexos e a coordenação do personagem. Quem tem muita Agilidade se move bem, desvia
-					de ataques e age primeiro.</p>
+					<h4>Agilidade (AGI)</h4>
+					<p>É a rapidez, os reflexos e a coordenação do personagem. Quem tem muita Agilidade se move bem, desvia de ataques e age primeiro.</p>
 
-				<h4>Força (FOR)</h4>
-				<p>É o poder muscular. Serve para quem precisa levantar peso, empurrar, escalar ou lutar corpo a corpo.
-				</p>
+					<h4>Força (FOR)</h4>
+					<p>É o poder muscular. Serve para quem precisa levantar peso, empurrar, escalar ou lutar corpo a corpo.</p>
 
-				<h4>Intelecto (INT)</h4>
-				<p>É o raciocínio e o conhecimento. Serve para investigar, entender mistérios, usar tecnologia e
-					resolver problemas.</p>
+					<h4>Intelecto (INT)</h4>
+					<p>É o raciocínio e o conhecimento. Serve para investigar, entender mistérios, usar tecnologia e resolver problemas.</p>
 
-				<h4>Presença (PRE)</h4>
-				<p>É a personalidade e a força de vontade. Serve para convencer, impor respeito e resistir ao medo.</p>
+					<h4>Presença (PRE)</h4>
+					<p>É a personalidade e a força de vontade. Serve para convencer, impor respeito e resistir ao medo.</p>
 
-				<h4>Vigor (VIG)</h4>
-				<p>É a saúde e a resistência do corpo. Serve para aguentar pancadas, cansaço, veneno e dor.</p>
+					<h4>Vigor (VIG)</h4>
+					<p>É a saúde e a resistência do corpo. Serve para aguentar pancadas, cansaço, veneno e dor.</p>
 
-				<h3>Vida, Sanidade e Esforço</h3>
-				<p>São os três recursos do personagem. Eles mudam durante o jogo, por isso a ficha mostra o valor atual
-					e o máximo (por exemplo, 17/17).</p>
+					<h3>Vida, Sanidade e Esforço</h3>
+					<p>São os três recursos do personagem. Eles mudam durante o jogo, por isso a ficha mostra o valor atual e o máximo (por exemplo, 17/17).</p>
 
-				<h4>Vida</h4>
-				<p>É quanto dano o personagem aguenta. Quando leva golpes, a Vida diminui. Se chegar a zero, ele cai e
-					corre risco de morrer.</p>
+					<h4>Vida</h4>
+					<p>É quanto dano o personagem aguenta. Quando leva golpes, a Vida diminui. Se chegar a zero, ele cai e corre risco de morrer.</p>
 
-				<h4>Sanidade</h4>
-				<p>É a estabilidade mental. Ela diminui quando o personagem enfrenta coisas aterrorizantes. Se chegar a
-					zero, ele perde o controle da própria mente.</p>
+					<h4>Sanidade</h4>
+					<p>É a estabilidade mental. Ela diminui quando o personagem enfrenta coisas aterrorizantes. Se chegar a zero, ele perde o controle da própria mente.</p>
 
-				<h4>Esforço</h4>
-				<p>É a energia que o personagem gasta para usar habilidades especiais. Quando acaba, ele precisa
-					descansar para recuperar.</p>
+					<h4>Esforço</h4>
+					<p>É a energia que o personagem gasta para usar habilidades especiais. Quando acaba, ele precisa descansar para recuperar.</p>
 
-				<h3>Defesa</h3>
-				<p>É a dificuldade que os inimigos têm para acertar você. Quanto maior a Defesa, mais difícil de ser
-					atingido. Ela começa em 10 e pode aumentar com a sua Agilidade e com equipamentos.</p>
-			</div>
-		</section>
+					<h3>Defesa</h3>
+					<p>É a dificuldade que os inimigos têm para acertar você. Quanto maior a Defesa, mais difícil de ser atingido. Ela começa em 10 e pode aumentar com a sua Agilidade e com equipamentos.</p>
+				</div>
+			</section>
 
-		<section id="perfil" aria-labelledby="perfil-titulo" hidden>
-			<h2 id="perfil-titulo">Perfil</h2>
-			<p>Aqui você vê os personagens que criou.</p>
-		</section>
-	</main>
+			<section id="perfil" aria-labelledby="perfil-titulo" hidden>
+				<h2 id="perfil-titulo">Perfil</h2>
+				<p>Aqui você vê os personagens que criou.</p>
+			</section>
+		</main>
 
-	<footer>
-		<!-- nada ainda -->
-	</footer>
+		<footer>
+			<!-- nada ainda -->
+		</footer>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu"
-		crossorigin="anonymous"></script>
-	<script src="js/agente.js"></script>
-	<script src="js/storage.js"></script>
-	<script src="js/ficha.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-	<script src="js/dados3d.js"></script>
-	<script src="js/dados.js"></script>
-	<script src="js/main.js"></script>
-</body>
-
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js" integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"></script>
+		<script src="js/agente.js"></script>
+		<script src="js/storage.js"></script>
+		<script src="js/ficha.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+		<script src="js/dados3d.js"></script>
+		<script src="js/dados.js"></script>
+		<script src="js/main.js"></script>
+	</body>
 </html>
