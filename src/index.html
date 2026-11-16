@@ -491,6 +491,7 @@
 						</div>
 						<div class="card-footer d-flex flex-wrap justify-content-end gap-2">
 							<button type="button" class="btn btn-sm btn-outline-light btn-editar-sessao">Editar</button>
+							<button type="button" class="btn btn-sm btn-outline-danger btn-excluir-sessao">Excluir</button>
 						</div>
 					</article>
 				</template>
@@ -564,7 +565,7 @@
 					<div class="modal-body">
 						Tem certeza que quer excluir <strong class="excluir-campanha-nome"></strong>? Isso não pode ser desfeito.
 						<br />
-						<small class="text-body-secondary">Os agentes da campanha não são apagados.</small>
+						<small class="text-body-secondary">Os agentes da campanha não são apagados, mas as sessões dela são.</small>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -610,6 +611,23 @@
 						<button type="submit" class="btn btn-primary">Salvar sessão</button>
 					</div>
 				</form>
+			</div>
+		</div>
+
+		<!-- confirmação de exclusão de sessão -->
+		<div class="modal fade" id="modal-excluir-sessao" tabindex="-1" aria-labelledby="modal-excluir-sessao-titulo" aria-hidden="true" data-bs-theme="dark">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title text-uppercase fw-normal" id="modal-excluir-sessao-titulo">Excluir sessão</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+					</div>
+					<div class="modal-body">Tem certeza que quer excluir <strong class="excluir-sessao-nome"></strong>? Isso não pode ser desfeito.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-danger btn-confirmar-exclusao-sessao">Excluir</button>
+					</div>
+				</div>
 			</div>
 		</div>
 

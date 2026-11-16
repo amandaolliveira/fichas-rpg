@@ -281,6 +281,7 @@ modalExcluirCampanha.querySelector(".btn-confirmar-exclusao").addEventListener("
 		campanhas.splice(indice, 1);
 	}
 	salvarCampanhas();
+	excluirSessoesDaCampanha(campanhaSelecionada.id);
 
 	bootstrap.Modal.getInstance(modalExcluirCampanha).hide();
 	mostrarAviso("Campanha " + campanhaSelecionada.nome + " excluída.", "info");

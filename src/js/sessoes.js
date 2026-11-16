@@ -72,6 +72,10 @@ function criarCardSessao(sessao) {
 		abrirModalSessao(sessao);
 	});
 
+	card.querySelector(".btn-excluir-sessao").addEventListener("click", function () {
+		excluirSessao(sessao);
+	});
+
 	return card;
 }
 
@@ -210,3 +214,44 @@ document.querySelector(".btn-nova-sessao").addEventListener("click", function ()
 	}
 	abrirModalSessao(undefined);
 });
+
+// EXCLUIR SESSÃO (mesmo esquema do agente: o botão abre o modal, o modal exclui)
+
+const modalExcluirSessao = document.getElementById("modal-excluir-sessao");
+let sessaoParaExcluir = undefined;
+
+function excluirSessao(sessao) {
+	sessaoParaExcluir = sessao;
+	modalExcluirSessao.querySelector(".excluir-sessao-nome").textContent = sessao.titulo;
+	bootstrap.Modal.getOrCreateInstance(modalExcluirSessao).show();
+}
+
+modalExcluirSessao.querySelector(".btn-confirmar-exclusao-sessao").addEventListener("click", function () {
+	const indice = sessoes.indexOf(sessaoParaExcluir);
+	if (indice !== -1) {
+		sessoes.splice(indice, 1);
+	}
+	salvarSessoes();
+
+	bootstrap.Modal.getInstance(modalExcluirSessao).hide();
+	mostrarAviso('"' + sessaoParaExcluir.titulo + '" foi excluída.', "info");
+	sessaoParaExcluir = undefined;
+	renderizarSessoes();
+});
+
+// quando uma campanha é excluída, as sessões dela não têm mais pra onde apontar, então vão junto
+function excluirSessoesDaCampanha(campanhaId) {
+	const sobraram = [];
+	for (const sessao of sessoes) {
+		if (sessao.campanhaId !== campanhaId) {
+			sobraram.push(sessao);
+		}
+	}
+
+	// esvazia a lista e coloca de volta só as que sobraram (a lista é const, então não dá pra fazer sessoes = sobraram)
+	sessoes.length = 0;
+	for (const sessao of sobraram) {
+		sessoes.push(sessao);
+	}
+	salvarSessoes();
+}
