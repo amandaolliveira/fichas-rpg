@@ -730,7 +730,7 @@ img {
 	position: relative;
 	z-index: 1; /* texto na frente da mesa 3D */
 	transition: opacity 0.3s ease;
-	text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8); /* legível mesmo se o dado parar atrás */
+	text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8); /* legível mesmo se o dado parar atras */
 }
 
 /* enquanto o dado rola, o resultado fica escondido */
@@ -785,7 +785,7 @@ img {
 
 .card-agente img {
 	height: 128px;
-	/* cover corta a imagem pra caber, em vez de esmagar o coitado do personagem */
+	/* cover corta a imagem pra caber, em vez de esticar a imagem */
 	object-fit: cover;
 	border-bottom: 1px solid var(--outline);
 }
@@ -827,26 +827,30 @@ main > section .card-agente .card-title {
 }
 
 .barra {
-	padding: 2px 0;
+	--cor-barra: var(--outline);
+	--preenchimento: 100%;
+	padding: 4px 0;
 	text-align: center;
 	color: var(--white-200);
 	font-family: var(--fonte-mono);
 	font-size: 12px;
-	background-color: var(--bg-100);
-	border-left: 4px solid var(--outline);
+	border-left: 4px solid var(--cor-barra);
+	/* gradiente com duas paradas no mesmo ponto vira um corte seco: até ali é cor, dali pra frente é fundo */
+	background: linear-gradient(to right, color-mix(in srgb, var(--cor-barra) 40%, transparent) var(--preenchimento), var(--bg-100) var(--preenchimento));
+	transition: background 0.3s ease;
 }
 
-/* a cor de cada barra é só a borda da esquerda, minimalismo ou preguiça, você decide */
+/* o tamanho vem do --preenchimento (atual / máximo) que fica no style do html, a cor vem daqui */
 .barra-vida {
-	border-left-color: var(--danger);
+	--cor-barra: var(--danger);
 }
 
 .barra-sanidade {
-	border-left-color: var(--roxo-100);
+	--cor-barra: var(--roxo-100);
 }
 
 .barra-esforco {
-	border-left-color: var(--success);
+	--cor-barra: var(--success);
 }
 
 .defesa {
@@ -885,11 +889,10 @@ main > section .card-agente .card-title {
 	text-transform: uppercase;
 }
 
-/* ===== CELULAR ===== */
+/* RESPONSIVO */
 
-/* @media: as regras daqui só valem quando a tela for menor que isso */
+/* @media -> só aplica as regras quando a tela for menor que o max-width */
 @media (max-width: 760px) {
-	/* no celular o cabeçalho deixa de ser fixo */
 	html {
 		scroll-padding-top: 16px;
 	}
