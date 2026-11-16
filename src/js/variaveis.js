@@ -42,5 +42,13 @@ const PERICIAS = {
 	Vontade: "PRE",
 };
 
+// o nome bonito de cada status da sessão (no código fica sem acento pra não dar dor de cabeça)
+const STATUS_SESSAO = {
+	agendada: "Agendada",
+	andamento: "Em andamento",
+	concluida: "Concluída",
+	cancelada: "Cancelada",
+};
+
 // placeholder já nas cores do tema (fundo escuro, texto roxo)
 const IMAGEM_PADRAO_CAMPANHA = "https://placehold.co/800x300/1c1920/b46bff?text=Campanha";

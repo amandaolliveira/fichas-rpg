@@ -73,3 +73,21 @@ class Campanha {
 		return new Campanha(dados);
 	}
 }
+
+class Sessao {
+	// cada sessão é de uma campanha só (guarda o id dela, igual a campanha guarda os ids dos agentes)
+	constructor(dados = {}) {
+		this.id = dados.id || crypto.randomUUID();
+		this.titulo = dados.titulo || "";
+		this.campanhaId = dados.campanhaId || "";
+		this.data = dados.data || ""; // vem do input type="date", formato "AAAA-MM-DD"
+		this.status = dados.status || "agendada"; // toda sessão nasce agendada
+		this.anotacoes = dados.anotacoes || "";
+		this.criadoEm = dados.criadoEm || Date.now();
+	}
+
+	// recria a sessão a partir do que tiver no localStorage
+	static storageParaJSON(dados) {
+		return new Sessao(dados);
+	}
+}
