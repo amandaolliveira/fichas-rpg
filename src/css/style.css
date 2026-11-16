@@ -731,7 +731,8 @@ img {
 	}
 }
 
-.resultado-rolagem p {
+.resultado-rolagem p,
+.resultado-rolagem ul {
 	margin: 0;
 	position: relative;
 	z-index: 1; /* texto na frente da mesa 3D */
@@ -740,7 +741,8 @@ img {
 }
 
 /* enquanto o dado rola, o resultado fica escondido */
-.resultado-rolagem.rolando p {
+.resultado-rolagem.rolando p,
+.resultado-rolagem.rolando ul {
 	opacity: 0;
 	transition: none; /* some na hora; o fade (0.3s) fica só na volta, quando o dado para */
 }
@@ -766,6 +768,40 @@ img {
 	text-shadow:
 		4px 4px 0 rgba(180, 107, 255, 0.2),
 		0 2px 12px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* qual atributo e quantos dados, embaixo do número grande */
+.resultado-regra {
+	font-family: var(--fonte-mono);
+	font-size: 14px;
+	color: var(--muted);
+}
+
+/* um quadradinho pra cada dado que caiu */
+.resultado-dados {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px;
+	padding: 0;
+	margin-top: 12px !important;
+	list-style: none;
+}
+
+.resultado-dados > li {
+	min-width: 44px;
+	padding: 4px 8px;
+	border: 1px solid var(--outline);
+	background: rgba(0, 0, 0, 0.55);
+	font-family: var(--fonte-mono);
+	font-size: 20px;
+	color: var(--white-100);
+}
+
+/* o dado que valeu pro resultado */
+.resultado-dados > li.valeu {
+	border-color: var(--roxo-100);
+	color: var(--roxo-100);
 }
 
 .resultado-dica {
