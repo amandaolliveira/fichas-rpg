@@ -3,6 +3,7 @@
 
 /* ===== CORES E VARIÁVEIS ===== */
 
+/* variáveis: troca a cor aqui e muda no site inteiro. não, não precisa de sass pra isso */
 :root {
 	color-scheme: dark;
 
@@ -26,6 +27,7 @@
 	--fonte-mono: "DM Mono", ui-monospace, Consolas, "Courier New", monospace;
 }
 
+/* sobrescrever o css do bootstrap, pra facilitar a minha vida */
 :root,
 [data-bs-theme="dark"] {
 	--bs-body-bg: var(--bg-100);
@@ -70,6 +72,7 @@ hr {
 }
 
 .cabecalho {
+	/* sticky: rola junto com a página até bater no topo, aí gruda lá */
 	position: sticky;
 	top: 0;
 	z-index: 20;
@@ -107,6 +110,7 @@ hr {
 	transition: color 0.2s;
 }
 
+/* o risco roxo de baixo. ::after cria um elemento "fantasma" só com css, sem sujar o html */
 .cabecalho nav a::after {
 	content: "";
 	position: absolute;
@@ -119,6 +123,7 @@ hr {
 	transition: opacity 0.24s ease;
 }
 
+/* o JS marca o link da seção aberta com aria-current, o css só pinta. de quebra o leitor de tela agradece */
 .cabecalho nav a:hover,
 .cabecalho nav a[aria-current="page"] {
 	color: #fff;
@@ -144,12 +149,14 @@ main {
 main > section {
 	position: relative;
 	margin: 0 0 32px;
+	/* clamp(mínimo, ideal, máximo): cresce com a tela, mas tem limite. igual salário */
 	padding: clamp(24px, 4vw, 48px);
 	border: 1px solid var(--outline);
 	background-color: rgba(31, 30, 34, 1);
 	box-shadow: var(--sombra);
 }
 
+/* barrinha roxa no canto de cima de cada painel */
 main > section::before {
 	content: "";
 	position: absolute;
@@ -170,6 +177,7 @@ main > section h2 {
 	text-transform: uppercase;
 }
 
+/* sublinhado roxo do título */
 main > section h2::after {
 	content: "";
 	position: absolute;
@@ -180,6 +188,7 @@ main > section h2::after {
 	background: var(--roxo-100);
 }
 
+/* centraliza o titulo do inicio, precisa do inline pra levar em conta o ::after que adiciona a linha de baixo */
 main > section h2.text-center {
 	margin-inline: auto;
 }
@@ -220,6 +229,7 @@ main > section fieldset > legend {
 	transform: translateY(0);
 }
 
+/* o bootstrap lê as cores dessas variáveis --bs-btn-*, então é só trocar elas em vez de sair tacando !important em tudo */
 .btn-primary {
 	--bs-btn-color: #130d19;
 	--bs-btn-bg: var(--roxo-100);
@@ -390,6 +400,7 @@ main > section fieldset > legend {
 	box-shadow: var(--sombra);
 }
 
+/* mesma barrinha roxa dos painéis, só que menor pq o modal é tímido */
 .modal-content::before {
 	content: "";
 	position: absolute;
@@ -461,6 +472,7 @@ img {
 	background: #1c1920;
 }
 
+/* corta a descrição em 3 linhas com reticências, a completa fica nos detalhes. sim, ainda precisa do -webkit- */
 .campanha-descricao {
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
@@ -474,6 +486,7 @@ img {
 	box-shadow: 0 8px 32px rgba(180, 107, 255, 0.16);
 }
 
+/* contador do próprio css: numera os passos sozinho, ninguém precisa escrever "1." no html */
 .passos-wizard {
 	counter-reset: passo;
 }
@@ -503,6 +516,7 @@ img {
 	color: var(--white-200);
 }
 
+/* passo atual, o JS que coloca o aria-current */
 .passos-wizard > li[aria-current="step"] {
 	border-color: var(--roxo-100);
 	color: var(--white-100);
@@ -771,6 +785,7 @@ img {
 
 .card-agente img {
 	height: 128px;
+	/* cover corta a imagem pra caber, em vez de esmagar o coitado do personagem */
 	object-fit: cover;
 	border-bottom: 1px solid var(--outline);
 }
@@ -821,6 +836,7 @@ main > section .card-agente .card-title {
 	border-left: 4px solid var(--outline);
 }
 
+/* a cor de cada barra é só a borda da esquerda, minimalismo ou preguiça, você decide */
 .barra-vida {
 	border-left-color: var(--danger);
 }
@@ -855,6 +871,7 @@ main > section .card-agente .card-title {
 	color: #e7d7f8;
 }
 
+/* :first-child pega só o primeiro, pra não ficar um buraco no começo do texto */
 .guia-texto h3:first-child {
 	margin-top: 0;
 }
@@ -870,7 +887,9 @@ main > section .card-agente .card-title {
 
 /* ===== CELULAR ===== */
 
+/* @media: as regras daqui só valem quando a tela for menor que isso */
 @media (max-width: 760px) {
+	/* no celular o cabeçalho deixa de ser fixo */
 	html {
 		scroll-padding-top: 16px;
 	}
@@ -893,6 +912,7 @@ main > section .card-agente .card-title {
 	}
 
 	main {
+		/* min() escolhe o menor dos dois, então nunca encosta na borda */
 		width: min(100% - 32px, 648px);
 		padding-top: 20px;
 	}
@@ -934,6 +954,7 @@ main > section .card-agente .card-title {
 	}
 }
 
+/* pra quem desligou as animações no sistema. respeita */
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
