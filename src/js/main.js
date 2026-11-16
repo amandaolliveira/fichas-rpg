@@ -21,6 +21,11 @@ function trocarSection() {
 		preencherFicha();
 	}
 
+	// o nome da campanha pode ter mudado, então desenha as sessões de novo
+	if (id === "sessoes") {
+		renderizarSessoes();
+	}
+
 	// os números do início podem ter mudado (agente ou campanha nova), então recalcula
 	if (id === "inicio") {
 		renderizarEstatisticas();
@@ -79,6 +84,7 @@ renderizarAgentes();
 renderizarCardDados();
 renderizarCampanhas();
 resetarWizard();
+renderizarSessoes();
 renderizarEstatisticas();
 
 window.addEventListener("hashchange", trocarSection); // tive que cavar pra achar esse hashchange

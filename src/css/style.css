@@ -981,6 +981,56 @@ main > section .card-agente .card-title {
 	color: var(--muted);
 }
 
+/* SESSÕES */
+main > section .card-sessao .card-title {
+	margin: 0;
+	font-family: var(--fonte-titulo);
+	font-size: 16px;
+	color: var(--white-100);
+}
+
+.card-sessao .card-footer {
+	background-color: transparent;
+	border-top: 1px solid var(--outline);
+}
+
+/* mesmo corte da descrição da campanha, só que em 2 linhas */
+.sessao-anotacoes {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	overflow: hidden;
+	color: #c2bdc5;
+	font-size: 0.9rem;
+}
+
+/* etiqueta do status, cada um com uma cor */
+.status-sessao {
+	border: 1px solid currentColor;
+	background-color: transparent;
+	font-family: var(--fonte-mono);
+	font-weight: normal;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+.status-sessao.status-agendada {
+	color: var(--roxo-100);
+}
+
+.status-sessao.status-andamento {
+	color: var(--success);
+}
+
+.status-sessao.status-concluida {
+	color: var(--muted);
+}
+
+.status-sessao.status-cancelada {
+	color: var(--danger);
+}
+
 /* GUIA */
 .guia-texto {
 	max-width: 720px;

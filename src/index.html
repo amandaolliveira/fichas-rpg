@@ -25,6 +25,7 @@
 					<li><a href="#ficha">Ficha</a></li>
 					<li><a href="#agentes">Agentes</a></li>
 					<li><a href="#campanhas">Campanhas</a></li>
+					<li><a href="#sessoes">Sessões</a></li>
 					<li><a href="#guia">Guia</a></li>
 					<li><a href="#perfil">Perfil</a></li>
 				</ul>
@@ -462,6 +463,39 @@
 				</form>
 			</section>
 
+			<section id="sessoes" aria-labelledby="sessoes-titulo" hidden>
+				<div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+					<div>
+						<h2 id="sessoes-titulo">Sessões</h2>
+						<p class="mb-0">Os dias de jogo de cada campanha.</p>
+					</div>
+					<button type="button" class="btn btn-primary btn-nova-sessao">+ Nova sessão</button>
+				</div>
+				<hr />
+
+				<div class="lista-sessoes row g-3">
+					<!-- o renderizarSessoes() coloca os cards aqui -->
+				</div>
+				<p class="lista-sessoes-vazia text-body-secondary" hidden>Nenhuma sessão por aqui.</p>
+
+				<!-- template pro card de sessão -->
+				<template id="modelo-sessao">
+					<article class="card card-sessao h-100" data-bs-theme="dark">
+						<div class="card-body">
+							<div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+								<h3 class="card-title sessao-titulo"></h3>
+								<span class="badge status-sessao"></span>
+							</div>
+							<p class="card-text small text-primary font-monospace sessao-info"></p>
+							<p class="card-text sessao-anotacoes"></p>
+						</div>
+						<div class="card-footer d-flex flex-wrap justify-content-end gap-2">
+							<button type="button" class="btn btn-sm btn-outline-light btn-editar-sessao">Editar</button>
+						</div>
+					</article>
+				</template>
+			</section>
+
 			<section id="guia" aria-labelledby="guia-titulo" hidden>
 				<h2 id="guia-titulo">Tudo que você precisa saber</h2>
 				<p>Aqui você aprende o que é cada parte da ficha e para que ela serve.</p>
@@ -537,6 +571,45 @@
 						<button type="button" class="btn btn-danger btn-confirmar-exclusao">Excluir</button>
 					</div>
 				</div>
+			</div>
+		</div>
+
+		<!-- modal com o form de criar/editar sessão -->
+		<div class="modal fade" id="modal-sessao" tabindex="-1" aria-labelledby="modal-sessao-titulo" aria-hidden="true" data-bs-theme="dark">
+			<div class="modal-dialog modal-dialog-centered">
+				<form id="form-sessao" class="modal-content" novalidate>
+					<div class="modal-header">
+						<h5 class="modal-title text-uppercase fw-normal" id="modal-sessao-titulo">Nova sessão</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-3">
+							<label for="sessao-titulo" class="form-label">Título</label>
+							<input type="text" id="sessao-titulo" name="titulo" class="form-control" maxlength="80" placeholder="Ex.: Sessão 1 - O começo" required />
+							<div class="invalid-feedback">Dê um título pra sessão.</div>
+						</div>
+						<div class="mb-3">
+							<label for="sessao-campanha" class="form-label">Campanha</label>
+							<select id="sessao-campanha" name="campanhaId" class="form-select" required>
+								<!-- o js coloca uma opção pra cada campanha -->
+							</select>
+							<div class="invalid-feedback">Escolha de qual campanha é a sessão.</div>
+						</div>
+						<div class="mb-3">
+							<label for="sessao-data" class="form-label">Data</label>
+							<input type="date" id="sessao-data" name="data" class="form-control" required />
+							<div class="invalid-feedback erro-data">Escolha a data da sessão.</div>
+						</div>
+						<div>
+							<label for="sessao-anotacoes" class="form-label">Anotações</label>
+							<textarea id="sessao-anotacoes" name="anotacoes" class="form-control" rows="3" placeholder="O que vai acontecer, o que aconteceu..."></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Salvar sessão</button>
+					</div>
+				</form>
 			</div>
 		</div>
 
