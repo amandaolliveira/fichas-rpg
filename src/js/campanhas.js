@@ -5,25 +5,10 @@
 // no Date o mês começa do 0, então 8 = setembro. não fui eu que inventei isso
 const campanhas = [
 	new Campanha({
-		nome: "O Segredo na Floresta",
-		descricao:
-			"Um grupo de agentes é enviado para investigar desaparecimentos numa cidade pequena cercada por uma floresta. Ninguém que entrou nela depois do pôr do sol voltou igual.",
-		mestre: "Carlos",
-		agentes: [agentes[0].id, agentes[1].id, agentes[2].id],
-		criadoEm: new Date(2026, 8, 12).getTime(),
-	}),
-	new Campanha({
-		nome: "Ordem Paranormal: Desconjuração",
-		descricao: "Uma seita está tentando abrir uma passagem para o Outro Lado. Os agentes têm até a lua cheia para impedir o ritual.",
-		mestre: "Carlos",
-		agentes: [agentes[2].id, agentes[3].id],
-		criadoEm: new Date(2026, 9, 3).getTime(),
-	}),
-	new Campanha({
 		nome: "One-shot de Teste",
 		descricao: "Campanha sem imagem e sem agentes, pra testar os valores padrão.",
 		mestre: "Jogador 1",
-	}),
+	})
 ];
 
 // procura o agente pelo id, se não achar devolve undefined

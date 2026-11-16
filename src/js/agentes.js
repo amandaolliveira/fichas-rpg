@@ -1,19 +1,17 @@
 // AGENTES
 // lista de agentes, os cards e quem tá selecionado
 
-// dados de exemplo enquanto não tem localStorage, depois isso sai
+// 
 const agentes = [];
-for (let n = 1; n <= 4; n++) {
-	agentes.push(
-		new Agente({
-			nomePersonagem: "Placeholder " + n,
-			nomeJogador: "Jogador " + n,
-			vida: { atual: 17 - n * 3, maximo: 17 },
-			sanidade: { atual: 16 - n * 2, maximo: 16 },
-			esforco: { atual: 5 - n, maximo: 4 },
-		}),
-	);
-}
+agentes.push(
+	new Agente({
+		nomePersonagem: "Placeholder da silva",
+		nomeJogador: "Jogador da silva",
+		vida: { atual: 14, maximo: 17 },
+		sanidade: { atual: 10, maximo: 16 },
+		esforco: { atual: 2, maximo: 4 },
+	}),
+);
 agenteSelecionado = agentes[0];
 
 // quanto da barra fica pintado. se o máximo for 0 a conta ia dividir por zero, então já volta 0 direto

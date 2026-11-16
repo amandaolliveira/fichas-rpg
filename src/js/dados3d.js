@@ -1,22 +1,24 @@
 // DADOS 3D
-// tudo que é 3D fica aqui. o resto do site não precisa saber como funciona, só chama o rolarDados3D(canvas, valores, quandoParar)
+// tudo que é 3D fica aqui pq é muita coisa
 
 // https://blog.wunderdev.com/blog/DnD/3/
 // https://github.com/3d-dice/dice-box-threejs
 
+// não ouse perguntar nada sobre isso aqui pq eu vi um tutorial de threejs
+
 const RAIO_DADO = 0.9;
-const DURACAO_ROLAGEM = 700; // em milissegundos
+const DURACAO_ROLAGEM = 700;
 const CIMA = new THREE.Vector3(0, 1, 0);
 const ESPACO_ENTRE_DADOS = RAIO_DADO * 2.6; // distância de um dado pro outro quando param lado a lado
 
-// ficam vazias até a primeira rolagem, aí o iniciarMesa3D preenche
+
 let renderer, cena, camera;
 let dados3D = []; // um por dado rolado; vai criando mais conforme precisa e reaproveita os que já existem
-let normaisDasFaces = []; // normaisDasFaces[n] = pra onde a face com o número n está apontando
+let normaisDasFaces = [];
 let animacaoDado = null;
 
 function iniciarMesa3D(canvas) {
-	renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); // alpha: fundo transparente, aparece o backdrop
+	renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.shadowMap.enabled = true;
 
@@ -33,21 +35,18 @@ function iniciarMesa3D(canvas) {
 	luz.position.set(4, 12, 6);
 	luz.castShadow = true;
 	luz.shadow.mapSize.set(1024, 1024);
-	// tamanho da área onde a sombra aparece
 	luz.shadow.camera.left = -15;
 	luz.shadow.camera.right = 15;
 	luz.shadow.camera.top = 15;
 	luz.shadow.camera.bottom = -15;
 	cena.add(luz);
 
-	// a mesa é invisível, só aparece a sombra do dado nela
 	const mesa = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), new THREE.ShadowMaterial({ opacity: 0.65 }));
 	mesa.rotation.x = -Math.PI / 2;
 	mesa.receiveShadow = true;
 	cena.add(mesa);
 }
 
-// a face oposta tem o centro exatamente do outro lado, então somando os dois dá (quase) zero
 function acharFaceOposta(centros, face) {
 	for (let i = 0; i < centros.length; i++) {
 		const soma = centros[i].clone().add(centros[face]);
@@ -68,7 +67,6 @@ function criarDado() {
 	const malha = new THREE.Mesh(geometria, material);
 	malha.castShadow = true;
 
-	// acha o centro de cada face (cada face é um triângulo, então é a média dos 3 pontos)
 	const pontos = geometria.attributes.position;
 	const centros = [];
 	for (let face = 0; face < pontos.count / 3; face++) {
@@ -82,7 +80,6 @@ function criarDado() {
 		centros.push(centro);
 	}
 
-	// bota os números nas faces: cada face + a oposta somam 21, igual num d20 de verdade
 	const numeros = [];
 	for (let i = 0; i < centros.length; i++) {
 		numeros.push(0);
@@ -90,7 +87,7 @@ function criarDado() {
 	let proximo = 1;
 	for (let face = 0; face < centros.length; face++) {
 		if (numeros[face] !== 0) {
-			continue; // essa já ganhou número por ser a oposta de outra
+			continue;
 		}
 		const oposta = acharFaceOposta(centros, face);
 		numeros[face] = proximo;
@@ -103,7 +100,6 @@ function criarDado() {
 		const normal = centros[face].clone().normalize();
 		normaisDasFaces[numeros[face]] = normal;
 
-		// "adesivo" com o número, colado um pouquinho acima da face
 		const numero = new THREE.Mesh(new THREE.PlaneGeometry(0.62, 0.62), materialDoNumero(numeros[face]));
 		numero.position.copy(centros[face]).multiplyScalar(1.01);
 		numero.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), normal);
@@ -113,7 +109,6 @@ function criarDado() {
 	return malha;
 }
 
-// bota o numero em um canvas e coloca nas faces
 function materialDoNumero(n) {
 	const tela = document.createElement("canvas");
 	tela.width = 128;
@@ -126,7 +121,6 @@ function materialDoNumero(n) {
 	ctx.textBaseline = "middle";
 	ctx.fillText(n, 64, 70);
 
-	// risquinho embaixo do 6 e do 9 pra não confundir os dois
 	if (n === 6 || n === 9) {
 		ctx.fillRect(44, 100, 40, 5);
 	}
@@ -142,7 +136,6 @@ function ajustarTamanho() {
 	camera.updateProjectionMatrix();
 }
 
-// quanto da mesa a câmera enxerga, do centro até a borda
 function metadeDaMesa() {
 	const metadeAltura = camera.position.y * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
 	return { x: metadeAltura * camera.aspect, z: metadeAltura };
@@ -222,8 +215,8 @@ function rolarDados3D(canvas, valores, quandoParar) {
 		if (comeco === null) {
 			comeco = agora;
 		}
-		const t = Math.min((agora - comeco) / DURACAO_ROLAGEM, 1); // progresso de 0 a 1
-		const desacelera = 1 - Math.pow(1 - t, 3); // começa rápido e vai freando
+		const t = Math.min((agora - comeco) / DURACAO_ROLAGEM, 1);
+		const desacelera = 1 - Math.pow(1 - t, 3);
 
 		for (const r of rolagens) {
 			r.dado.position.lerpVectors(r.inicio, r.fim, desacelera);

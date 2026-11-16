@@ -58,6 +58,16 @@
 	--bs-form-invalid-border-color: var(--danger);
 }
 
+.fundo-quadrados {
+	position: fixed;
+	z-index: 0;
+	background: url(../img/bg-quadrados.svg);
+	background-size: cover;
+	width: 100dvw;
+	flex-grow: 1;
+	height: 100%;
+}
+
 body {
 	min-height: 100vh;
 	color: var(--white-200);
