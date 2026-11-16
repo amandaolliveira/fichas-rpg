@@ -187,6 +187,7 @@ modalExcluirAgente.querySelector(".btn-confirmar-exclusao-agente").addEventListe
 	renderizarAgentes();
 	renderizarCardDados();
 	renderizarCampanhas();
+	mostrarAviso(agente.nomePersonagem + " foi excluído.", "info");
 });
 
 // sem agente selecionado a ficha abre vazia, pronta pra criar um novo

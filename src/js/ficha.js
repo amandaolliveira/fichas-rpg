@@ -198,6 +198,7 @@ formFicha.addEventListener("submit", function (evento) {
 	if (!fichaValida(dados)) {
 		// leva o cursor pro primeiro campo com erro
 		formFicha.querySelector(".is-invalid").focus();
+		mostrarAviso("A ficha tem campo com erro, dá uma olhada.", "danger");
 		return;
 	}
 
@@ -211,10 +212,12 @@ formFicha.addEventListener("submit", function (evento) {
 		agenteSelecionado.esforco = dados.esforco;
 		agenteSelecionado.defesa = dados.defesa;
 		selecionarAgente(agenteSelecionado);
+		mostrarAviso("Ficha de " + dados.nomePersonagem + " salva.");
 	} else {
 		const novo = new Agente(dados);
 		agentes.push(novo);
 		selecionarAgente(novo);
+		mostrarAviso(dados.nomePersonagem + " foi criado.");
 	}
 
 	// criou ou editou, tanto faz: salva a lista inteira de novo

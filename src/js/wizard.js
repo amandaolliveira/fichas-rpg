@@ -198,6 +198,8 @@ function carregarCampanhaNoWizard(campanha) {
 formCampanha.querySelector(".wizard-proximo").addEventListener("click", function () {
 	if (passoValido(passoAtual)) {
 		mostrarPasso(passoAtual + 1);
+	} else {
+		mostrarAviso("Preencha os campos obrigatórios antes de continuar.", "danger");
 	}
 });
 
@@ -247,6 +249,7 @@ formCampanha.addEventListener("submit", function (evento) {
 
 		renderizarCampanhas();
 		renderizarDetalheCampanha(campanhaEmEdicao);
+		mostrarAviso("Campanha " + dados.nome + " atualizada.");
 		resetarWizard();
 		location.hash = "#campanha"; // volta pros detalhes da campanha editada
 		return;
@@ -255,6 +258,7 @@ formCampanha.addEventListener("submit", function (evento) {
 	campanhas.push(new Campanha(dados));
 	salvarCampanhas();
 	renderizarCampanhas();
+	mostrarAviso("Campanha " + dados.nome + " criada.");
 	resetarWizard();
 	location.hash = "#campanhas";
 });
@@ -279,6 +283,7 @@ modalExcluirCampanha.querySelector(".btn-confirmar-exclusao").addEventListener("
 	salvarCampanhas();
 
 	bootstrap.Modal.getInstance(modalExcluirCampanha).hide();
+	mostrarAviso("Campanha " + campanhaSelecionada.nome + " excluída.", "info");
 	campanhaSelecionada = undefined;
 	renderizarCampanhas();
 	location.hash = "#campanhas";
