@@ -426,6 +426,31 @@ main > section fieldset > legend {
 	font-family: var(--fonte-titulo);
 }
 
+.alert {
+	--bs-alert-border-radius: var(--radius);
+}
+
+/* AVISOS */
+/* fixo no canto de baixo, por cima de tudo */
+.avisos {
+	position: fixed;
+	right: 24px;
+	bottom: 24px;
+	z-index: 1100;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	width: min(360px, calc(100% - 32px));
+}
+
+.aviso {
+	margin: 0;
+	border-left: 4px solid currentColor;
+	background-color: var(--bg-200);
+	box-shadow: var(--sombra);
+	font-size: 0.9rem;
+}
+
 .modal-backdrop {
 	--bs-backdrop-opacity: 0.6;
 }
@@ -997,6 +1022,11 @@ main > section .card-agente .card-title {
 
 	.passos-wizard > li {
 		font-size: 0.625rem;
+	}
+
+	.avisos {
+		right: 16px;
+		bottom: 16px;
 	}
 }
 
