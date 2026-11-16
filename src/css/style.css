@@ -69,30 +69,64 @@ hr {
 	opacity: 1;
 }
 
-header {
-	background-color: #14141c;
-	padding: 16px 24px;
+.cabecalho {
+	position: sticky;
+	top: 0;
+	z-index: 20;
+	min-height: 80px;
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	padding: 16px 128px;
+	border-bottom: 1px solid var(--outline);
+	background: rgba(13, 13, 15, 1);
 }
 
-header ul {
+.cabecalho ul {
 	list-style: none;
 	display: flex;
-	gap: 20px;
+	align-items: center;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	gap: 32px;
 	margin: 0;
 	padding: 0;
 }
 
-header a {
-	color: #e8e8e8;
+.cabecalho nav a {
+	position: relative;
+	display: inline-block;
+	padding: 8px 0;
+	color: #868686;
+	font-family: var(--fonte-mono);
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
 	text-decoration: none;
+	transition: color 0.2s;
 }
 
-header a:hover,
-header a[aria-current="page"] {
-	color: #7000AC;
+.cabecalho nav a::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 4px;
+	width: 100%;
+	opacity: 0;
+	height: 1px;
+	background: var(--roxo-100);
+	transition: opacity 0.24s ease;
+}
+
+.cabecalho nav a:hover,
+.cabecalho nav a[aria-current="page"] {
+	color: #fff;
+}
+
+.cabecalho nav a:hover::after,
+.cabecalho nav a[aria-current="page"]::after {
+	opacity: 100%;
 }
 
 main {
@@ -232,10 +266,12 @@ img {
 
 .logo {
 	display: flex;
-	font-size: 32px;
-	font-family: "Special Elite", Arial, Helvetica, sans-serif;
-	color: magenta;
 	align-items: center;
+	color: var(--white-100);
+	font-family: var(--fonte-titulo);
+	font-size: 2em;
+	text-transform: uppercase;
+	line-height: 1.1;
 }
 
 .logo > img {
