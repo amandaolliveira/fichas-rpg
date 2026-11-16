@@ -473,6 +473,34 @@
 				</div>
 				<hr />
 
+				<!-- pesquisa, filtros e ordenação: tudo junto, um não apaga o outro -->
+				<div class="filtros row g-2 mb-4">
+					<div class="col-md-4">
+						<input type="search" class="form-control filtro-busca-sessao" placeholder="Pesquisar no título ou nas anotações" aria-label="Pesquisar sessões" />
+					</div>
+					<div class="col-6 col-md-3">
+						<select class="form-select filtro-status-sessao" aria-label="Filtrar por status">
+							<option value="">Todos os status</option>
+							<option value="agendada">Agendada</option>
+							<option value="andamento">Em andamento</option>
+							<option value="concluida">Concluída</option>
+							<option value="cancelada">Cancelada</option>
+						</select>
+					</div>
+					<div class="col-6 col-md-3">
+						<select class="form-select filtro-campanha-sessao" aria-label="Filtrar por campanha">
+							<!-- o js coloca as campanhas aqui -->
+						</select>
+					</div>
+					<div class="col-md-2">
+						<select class="form-select ordem-sessao" aria-label="Ordenar sessões">
+							<option value="data-asc">Data ↑</option>
+							<option value="data-desc">Data ↓</option>
+							<option value="titulo">Título (A-Z)</option>
+						</select>
+					</div>
+				</div>
+
 				<div class="lista-sessoes row g-3">
 					<!-- o renderizarSessoes() coloca os cards aqui -->
 				</div>

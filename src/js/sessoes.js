@@ -99,19 +99,96 @@ function criarCardSessao(sessao) {
 	return card;
 }
 
+// PESQUISA, FILTROS E ORDENAÇÃO
+
+// devolve só as sessões que passam em todos os filtros ao mesmo tempo
+function filtrarSessoes() {
+	const busca = document.querySelector(".filtro-busca-sessao").value.trim().toLowerCase();
+	const status = document.querySelector(".filtro-status-sessao").value;
+	const campanhaId = document.querySelector(".filtro-campanha-sessao").value;
+
+	const lista = [];
+	for (const sessao of sessoes) {
+		// toLowerCase nos dois lados pra pesquisa não ligar pra maiúscula
+		const texto = (sessao.titulo + " " + sessao.anotacoes).toLowerCase();
+
+		// o continue pula pra próxima sessão sem colocar essa na lista
+		if (busca !== "" && !texto.includes(busca)) {
+			continue;
+		}
+		if (status !== "" && sessao.status !== status) {
+			continue;
+		}
+		if (campanhaId !== "" && sessao.campanhaId !== campanhaId) {
+			continue;
+		}
+
+		lista.push(sessao);
+	}
+	return lista;
+}
+
+// o sort usa uma função que compara dois itens: negativo = a vem antes, positivo = b vem antes
+// a data tá em "AAAA-MM-DD", então comparar como texto já dá a ordem certa
+function ordenarSessoes(lista) {
+	const ordem = document.querySelector(".ordem-sessao").value;
+
+	lista.sort(function (a, b) {
+		if (ordem === "titulo") {
+			return a.titulo.localeCompare(b.titulo, "pt-BR");
+		}
+		if (ordem === "data-desc") {
+			return b.data.localeCompare(a.data);
+		}
+		return a.data.localeCompare(b.data);
+	});
+
+	return lista;
+}
+
+// as campanhas podem ter mudado desde a última vez, então monta o select de novo sem perder o que tava escolhido
+function atualizarFiltroCampanhas() {
+	const select = document.querySelector(".filtro-campanha-sessao");
+	const escolhida = select.value;
+
+	preencherSelectCampanhas(select, "Todas as campanhas");
+	select.value = escolhida;
+
+	// se a campanha escolhida foi excluída, volta pra "todas"
+	if (select.selectedIndex === -1) {
+		select.selectedIndex = 0;
+	}
+}
+
 function renderizarSessoes() {
 	const container = document.querySelector(".lista-sessoes");
 	container.innerHTML = "";
 
-	for (const sessao of sessoes) {
+	atualizarFiltroCampanhas();
+	const lista = ordenarSessoes(filtrarSessoes());
+
+	for (const sessao of lista) {
 		const coluna = document.createElement("div");
 		coluna.className = "col-md-6 col-xl-4";
 		coluna.append(criarCardSessao(sessao));
 		container.append(coluna);
 	}
 
-	document.querySelector(".lista-sessoes-vazia").hidden = sessoes.length > 0;
+	// mensagem diferente se não tem sessão nenhuma ou se foi o filtro que escondeu tudo
+	const vazio = document.querySelector(".lista-sessoes-vazia");
+	if (sessoes.length === 0) {
+		vazio.textContent = "Nenhuma sessão por aqui.";
+	} else {
+		vazio.textContent = "Nenhuma sessão encontrada com esses filtros.";
+	}
+	vazio.hidden = lista.length > 0;
 }
+
+// qualquer mudança na pesquisa ou nos selects desenha a lista de novo
+document.querySelector(".filtro-busca-sessao").addEventListener("input", renderizarSessoes);
+document.querySelector(".filtro-status-sessao").addEventListener("change", renderizarSessoes);
+document.querySelector(".filtro-campanha-sessao").addEventListener("change", renderizarSessoes);
+document.querySelector(".ordem-sessao").addEventListener("change", renderizarSessoes);
 
 // FORMULÁRIO (modal)
 
