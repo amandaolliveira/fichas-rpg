@@ -446,9 +446,10 @@ img {
 	max-width: 100%;
 }
 
+/* FICHA */
 .atributos {
 	position: relative;
-	width: 350px;
+	width: 100%;
 	max-width: 100%;
 }
 
@@ -459,12 +460,12 @@ img {
 
 .campo {
 	position: absolute;
-	width: 50px;
-	height: 36px;
-	margin-left: -25px;
-	margin-top: -18px;
+	width: 48px;
+	height: 32px;
+	margin-left: -24px;
+	margin-top: -16px;
 	text-align: center;
-	font-size: 22px;
+	font-size: 24px;
 	color: #ffffff;
 	background-color: transparent;
 	border: none;
