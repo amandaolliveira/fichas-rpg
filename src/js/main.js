@@ -1,8 +1,8 @@
 // VARIAVEIS
 
-let campanhaSelecionada = undefined;
+let campanhaSelecionada = undefined; // a campanha que vc clicou na lista
 let campanhaEmEdicao = undefined; // undefined = criando uma nova; senão é a campanha sendo editada
-let passoAtual = 1;
+let passoAtual = 1; // em qual passo do wizard vc está
 
 // cada perícia aponta pro atributo que afeta ela
 const PERICIAS = {
@@ -39,6 +39,7 @@ const PERICIAS = {
 // placeholder já nas cores do tema (fundo escuro, texto roxo)
 const IMAGEM_PADRAO_CAMPANHA = "https://placehold.co/800x300/1c1920/b46bff?text=Campanha";
 
+// se o valor não veio, usa o padrão. não dá pra usar o || aqui porque o 0 é um valor válido (atributo 0 existe)
 function valorOuPadrao(valor, padrao) {
 	if (valor === undefined) {
 		return padrao;
@@ -46,6 +47,7 @@ function valorOuPadrao(valor, padrao) {
 	return valor;
 }
 
+// vida, sanidade e esforço têm sempre o mesmo formato: valor atual e máximo
 function criarRecurso(recurso) {
 	if (!recurso) {
 		recurso = {};
@@ -66,6 +68,7 @@ class Agente {
 		this.nomeJogador = dados.nomeJogador || "";
 		this.descricao = dados.descricao || "";
 
+		// todo atributo começa em 1, se vier preenchido usa o que veio
 		const atributos = dados.atributos || {};
 		this.atributos = {
 			FOR: valorOuPadrao(atributos.FOR, 1),
@@ -115,11 +118,12 @@ class Campanha {
 // https://github.com/3d-dice/dice-box-threejs
 
 const RAIO_DADO = 0.9;
-const DURACAO_ROLAGEM = 700;
+const DURACAO_ROLAGEM = 700; // em milissegundos
 const CIMA = new THREE.Vector3(0, 1, 0);
 
+// ficam vazias até a primeira rolagem, aí o iniciarMesa3D preenche
 let renderer, cena, camera, dado3D;
-let normaisDasFaces = [];
+let normaisDasFaces = []; // normaisDasFaces[n] = pra onde a face com o número n está apontando
 let animacaoDado = null;
 
 function iniciarMesa3D(canvas) {
@@ -140,12 +144,14 @@ function iniciarMesa3D(canvas) {
 	luz.position.set(4, 12, 6);
 	luz.castShadow = true;
 	luz.shadow.mapSize.set(1024, 1024);
+	// tamanho da área onde a sombra aparece
 	luz.shadow.camera.left = -15;
 	luz.shadow.camera.right = 15;
 	luz.shadow.camera.top = 15;
 	luz.shadow.camera.bottom = -15;
 	cena.add(luz);
 
+	// a mesa é invisível, só aparece a sombra do dado nela
 	const mesa = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), new THREE.ShadowMaterial({ opacity: 0.65 }));
 	mesa.rotation.x = -Math.PI / 2;
 	mesa.receiveShadow = true;
@@ -155,6 +161,7 @@ function iniciarMesa3D(canvas) {
 	cena.add(dado3D);
 }
 
+// a face oposta tem o centro exatamente do outro lado, então somando os dois dá (quase) zero
 function acharFaceOposta(centros, face) {
 	for (let i = 0; i < centros.length; i++) {
 		const soma = centros[i].clone().add(centros[face]);
@@ -175,6 +182,7 @@ function criarDado() {
 	const malha = new THREE.Mesh(geometria, material);
 	malha.castShadow = true;
 
+	// acha o centro de cada face (cada face é um triângulo, então é a média dos 3 pontos)
 	const pontos = geometria.attributes.position;
 	const centros = [];
 	for (let face = 0; face < pontos.count / 3; face++) {
@@ -188,7 +196,7 @@ function criarDado() {
 		centros.push(centro);
 	}
 
-	// bota os números nas faces
+	// bota os números nas faces: cada face + a oposta somam 21, igual num d20 de verdade
 	const numeros = [];
 	for (let i = 0; i < centros.length; i++) {
 		numeros.push(0);
@@ -196,7 +204,7 @@ function criarDado() {
 	let proximo = 1;
 	for (let face = 0; face < centros.length; face++) {
 		if (numeros[face] !== 0) {
-			continue;
+			continue; // essa já ganhou número por ser a oposta de outra
 		}
 		const oposta = acharFaceOposta(centros, face);
 		numeros[face] = proximo;
@@ -232,6 +240,7 @@ function materialDoNumero(n) {
 	ctx.textBaseline = "middle";
 	ctx.fillText(n, 64, 70);
 
+	// risquinho embaixo do 6 e do 9 pra não confundir os dois
 	if (n === 6 || n === 9) {
 		ctx.fillRect(44, 100, 40, 5);
 	}
@@ -247,24 +256,28 @@ function ajustarTamanho() {
 	camera.updateProjectionMatrix();
 }
 
+// quanto da mesa a câmera enxerga, do centro até a borda
 function metadeDaMesa() {
 	const metadeAltura = camera.position.y * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
 	return { x: metadeAltura * camera.aspect, z: metadeAltura };
 }
 
+// rola o dado até parar com o valor pra cima, e chama o quandoParar no final
 function rolarDado3D(canvas, valor, quandoParar) {
 	if (!renderer) {
 		iniciarMesa3D(canvas);
 	}
 	ajustarTamanho();
-	cancelAnimationFrame(animacaoDado);
+	cancelAnimationFrame(animacaoDado); // se tinha uma rolagem rodando, para ela
 
 	const mesaVisivel = metadeDaMesa();
 	const alturaDeRepouso = RAIO_DADO * 0.795;
 
+	// entra pelo canto da tela e para perto do meio
 	const inicio = new THREE.Vector3(mesaVisivel.x + 2, 0, mesaVisivel.z + 2);
 	const fim = new THREE.Vector3((Math.random() - 0.5) * 2, 0, mesaVisivel.z * 0.45);
 
+	// primeiro vira a face sorteada pra cima, depois gira de lado num ângulo aleatório pra não parar sempre igual
 	const faceProCima = new THREE.Quaternion().setFromUnitVectors(normaisDasFaces[valor], CIMA);
 	const giroAleatorio = new THREE.Quaternion().setFromAxisAngle(CIMA, Math.random() * Math.PI * 2);
 	const rotacaoFinal = giroAleatorio.multiply(faceProCima);
@@ -278,6 +291,7 @@ function rolarDado3D(canvas, valor, quandoParar) {
 
 	let comeco = null;
 
+	// o navegador chama essa função a cada quadro (uns 60 por segundo), e cada quadro mexe o dado um pouquinho
 	function quadro(agora) {
 		if (comeco === null) {
 			comeco = agora;
@@ -332,7 +346,7 @@ function mostrarResultado(pericia, valor) {
 	const dialog = document.getElementById("resultado-rolagem");
 	dialog.querySelector(".resultado-pericia").textContent = pericia;
 	dialog.querySelector(".resultado-valor").textContent = valor;
-	dialog.classList.add("rolando");
+	dialog.classList.add("rolando"); // esconde o resultado enquanto o dado rola
 	dialog.showModal();
 
 	rolarDado3D(dialog.querySelector(".mesa-3d"), valor, function () {
@@ -343,6 +357,7 @@ function mostrarResultado(pericia, valor) {
 	somDado.play();
 }
 
+// um clique só pra lista toda, ao invés de um por dado. o closest sobe no html até achar o .dado que foi clicado
 document.querySelector(".categorias-pericias").addEventListener("click", function (evento) {
 	if (evento.target.tagName !== "IMG") {
 		return;
@@ -359,6 +374,7 @@ document.getElementById("resultado-rolagem").addEventListener("click", function 
 	}
 
 	dialog.classList.add("fechando");
+	// o once faz o evento rodar uma vez só e se apagar sozinho, senão ia acumulando a cada clique
 	dialog.addEventListener(
 		"animationend",
 		function () {
@@ -377,6 +393,7 @@ for (let n = 1; n <= 4; n++) {
 	agentes.push(new Agente({ nomePersonagem: "Placeholder " + n, nomeJogador: "Jogador " + n }));
 }
 
+// no Date o mês começa do 0, então 8 = setembro. não fui eu que inventei isso
 const campanhas = [
 	new Campanha({
 		nome: "O Segredo na Floresta",
@@ -400,6 +417,7 @@ const campanhas = [
 	}),
 ];
 
+// procura o agente pelo id, se não achar devolve undefined
 function buscarAgente(id) {
 	for (const agente of agentes) {
 		if (agente.id === id) {
@@ -550,6 +568,7 @@ function mostrarPasso(n) {
 		fieldset.hidden = Number(fieldset.dataset.passo) !== n;
 	}
 
+	// os passos de antes ficam como concluídos, e o atual ganha o aria-current (é ele que o css pinta de roxo)
 	for (const item of document.querySelectorAll(".passos-wizard > li")) {
 		const passo = Number(item.dataset.passo);
 
@@ -577,6 +596,7 @@ function mostrarPasso(n) {
 		preencherRevisao();
 	}
 
+	// já deixa o cursor no primeiro campo do passo, se tiver algum
 	const primeiroCampo = fieldsetDoPasso(n).querySelector("input, textarea");
 	if (primeiroCampo) {
 		primeiroCampo.focus();
@@ -591,7 +611,7 @@ function passoValido(n) {
 		if (campo.checkValidity()) {
 			campo.classList.remove("is-invalid");
 		} else {
-			campo.classList.add("is-invalid");
+			campo.classList.add("is-invalid"); // é essa classe que deixa o campo vermelho no bootstrap
 			valido = false;
 		}
 	}
@@ -736,7 +756,7 @@ for (const imagem of document.querySelectorAll(".wizard-preview-imagem, .wizard-
 }
 
 formCampanha.addEventListener("submit", function (evento) {
-	evento.preventDefault();
+	evento.preventDefault(); // sem isso o form recarrega a página e vc perde tudo
 
 	// apertar Enter no meio do wizard dispara submit: nesse caso só avança o passo
 	if (passoAtual < TOTAL_PASSOS) {
@@ -753,7 +773,7 @@ formCampanha.addEventListener("submit", function (evento) {
 		campanhaEmEdicao.nome = dados.nome;
 		campanhaEmEdicao.mestre = dados.mestre;
 		campanhaEmEdicao.descricao = dados.descricao;
-		campanhaEmEdicao.imagem = dados.imagem || IMAGEM_PADRAO_CAMPANHA;
+		campanhaEmEdicao.imagem = dados.imagem || IMAGEM_PADRAO_CAMPANHA; // imagem vazia vira placeholder, igual no construtor
 		campanhaEmEdicao.agentes = dados.agentes;
 
 		renderizarCampanhas();
@@ -781,6 +801,7 @@ document.querySelector(".btn-editar-campanha").addEventListener("click", functio
 const modalExcluirCampanha = document.getElementById("modal-excluir-campanha");
 
 modalExcluirCampanha.querySelector(".btn-confirmar-exclusao").addEventListener("click", function () {
+	// acha a posição da campanha na lista e tira ela de lá (o splice remove 1 item a partir dessa posição)
 	const indice = campanhas.indexOf(campanhaSelecionada);
 	if (indice !== -1) {
 		campanhas.splice(indice, 1);
