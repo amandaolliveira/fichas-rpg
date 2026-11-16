@@ -779,6 +779,11 @@ img {
 	background: #1c1920;
 }
 
+.card.card-agente.selecionado {
+	border-color: var(--roxo-100);
+	box-shadow: 0 0 0 1px var(--roxo-100);
+}
+
 .card-agente img {
 	height: 128px;
 	/* cover corta a imagem pra caber, em vez de esticar a imagem */

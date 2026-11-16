@@ -1,5 +1,6 @@
 // VARIAVEIS
 
+let agenteSelecionado = undefined; // o agente que tá aberto na ficha
 let campanhaSelecionada = undefined; // a campanha que vc clicou na lista
 let campanhaEmEdicao = undefined; // undefined = criando uma nova; senão é a campanha sendo editada
 let passoAtual = 1; // em qual passo do wizard vc está
@@ -385,13 +386,125 @@ document.getElementById("resultado-rolagem").addEventListener("click", function 
 	);
 });
 
-// CAMPANHAS
+// AGENTES
 
 // dados de exemplo enquanto não tem localStorage, depois isso sai
 const agentes = [];
 for (let n = 1; n <= 4; n++) {
-	agentes.push(new Agente({ nomePersonagem: "Placeholder " + n, nomeJogador: "Jogador " + n }));
+	agentes.push(
+		new Agente({
+			nomePersonagem: "Placeholder " + n,
+			nomeJogador: "Jogador " + n,
+			vida: { atual: 17 - n * 3, maximo: 17 },
+			sanidade: { atual: 16 - n * 2, maximo: 16 },
+			esforco: { atual: 5 - n, maximo: 4 },
+		}),
+	);
 }
+agenteSelecionado = agentes[0];
+
+function calcularPorcentagem(recurso) {
+	if (recurso.maximo === 0) {
+		return 0;
+	}
+	const porcentagem = Math.round((recurso.atual / recurso.maximo) * 100);
+	return Math.min(porcentagem, 100);
+}
+
+function preencherBarra(barra, recurso) {
+	barra.textContent = recurso.atual + " / " + recurso.maximo;
+	barra.style.setProperty("--preenchimento", calcularPorcentagem(recurso) + "%");
+}
+
+// usa o template pra criar o card de um agente
+function criarCardAgente(agente) {
+	const modeloAgente = document.getElementById("modelo-agente");
+	const card = modeloAgente.content.firstElementChild.cloneNode(true);
+
+	card.dataset.id = agente.id;
+	card.querySelector("img").alt = "Foto de " + agente.nomePersonagem;
+	card.querySelector(".agente-nome").textContent = agente.nomePersonagem;
+
+	for (const badge of card.querySelectorAll(".atributo")) {
+		const atributo = badge.dataset.atributo;
+		badge.textContent = atributo + " " + agente.atributos[atributo];
+	}
+
+	preencherBarra(card.querySelector(".barra-vida"), agente.vida);
+	preencherBarra(card.querySelector(".barra-sanidade"), agente.sanidade);
+	preencherBarra(card.querySelector(".barra-esforco"), agente.esforco);
+	card.querySelector(".agente-defesa").textContent = agente.defesa;
+
+	if (agente === agenteSelecionado) {
+		card.classList.add("selecionado");
+	}
+
+	card.querySelector(".btn-editar-agente").addEventListener("click", function () {
+		selecionarAgente(agente);
+	});
+
+	card.querySelector(".btn-excluir-agente").addEventListener("click", function () {
+		excluirAgente(agente);
+	});
+
+	return card;
+}
+
+function renderizarAgentes() {
+	const container = document.querySelector(".lista-agentes");
+	container.innerHTML = "";
+
+	for (const agente of agentes) {
+		const coluna = document.createElement("div");
+		coluna.className = "col-6 col-md-4 col-xl-3";
+		coluna.append(criarCardAgente(agente));
+		container.append(coluna);
+	}
+
+	document.querySelector(".lista-agentes-vazia").hidden = agentes.length > 0;
+}
+
+function selecionarAgente(agente) {
+	agenteSelecionado = agente;
+	renderizarAgentes();
+}
+
+function excluirAgente(agente) {
+	if (!confirm("Excluir " + agente.nomePersonagem + "? Isso não pode ser desfeito.")) {
+		return;
+	}
+
+	const indice = agentes.indexOf(agente);
+	if (indice !== -1) {
+		agentes.splice(indice, 1);
+	}
+
+	for (const campanha of campanhas) {
+		const idsQueSobraram = [];
+		for (const id of campanha.agentes) {
+			if (id !== agente.id) {
+				idsQueSobraram.push(id);
+			}
+		}
+		campanha.agentes = idsQueSobraram;
+	}
+
+	if (agenteSelecionado === agente) {
+		agenteSelecionado = agentes[0];
+	}
+
+	renderizarAgentes();
+	renderizarCampanhas();
+}
+
+document.querySelector(".btn-novo-agente").addEventListener("click", function () {
+	selecionarAgente(undefined);
+});
+
+renderizarAgentes();
+
+// CAMPANHAS
+
 
 // no Date o mês começa do 0, então 8 = setembro. não fui eu que inventei isso
 const campanhas = [

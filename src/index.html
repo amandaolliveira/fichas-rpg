@@ -220,54 +220,63 @@
 			</section>
 
 			<section id="agentes" aria-labelledby="agentes-titulo" hidden>
-				<h2 id="agentes-titulo">Agentes</h2>
-				<p>Suas fichas criadas.</p>
+				<div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+					<div>
+						<h2 id="agentes-titulo">Agentes</h2>
+						<p class="mb-0">Suas fichas criadas.</p>
+					</div>
+					<a href="#ficha" class="btn btn-primary btn-novo-agente">+ Novo agente</a>
+				</div>
 				<hr />
 
 				<div class="lista-agentes row g-3">
-					<div class="col-6 col-md-4 col-xl-3">
-						<article class="card card-agente h-100" data-bs-theme="dark">
-							<img src="https://picsum.photos/id/237/400/300" class="card-img-top w-100" alt="Foto do personagem" />
-
-							<div class="card-body p-2">
-								<h3 class="card-title h6">Nome do personagem</h3>
-
-								<div class="mb-2">
-									<span class="badge atributo">AGI 1</span>
-									<span class="badge atributo">FOR 1</span>
-									<span class="badge atributo">INT 1</span>
-									<span class="badge atributo">PRE 1</span>
-									<span class="badge atributo">VIG 1</span>
-								</div>
-
-								<div class="status-item">
-									<p class="status-titulo">Vida</p>
-									<div class="barra barra-vida" style="--preenchimento: 100%">17 / 17</div>
-								</div>
-
-								<div class="status-item">
-									<p class="status-titulo">Sanidade</p>
-									<div class="barra barra-sanidade" style="--preenchimento: 100%">16 / 16</div>
-								</div>
-
-								<div class="status-item">
-									<p class="status-titulo">Esforço</p>
-									<div class="barra barra-esforco" style="--preenchimento: 100%">4 / 4</div>
-								</div>
-
-								<div class="defesa">
-									<span>Defesa</span>
-									<span>10</span>
-								</div>
-							</div>
-
-							<div class="card-footer d-flex justify-content-end gap-2">
-								<a href="#ficha" class="btn btn-sm btn-primary">Editar</a>
-								<button type="button" class="btn btn-sm btn-outline-danger">Excluir</button>
-							</div>
-						</article>
-					</div>
+					<!-- quando chamar renderizarAgentes(), vai preencher aqui com o template -->
 				</div>
+				<p class="lista-agentes-vazia text-body-secondary" hidden>Nenhum agente ainda. Bora criar um?</p>
+
+				<!-- template pro card de agente (o que a amanda fez) -->
+				<template id="modelo-agente">
+					<article class="card card-agente h-100" data-bs-theme="dark">
+						<img src="https://picsum.photos/id/237/400/300" class="card-img-top w-100" alt="Foto do personagem" />
+
+						<div class="card-body p-2">
+							<h3 class="card-title h6 agente-nome">Nome do personagem</h3>
+
+							<div class="mb-2">
+								<span class="badge atributo" data-atributo="AGI">AGI 1</span>
+								<span class="badge atributo" data-atributo="FOR">FOR 1</span>
+								<span class="badge atributo" data-atributo="INT">INT 1</span>
+								<span class="badge atributo" data-atributo="PRE">PRE 1</span>
+								<span class="badge atributo" data-atributo="VIG">VIG 1</span>
+							</div>
+
+							<div class="status-item">
+								<p class="status-titulo">Vida</p>
+								<div class="barra barra-vida" style="--preenchimento: 100%">17 / 17</div>
+							</div>
+
+							<div class="status-item">
+								<p class="status-titulo">Sanidade</p>
+								<div class="barra barra-sanidade" style="--preenchimento: 100%">16 / 16</div>
+							</div>
+
+							<div class="status-item">
+								<p class="status-titulo">Esforço</p>
+								<div class="barra barra-esforco" style="--preenchimento: 100%">4 / 4</div>
+							</div>
+
+							<div class="defesa">
+								<span>Defesa</span>
+								<span class="agente-defesa">10</span>
+							</div>
+						</div>
+
+						<div class="card-footer d-flex justify-content-end gap-2">
+							<a href="#ficha" class="btn btn-sm btn-primary btn-editar-agente">Editar</a>
+							<button type="button" class="btn btn-sm btn-outline-danger btn-excluir-agente">Excluir</button>
+						</div>
+					</article>
+				</template>
 			</section>
 
 			<section id="campanhas" aria-labelledby="campanhas-titulo" hidden>
