@@ -696,90 +696,89 @@ img {
 
 /* CARD DE AGENTE */
 .card.card-agente {
-	background-color: #14141c;
-	border: 1px solid #2a2a38;
-	border-radius: 4px;
-	transition: border-color 0.3s ease;
+	transition:
+		transform 0.2s ease,
+		border-color 0.2s ease,
+		background 0.2s ease;
+}
+
+.card.card-agente:hover {
+	border-color: var(--roxo-100);
+	background: #1c1920;
 }
 
 .card-agente img {
-	height: 120px;
+	height: 128px;
 	object-fit: cover;
-	border-bottom: 1px solid #2a2a38;
+	border-bottom: 1px solid var(--outline);
 }
 
-.card-agente .card-title {
-	margin-bottom: 8px;
-	font-family: "Special Elite", "Courier New", Courier, monospace;
+main > section .card-agente .card-title {
+	margin: 0 0 8px;
+	font-family: var(--fonte-titulo);
 	font-size: 16px;
-	color: #e8e8e8;
+	color: var(--white-100);
 }
 
 .card-agente .card-footer {
 	background-color: transparent;
-	border-top: 1px solid #2a2a38;
+	border-top: 1px solid var(--outline);
 }
 
 .atributo {
 	background-color: transparent;
 	border: none;
 	padding: 0 8px 0 0;
-	color: #aaaaaa;
-	font-family: inherit;
+	color: var(--muted);
+	font-family: var(--fonte-mono);
 	font-weight: normal;
 	font-size: 12px;
 }
 
-.btn-editar {
-	color: #b366ff;
-	border-color: #b366ff;
-}
-
-.btn-editar:hover {
-	color: #ffffff;
-	background-color: #7000AC;
-	border-color: #7000AC;
-}
-
 .status-item {
-	margin-bottom: 6px;
+	margin-bottom: 8px;
 }
 
 .status-titulo {
-	margin: 0 0 1px;
+	margin: 0 0 2px;
+	font-family: var(--fonte-mono);
 	font-size: 10px;
-	font-weight: bold;
+	letter-spacing: 0.08em;
 	text-align: center;
 	text-transform: uppercase;
-	color: #aaaaaa;
+	color: var(--muted);
 }
 
 .barra {
 	padding: 2px 0;
 	text-align: center;
-	color: #ffffff;
-	font-size: 13px;
-	background-color: #0b0b10;
-	border-left: 4px solid #555566;
+	color: var(--white-200);
+	font-family: var(--fonte-mono);
+	font-size: 12px;
+	background-color: var(--bg-100);
+	border-left: 4px solid var(--outline);
 }
 
 .barra-vida {
-	border-left-color: #ffffff;
+	border-left-color: var(--danger);
 }
 
 .barra-sanidade {
-	border-left-color: #ffffff;
+	border-left-color: var(--roxo-100);
 }
 
 .barra-esforco {
-	border-left-color: #ffffff;
+	border-left-color: var(--success);
 }
 
 .defesa {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 6px;
-	font-size: 13px;
+	margin-top: 8px;
+	font-family: var(--fonte-mono);
+	font-size: 12px;
+	text-transform: uppercase;
+	color: var(--muted);
 }
 
 /* GUIA */
