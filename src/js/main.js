@@ -21,6 +21,11 @@ function trocarSection() {
 		preencherFicha();
 	}
 
+	// os números do início podem ter mudado (agente ou campanha nova), então recalcula
+	if (id === "inicio") {
+		renderizarEstatisticas();
+	}
+
 	const nova = document.getElementById(id); // procura a seção nos elementos
 	const antiga = document.querySelector("main > section:not([hidden])");
 
@@ -76,6 +81,7 @@ renderizarAgentes();
 renderizarCardDados();
 renderizarCampanhas();
 resetarWizard();
+renderizarEstatisticas();
 
 window.addEventListener("hashchange", trocarSection); // tive que cavar pra achar esse hashchange
 trocarSection(); // chama a função no rodar da página, pra tocar até na hora de carregar
