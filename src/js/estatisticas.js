@@ -36,7 +36,8 @@ function vidaMediaDosAgentes() {
 	let contados = 0;
 	for (const agente of agentes) {
 		if (agente.vida.maximo > 0) {
-			soma += agente.vida.atual / agente.vida.maximo;
+			// curou acima do máximo conta como 100%, igual a barra do card
+			soma += Math.min(agente.vida.atual / agente.vida.maximo, 1);
 			contados++;
 		}
 	}
