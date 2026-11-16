@@ -17,5 +17,12 @@ function carregarDoStorage(chave) {
 	if (texto === null) {
 		return undefined;
 	}
-	return JSON.parse(texto);
+
+	// se o texto salvo estiver quebrado, o JSON.parse dá erro e o site inteiro para. o try/catch segura isso
+	try {
+		return JSON.parse(texto);
+	} catch (erro) {
+		console.log("não deu pra ler o " + chave + " do localStorage, começando do zero");
+		return undefined;
+	}
 }
