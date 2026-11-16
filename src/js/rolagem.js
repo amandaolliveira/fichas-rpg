@@ -20,14 +20,58 @@ function rolarD20() {
 	return Math.floor(Math.random() * 20) + 1;
 }
 
-function mostrarResultado(pericia, valor) {
+// quantos d20 rolar: um por ponto no atributo da perícia. sem agente selecionado rola 1.
+// atributo 0 é a regra do Ordem Paranormal: rola 2 e fica com o MENOR
+function montarRolagem(pericia) {
+	const atributo = PERICIAS[pericia];
+	let pontos = 1;
+	if (agenteSelecionado) {
+		pontos = agenteSelecionado.atributos[atributo];
+	}
+
+	const quantidade = Math.max(pontos, 1) + (pontos === 0 ? 1 : 0);
+	const valores = [];
+	for (let i = 0; i < quantidade; i++) {
+		valores.push(rolarD20());
+	}
+
+	let resultado;
+	if (pontos === 0) {
+		resultado = Math.min(...valores);
+	} else {
+		resultado = Math.max(...valores);
+	}
+
+	return { atributo: atributo, pontos: pontos, valores: valores, resultado: resultado };
+}
+
+// a linha com cada dado que caiu; o que valeu fica marcado (só o primeiro, se tiver repetido)
+function mostrarValoresDosDados(lista, rolagem) {
+	lista.replaceChildren();
+	let jaMarcou = false;
+	for (const valor of rolagem.valores) {
+		const item = document.createElement("li");
+		item.textContent = valor;
+		if (valor === rolagem.resultado && !jaMarcou) {
+			item.classList.add("valeu");
+			jaMarcou = true;
+		}
+		lista.append(item);
+	}
+}
+
+function mostrarResultado(pericia, rolagem) {
 	const dialog = document.getElementById("resultado-rolagem");
 	dialog.querySelector(".resultado-pericia").textContent = pericia;
-	dialog.querySelector(".resultado-valor").textContent = valor;
+	dialog.querySelector(".resultado-valor").textContent = rolagem.resultado;
+
+	const regra = rolagem.valores.length + "d20, fica o " + (rolagem.pontos === 0 ? "menor" : "maior");
+	dialog.querySelector(".resultado-regra").textContent = rolagem.atributo + " " + rolagem.pontos + " · " + regra;
+	mostrarValoresDosDados(dialog.querySelector(".resultado-dados"), rolagem);
 	dialog.classList.add("rolando"); // esconde o resultado enquanto o dado rola
 	dialog.showModal();
 
-	rolarDados3D(dialog.querySelector(".mesa-3d"), [valor], function () {
+	rolarDados3D(dialog.querySelector(".mesa-3d"), rolagem.valores, function () {
 		dialog.classList.remove("rolando");
 	});
 
@@ -42,7 +86,7 @@ document.querySelector(".categorias-pericias").addEventListener("click", functio
 	}
 
 	const dado = evento.target.closest(".dado");
-	mostrarResultado(dado.dataset.pericia, rolarD20());
+	mostrarResultado(dado.dataset.pericia, montarRolagem(dado.dataset.pericia));
 });
 
 document.getElementById("resultado-rolagem").addEventListener("click", function () {
