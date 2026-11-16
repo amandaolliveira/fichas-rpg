@@ -122,7 +122,43 @@ function renderizarDetalheCampanha(campanha) {
 		vazio.textContent = "Nenhum agente nesta campanha.";
 		lista.append(vazio);
 	}
+
+	renderizarSessoesDaCampanha(campanha);
 }
+
+// as sessões dessa campanha, com o status do lado (mesma cor dos cards da seção de sessões)
+function renderizarSessoesDaCampanha(campanha) {
+	const lista = document.querySelector(".detalhe-campanha-sessoes");
+	lista.innerHTML = "";
+
+	for (const sessao of sessoesDaCampanha(campanha.id)) {
+		const item = document.createElement("li");
+		item.className = "list-group-item d-flex justify-content-between align-items-center gap-2";
+
+		const titulo = document.createElement("span");
+		titulo.textContent = sessao.titulo + " - " + formatarDataSessao(sessao.data);
+
+		const badge = document.createElement("span");
+		badge.className = "badge status-sessao status-" + sessao.status;
+		badge.textContent = STATUS_SESSAO[sessao.status];
+
+		item.append(titulo, badge);
+		lista.append(item);
+	}
+
+	if (lista.children.length === 0) {
+		const vazio = document.createElement("li");
+		vazio.className = "list-group-item text-body-secondary";
+		vazio.textContent = "Nenhuma sessão agendada ainda.";
+		lista.append(vazio);
+	}
+}
+
+// abre o modal de sessão já com essa campanha escolhida
+document.querySelector(".btn-agendar-sessao").addEventListener("click", function () {
+	abrirModalSessao(undefined);
+	formSessao.elements.campanhaId.value = campanhaSelecionada.id;
+});
 
 // o card é um link pra #campanha, então aqui só guarda qual foi clicada antes do hashchange
 document.querySelector(".lista-campanhas").addEventListener("click", function (evento) {

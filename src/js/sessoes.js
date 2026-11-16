@@ -306,6 +306,11 @@ formSessao.addEventListener("submit", function (evento) {
 	salvarSessoes();
 	renderizarSessoes();
 	bootstrap.Modal.getInstance(modalSessao).hide();
+
+	// se agendou pela tela da campanha, atualiza a lista de lá também
+	if (campanhaSelecionada) {
+		renderizarSessoesDaCampanha(campanhaSelecionada);
+	}
 });
 
 // sem campanha não tem como ter sessão
