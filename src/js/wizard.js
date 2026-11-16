@@ -1,10 +1,9 @@
-// WIZARD DE CAMPANHA (criar e editar)
-// os 4 passos pra criar ou editar uma campanha, e o excluir também
+// wizard de campanha
 
 const formCampanha = document.getElementById("form-campanha");
 const TOTAL_PASSOS = 4;
 
-// troca os textos do wizard e pra onde o Cancelar volta, conforme está criando ou editando
+// configura o wizard, muda os textos conforme oq vc está tentando fazer (criar um novo, ou editar)
 function configurarModoWizard() {
 	const secao = document.getElementById("wizard-campanha");
 	const titulo = secao.querySelector(".wizard-titulo");
@@ -54,9 +53,9 @@ function mostrarPasso(n) {
 		}
 	}
 
-	formCampanha.querySelector(".wizard-voltar").hidden = n === 1;
-	formCampanha.querySelector(".wizard-proximo").hidden = n === TOTAL_PASSOS;
-	formCampanha.querySelector(".wizard-criar").hidden = n !== TOTAL_PASSOS;
+	formCampanha.querySelector(".wizard-voltar").hidden = n === 1; // se N for igual a 1, retorna true (que faz o wizard-voltar sumir)
+	formCampanha.querySelector(".wizard-proximo").hidden = n === TOTAL_PASSOS; // mesma logica
+	formCampanha.querySelector(".wizard-criar").hidden = n !== TOTAL_PASSOS; // mesma logica
 
 	if (n === 2) {
 		atualizarPreviewImagem();
@@ -130,7 +129,7 @@ function preencherRevisao() {
 	secao.querySelector(".revisao-agentes").textContent = nomesAgentes.join(", ") || "Nenhum agente";
 }
 
-// cria um checkbox pra cada agente que existir (recriado toda vez, pra pegar agentes novos)
+// cria um checkbox pra cada agente que existir
 function renderizarAgentesWizard() {
 	const lista = formCampanha.querySelector(".wizard-lista-agentes");
 	lista.innerHTML = "";

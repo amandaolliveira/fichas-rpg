@@ -74,9 +74,7 @@ function trocarSection() {
 	);
 }
 
-// COMEÇO DE TUDO
-
-// todo mundo já carregou, então agora sim dá pra desenhar as listas
+// INIT
 renderizarAgentes();
 renderizarCardDados();
 renderizarCampanhas();

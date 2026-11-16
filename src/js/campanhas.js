@@ -5,7 +5,7 @@
 const campanhas = [];
 
 // mesmo esquema dos agentes: se tem salvo usa, senão começa com a de teste
-const campanhasSalvas = carregarDoStorage(CHAVE_CAMPANHAS);
+const campanhasSalvas = carregarDoStorage("CHAVE_CAMPANHAS");
 if (campanhasSalvas) {
 	for (const dados of campanhasSalvas) {
 		campanhas.push(Campanha.storageParaJSON(dados));
