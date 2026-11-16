@@ -291,3 +291,108 @@ img {
 	font-size: 14px;
 	opacity: 0.6;
 }
+------------------------------------- card ficha
+.card.card-agente {
+	background-color: #14141c;
+	border: 1px solid #2a2a38;
+	border-radius: 4px;
+	transition: border-color 0.3s ease;
+}
+
+.card-agente img {
+	height: 120px;
+	object-fit: cover;
+	border-bottom: 1px solid #2a2a38;
+}
+
+.card-agente .card-title {
+	margin-bottom: 8px;
+	font-family: 'Special Elite', 'Courier New', Courier, monospace;
+	font-size: 16px;
+	color: #e8e8e8;
+}
+
+.card-agente .card-footer {
+	background-color: transparent;
+	border-top: 1px solid #2a2a38;
+}
+
+.atributo {
+	background-color: transparent;
+	border: none;
+	padding: 0 8px 0 0;
+	color: #aaaaaa;
+	font-family: inherit;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.btn-editar {
+	color: #b366ff;
+	border-color: #b366ff;
+}
+
+.btn-editar:hover {
+	color: #ffffff;
+	background-color: #7000AC;
+	border-color: #7000AC;
+}
+
+.status-item {
+	margin-bottom: 6px;
+}
+
+.status-titulo {
+	margin: 0 0 1px;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	color: #aaaaaa;
+}
+
+.barra {
+	padding: 2px 0;
+	text-align: center;
+	color: #ffffff;
+	font-size: 13px;
+	background-color: #0b0b10;
+	border-left: 4px solid #555566;
+}
+
+.barra-vida {
+	border-left-color: #ffffff;
+}
+
+.barra-sanidade {
+	border-left-color: #ffffff;
+}
+
+.barra-esforco {
+	border-left-color: #ffffff;
+}
+
+.defesa {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 6px;
+	font-size: 13px;
+}
+
+------------------------------- guia
+.guia-texto {
+	max-width: 720px;
+	line-height: 1.7;
+}
+
+.guia-texto h3 {
+	margin-top: 40px;
+	font-family: 'Special Elite', 'Courier New', Courier, monospace;
+	color: #b366ff;
+}
+
+.guia-texto h4 {
+	margin-top: 24px;
+	font-size: 18px;
+	color: #ffffff;
+}
