@@ -27,7 +27,7 @@ function mostrarResultado(pericia, valor) {
 	dialog.classList.add("rolando"); // esconde o resultado enquanto o dado rola
 	dialog.showModal();
 
-	rolarDado3D(dialog.querySelector(".mesa-3d"), valor, function () {
+	rolarDados3D(dialog.querySelector(".mesa-3d"), [valor], function () {
 		dialog.classList.remove("rolando");
 	});
 

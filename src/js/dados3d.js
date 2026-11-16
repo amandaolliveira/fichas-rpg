@@ -1,5 +1,5 @@
 // DADOS 3D
-// tudo que é 3D fica aqui. o resto do site não precisa saber como funciona, só chama o rolarDado3D(canvas, valor, quandoParar)
+// tudo que é 3D fica aqui. o resto do site não precisa saber como funciona, só chama o rolarDados3D(canvas, valores, quandoParar)
 
 // https://blog.wunderdev.com/blog/DnD/3/
 // https://github.com/3d-dice/dice-box-threejs
@@ -7,9 +7,11 @@
 const RAIO_DADO = 0.9;
 const DURACAO_ROLAGEM = 700; // em milissegundos
 const CIMA = new THREE.Vector3(0, 1, 0);
+const ESPACO_ENTRE_DADOS = RAIO_DADO * 2.6; // distância de um dado pro outro quando param lado a lado
 
 // ficam vazias até a primeira rolagem, aí o iniciarMesa3D preenche
-let renderer, cena, camera, dado3D;
+let renderer, cena, camera;
+let dados3D = []; // um por dado rolado; vai criando mais conforme precisa e reaproveita os que já existem
 let normaisDasFaces = []; // normaisDasFaces[n] = pra onde a face com o número n está apontando
 let animacaoDado = null;
 
@@ -43,9 +45,6 @@ function iniciarMesa3D(canvas) {
 	mesa.rotation.x = -Math.PI / 2;
 	mesa.receiveShadow = true;
 	cena.add(mesa);
-
-	dado3D = criarDado();
-	cena.add(dado3D);
 }
 
 // a face oposta tem o centro exatamente do outro lado, então somando os dois dá (quase) zero
@@ -149,36 +148,76 @@ function metadeDaMesa() {
 	return { x: metadeAltura * camera.aspect, z: metadeAltura };
 }
 
-// rola o dado até parar com o valor pra cima, e chama o quandoParar no final
-function rolarDado3D(canvas, valor, quandoParar) {
+// cria os dados que faltam pra ter pelo menos n na mesa, e esconde os que sobram da rolagem anterior
+function prepararDados(n) {
+	while (dados3D.length < n) {
+		const dado = criarDado();
+		cena.add(dado);
+		dados3D.push(dado);
+	}
+	for (let i = 0; i < dados3D.length; i++) {
+		dados3D[i].visible = i < n;
+	}
+}
+
+// onde cada dado para: lado a lado, quebrando em mais de uma fileira se não couber na largura da tela
+function posicoesFinais(n, mesaVisivel) {
+	const porFileira = Math.max(1, Math.floor((mesaVisivel.x * 2 - RAIO_DADO * 2) / ESPACO_ENTRE_DADOS));
+	const fileiras = Math.ceil(n / porFileira);
+	const posicoes = [];
+
+	for (let i = 0; i < n; i++) {
+		const fileira = Math.floor(i / porFileira);
+		const coluna = i % porFileira;
+		const naFileira = Math.min(porFileira, n - fileira * porFileira); // a última fileira pode ter menos dados
+		// centraliza a fileira e dá uma tremidinha pra não parecer grade perfeita
+		const x = (coluna - (naFileira - 1) / 2) * ESPACO_ENTRE_DADOS + (Math.random() - 0.5) * 0.4;
+		const z = mesaVisivel.z * 0.45 + (fileira - (fileiras - 1) / 2) * ESPACO_ENTRE_DADOS + (Math.random() - 0.5) * 0.4;
+		posicoes.push(new THREE.Vector3(x, 0, z));
+	}
+	return posicoes;
+}
+
+// rola um dado pra cada valor, cada um para com o seu valor pra cima, e chama o quandoParar quando todos pararem
+function rolarDados3D(canvas, valores, quandoParar) {
 	if (!renderer) {
 		iniciarMesa3D(canvas);
 	}
 	ajustarTamanho();
 	cancelAnimationFrame(animacaoDado); // se tinha uma rolagem rodando, para ela
+	prepararDados(valores.length);
 
 	const mesaVisivel = metadeDaMesa();
 	const alturaDeRepouso = RAIO_DADO * 0.795;
-
-	// entra pelo canto da tela e para perto do meio
-	const inicio = new THREE.Vector3(mesaVisivel.x + 2, 0, mesaVisivel.z + 2);
-	const fim = new THREE.Vector3((Math.random() - 0.5) * 2, 0, mesaVisivel.z * 0.45);
-
-	// primeiro vira a face sorteada pra cima, depois gira de lado num ângulo aleatório pra não parar sempre igual
-	const faceProCima = new THREE.Quaternion().setFromUnitVectors(normaisDasFaces[valor], CIMA);
-	const giroAleatorio = new THREE.Quaternion().setFromAxisAngle(CIMA, Math.random() * Math.PI * 2);
-	const rotacaoFinal = giroAleatorio.multiply(faceProCima);
-
-	const direcao = fim.clone().sub(inicio).normalize();
-	const eixoDeRolagem = new THREE.Vector3().crossVectors(CIMA, direcao).normalize();
+	const fins = posicoesFinais(valores.length, mesaVisivel);
 	const voltas = Math.PI * 2 * 5;
 
-	dado3D.position.copy(inicio);
+	// tudo que cada dado precisa pra animação: de onde sai, onde para, em que eixo gira e como termina
+	const rolagens = [];
+	for (let i = 0; i < valores.length; i++) {
+		// todos entram pelo mesmo canto, um pouquinho espalhados pra não sair um dentro do outro
+		const inicio = new THREE.Vector3(mesaVisivel.x + 2 + Math.random() * 2, 0, mesaVisivel.z + 2 + Math.random() * 2);
+		const fim = fins[i];
+
+		// primeiro vira a face sorteada pra cima, depois gira de lado num ângulo aleatório pra não parar sempre igual
+		const faceProCima = new THREE.Quaternion().setFromUnitVectors(normaisDasFaces[valores[i]], CIMA);
+		const giroAleatorio = new THREE.Quaternion().setFromAxisAngle(CIMA, Math.random() * Math.PI * 2);
+
+		const direcao = fim.clone().sub(inicio).normalize();
+		rolagens.push({
+			dado: dados3D[i],
+			inicio: inicio,
+			fim: fim,
+			rotacaoFinal: giroAleatorio.multiply(faceProCima),
+			eixoDeRolagem: new THREE.Vector3().crossVectors(CIMA, direcao).normalize(),
+		});
+		dados3D[i].position.copy(inicio);
+	}
 	renderer.render(cena, camera);
 
 	let comeco = null;
 
-	// o navegador chama essa função a cada quadro (uns 60 por segundo), e cada quadro mexe o dado um pouquinho
+	// o navegador chama essa função a cada quadro (uns 60 por segundo), e cada quadro mexe os dados um pouquinho
 	function quadro(agora) {
 		if (comeco === null) {
 			comeco = agora;
@@ -186,15 +225,17 @@ function rolarDado3D(canvas, valor, quandoParar) {
 		const t = Math.min((agora - comeco) / DURACAO_ROLAGEM, 1); // progresso de 0 a 1
 		const desacelera = 1 - Math.pow(1 - t, 3); // começa rápido e vai freando
 
-		dado3D.position.lerpVectors(inicio, fim, desacelera);
-		// quiques: |cos| faz os pulos, e o exp vai diminuindo a altura deles até zerar em t = 1
-		dado3D.position.y = alturaDeRepouso + 4 * Math.exp(-4 * t) * Math.abs(Math.cos(Math.PI * 3.5 * t));
+		for (const r of rolagens) {
+			r.dado.position.lerpVectors(r.inicio, r.fim, desacelera);
+			// quiques: |cos| faz os pulos, e o exp vai diminuindo a altura deles até zerar em t = 1
+			r.dado.position.y = alturaDeRepouso + 4 * Math.exp(-4 * t) * Math.abs(Math.cos(Math.PI * 3.5 * t));
 
-		// quanto falta girar até a posição final; em t = 1 vira zero e sobra só a rotação final.
-		// O sinal negativo é o que faz rolar PARA FRENTE: o ângulo sobe de -voltas até 0
-		// (se fosse positivo, ele desceria de +voltas até 0 e o dado giraria de ré)
-		const giro = new THREE.Quaternion().setFromAxisAngle(eixoDeRolagem, -voltas * (1 - desacelera));
-		dado3D.quaternion.multiplyQuaternions(giro, rotacaoFinal);
+			// quanto falta girar até a posição final; em t = 1 vira zero e sobra só a rotação final.
+			// O sinal negativo é o que faz rolar PARA FRENTE: o ângulo sobe de -voltas até 0
+			// (se fosse positivo, ele desceria de +voltas até 0 e o dado giraria de ré)
+			const giro = new THREE.Quaternion().setFromAxisAngle(r.eixoDeRolagem, -voltas * (1 - desacelera));
+			r.dado.quaternion.multiplyQuaternions(giro, r.rotacaoFinal);
+		}
 
 		renderer.render(cena, camera);
 
