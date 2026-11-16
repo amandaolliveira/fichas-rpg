@@ -15,6 +15,7 @@ function preencherFicha() {
 		formFicha.reset();
 		campos.agenteId.value = "";
 		subtitulo.textContent = "Criando um agente novo.";
+		atualizarPontosRestantes();
 		return;
 	}
 
@@ -40,6 +41,24 @@ function preencherFicha() {
 	campos.esforcoMaximo.value = agente.esforco.maximo;
 
 	campos.defesa.value = agente.defesa;
+	atualizarPontosRestantes();
+}
+
+// mostra quantos pontos ainda dá pra gastar nos atributos. roda toda vez que mexe num atributo
+function atualizarPontosRestantes() {
+	const campos = formFicha.elements;
+	const soma = Number(campos.AGI.value) + Number(campos.FOR.value) + Number(campos.INT.value) + Number(campos.PRE.value) + Number(campos.VIG.value);
+	const restantes = PONTOS_ATRIBUTOS - soma;
+
+	const contador = document.querySelector(".pontos-restantes");
+	contador.querySelector(".pontos-restantes-valor").textContent = restantes;
+
+	// se ficou negativo, o css pinta de vermelho
+	if (restantes < 0) {
+		contador.classList.add("passou");
+	} else {
+		contador.classList.remove("passou");
+	}
 }
 
 // o value dos inputs sempre vem como texto, então o Number transforma em número de verdade
@@ -163,6 +182,11 @@ function fichaValida(dados) {
 // tira o vermelho do campo quando a pessoa começa a arrumar
 formFicha.addEventListener("input", function (evento) {
 	evento.target.classList.remove("is-invalid");
+
+	// só os atributos têm a classe .campo
+	if (evento.target.classList.contains("campo")) {
+		atualizarPontosRestantes();
+	}
 });
 
 formFicha.addEventListener("submit", function (evento) {

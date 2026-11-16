@@ -593,6 +593,25 @@ img {
 	font-size: 0.875rem;
 }
 
+/* contador embaixo do diagrama de atributos */
+.pontos-restantes {
+	margin: 8px 0 0;
+	color: var(--muted);
+	font-family: var(--fonte-mono);
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+.pontos-restantes-valor {
+	color: var(--roxo-100);
+}
+
+/* gastou mais do que tinha */
+.pontos-restantes.passou .pontos-restantes-valor {
+	color: var(--danger);
+}
+
 .campo::-webkit-outer-spin-button,
 .campo::-webkit-inner-spin-button {
 	-webkit-appearance: none;
