@@ -329,6 +329,12 @@ main > section fieldset > legend {
 		box-shadow 0.2s;
 }
 
+/* o padding de cima apagava o espaço que o bootstrap deixa pra setinha do select, aí o texto ficava embaixo dela */
+.form-select {
+	padding-right: 40px;
+	background-position: right 16px center;
+}
+
 .form-control:focus,
 .form-select:focus {
 	color: var(--white-200);
