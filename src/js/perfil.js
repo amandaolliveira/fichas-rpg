@@ -100,7 +100,13 @@ function renderizarPerfil() {
 
 	const itensMestre = [];
 	for (const campanha of campanhasQueMestro(nome)) {
-		itensMestre.push({ principal: campanha.nome, detalhe: sessoesDaCampanha(campanha.id).length + " sessões" });
+		// mesmo esquema do formatarQuantidadeAgentes, senão fica "1 sessões"
+		const totalSessoes = sessoesDaCampanha(campanha.id).length;
+		let textoSessoes = totalSessoes + " sessões";
+		if (totalSessoes === 1) {
+			textoSessoes = "1 sessão";
+		}
+		itensMestre.push({ principal: campanha.nome, detalhe: textoSessoes });
 	}
 
 	preencherListaPerfil(".perfil-agentes", itensAgentes, "Nenhum agente com o seu nome de jogador.");
