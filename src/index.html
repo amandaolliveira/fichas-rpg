@@ -630,7 +630,55 @@
 
 			<section id="perfil" aria-labelledby="perfil-titulo" hidden>
 				<h2 id="perfil-titulo">Perfil</h2>
-				<p>Aqui você vê os personagens que criou.</p>
+				<p>Aqui você vê os personagens que criou e as campanhas que joga ou mestra.</p>
+				<hr />
+
+				<form id="form-perfil" class="row g-2 align-items-end mb-4" data-bs-theme="dark" novalidate>
+					<div class="col-md-6">
+						<label for="perfil-nome" class="form-label">Seu nome de jogador</label>
+						<input type="text" id="perfil-nome" name="nomeJogador" class="form-control" maxlength="60" placeholder="O mesmo que você coloca na ficha" required />
+						<div class="invalid-feedback">Escreva seu nome.</div>
+					</div>
+					<div class="col-md-auto">
+						<button type="submit" class="btn btn-primary w-100">Salvar</button>
+					</div>
+				</form>
+
+				<p class="perfil-sem-nome text-body-secondary">Salve seu nome de jogador pra ver seus agentes e campanhas.</p>
+
+				<div class="perfil-conteudo" hidden>
+					<h3 class="perfil-ola"></h3>
+
+					<!-- abas do bootstrap: o data-bs-toggle="tab" já troca sozinho, não precisa de js -->
+					<ul class="nav nav-tabs abas-perfil" role="tablist">
+						<li class="nav-item" role="presentation">
+							<button class="nav-link active" id="aba-agentes" data-bs-toggle="tab" data-bs-target="#painel-agentes" type="button" role="tab" aria-controls="painel-agentes" aria-selected="true">
+								Meus agentes <span class="badge contador-agentes">0</span>
+							</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link" id="aba-campanhas" data-bs-toggle="tab" data-bs-target="#painel-campanhas" type="button" role="tab" aria-controls="painel-campanhas" aria-selected="false">
+								Jogando <span class="badge contador-campanhas">0</span>
+							</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link" id="aba-mestre" data-bs-toggle="tab" data-bs-target="#painel-mestre" type="button" role="tab" aria-controls="painel-mestre" aria-selected="false">
+								Mestrando <span class="badge contador-mestre">0</span>
+							</button>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane fade show active" id="painel-agentes" role="tabpanel" aria-labelledby="aba-agentes" tabindex="0">
+							<ul class="perfil-agentes list-group" data-bs-theme="dark"></ul>
+						</div>
+						<div class="tab-pane fade" id="painel-campanhas" role="tabpanel" aria-labelledby="aba-campanhas" tabindex="0">
+							<ul class="perfil-campanhas list-group" data-bs-theme="dark"></ul>
+						</div>
+						<div class="tab-pane fade" id="painel-mestre" role="tabpanel" aria-labelledby="aba-mestre" tabindex="0">
+							<ul class="perfil-mestre list-group" data-bs-theme="dark"></ul>
+						</div>
+					</div>
+				</div>
 			</section>
 		</main>
 
@@ -752,6 +800,7 @@
 		<script src="js/sessoes.js"></script>
 		<script src="js/historico.js"></script>
 		<script src="js/estatisticas.js"></script>
+		<script src="js/perfil.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 </html>

@@ -4,6 +4,7 @@ const CHAVE_AGENTES = "carl-agentes";
 const CHAVE_CAMPANHAS = "carl-campanhas";
 const CHAVE_SESSOES = "carl-sessoes";
 const CHAVE_ROLAGENS = "carl-rolagens";
+const CHAVE_PERFIL = "carl-perfil"; // só o nome do jogador, texto puro
 const CHAVE_SELECIONADO = "carl-agente-selecionado"; // salva só o id do agente, não o objeto inteiro
 
 // mesmo se vc quiser guardar um objeto no localstorage, só aceita texto - então vc tem que transformar o objeto em texto antes de guardar

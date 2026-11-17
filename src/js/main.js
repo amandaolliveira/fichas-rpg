@@ -26,6 +26,11 @@ function trocarSection() {
 		renderizarSessoes();
 	}
 
+	// agente ou campanha pode ter mudado de dono, então monta o perfil de novo
+	if (id === "perfil") {
+		renderizarPerfil();
+	}
+
 	// os números do início podem ter mudado (agente ou campanha nova), então recalcula
 	if (id === "inicio") {
 		renderizarEstatisticas();
@@ -87,6 +92,7 @@ resetarWizard();
 renderizarSessoes();
 renderizarHistorico();
 renderizarEstatisticas();
+renderizarPerfil();
 
 window.addEventListener("hashchange", trocarSection); // tive que cavar pra achar esse hashchange
 trocarSection(); // chama a função no rodar da página, pra tocar até na hora de carregar
