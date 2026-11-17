@@ -1216,21 +1216,6 @@ main > section .card-sessao .card-title {
 	}
 }
 
-/* pra quem desligou as animações no sistema. respeita */
-@media (prefers-reduced-motion: reduce) {
-	*,
-	*::before,
-	*::after {
-		transition: none !important;
-	}
-
-	.btn:hover,
-	.card-custom:hover,
-	.card-campanha:hover {
-		transform: none;
-	}
-}
-
 /* ===== ESTATÍSTICAS ===== */
 
 /* grade de blocos com os números do início, só texto mesmo */
