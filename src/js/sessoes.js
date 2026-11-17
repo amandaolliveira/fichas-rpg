@@ -43,8 +43,14 @@ function hojeTexto() {
 	return hoje.getFullYear() + "-" + mes + "-" + dia;
 }
 
+// o new Date("2026-11-16") lê a data como meia-noite em UTC, e no Brasil (UTC-3) isso ainda é dia 15.
+// então nem passa pelo Date: só separa o texto e monta "DD/MM/AAAA" na mão
 function formatarDataSessao(data) {
-	return new Date(data).toLocaleDateString("pt-BR");
+	if (!data) {
+		return "-";
+	}
+	const partes = data.split("-"); // ["2026", "11", "16"]
+	return partes[2] + "/" + partes[1] + "/" + partes[0];
 }
 
 // LISTA
