@@ -1202,6 +1202,18 @@ main > section .card-sessao .card-title {
 	.card-custom {
 		width: min(380px, 80vw);
 	}
+
+	/* as 3 abas não cabiam e a última caía pra linha de baixo. agora ficam numa linha só e rola pro lado se precisar */
+	.abas-perfil {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+
+	.abas-perfil .nav-link {
+		padding: 8px 12px;
+		white-space: nowrap;
+	}
 }
 
 /* pra quem desligou as animações no sistema. respeita */
